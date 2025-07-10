@@ -23,7 +23,8 @@
         .site-header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:background-color var(--transition-speed) ease,border-color var(--transition-speed) ease,box-shadow var(--transition-speed) ease}
         .site-header .container{display:flex;justify-content:space-between;align-items:center;height:70px}
         .site-header .logo{cursor:pointer}
-        .site-header .logo img{height:40px;width:auto;transition:filter var(--transition-speed) ease}
+        .site-header .logo img{height:40px;width:auto;transition:filter var(--transition-speed) ease;transform:translateZ(0)}
+        .site-header .logo:hover img{filter:grayscale(30%)}
         .logo .logo-scrolled{display:none}
         .site-header.scrolled .logo .logo-unscrolled{display:none}
         .site-header.scrolled .logo .logo-scrolled{display:block}
@@ -198,7 +199,7 @@
             <div class="content scroll-animated">
                 <h1 class="lang-switch" data-en="Be Mentored by a Tutor" data-es="Sé Mentorizado por un Tutor"></h1>
                 <p class="lang-switch" data-en="Free tutoring for those learning English and students seeking assistance in school" data-es="Tutoría gratuita para quienes aprenden inglés y estudiantes que buscan ayuda en la escuela"></p>
-                <a href="#receive-tutoring-section" class="btn lang-switch" data-en="Receive Assistance" data-es="Recibir Asistencia"></a>
+                <a data-page-id="receive-tutoring" class="btn lang-switch nav-link" data-en="Receive Assistance" data-es="Recibir Asistencia"></a>
             </div>
         </section>
         <section class="section section-theme-blue">
@@ -228,8 +229,11 @@
             <div class="container">
                 <div class="title-box scroll-animated"><div class="title-number">1</div><h2 class="title-main lang-switch" data-en="Peer-to-Peer Tutoring" data-es="Tutoría de Estudiante a Estudiante"></h2></div>
                 <div class="image-grid-2 scroll-animated"><img src="https://i.imgur.com/sMeIfhe.jpeg" alt="Students at green table" class="placeholder-img"><img src="https://i.imgur.com/61wvnof.jpeg" alt="Two students studying" class="placeholder-img"></div>
-                <p class="section-subtitle scroll-animated lang-switch" data-en="We offer FREE, in person tutoring sessions for students learning English at Miami Coral Park Senior High School and Paul W. Bell Middle School." data-es="Ofrecemos sesiones de tutoría GRATUITAS y en persona para estudiantes que aprenden inglés en Miami Coral Park Senior High School y Paul W. Bell Middle School."></p>
-                <div class="scroll-animated"><a href="#" class="btn lang-switch" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a><a href="#" class="btn lang-switch" data-en="Become a Tutor" data-es="Conviértete en Tutor"></a></div>
+                <p class="section-subtitle scroll-animated lang-switch" style="margin-top: 40px;" data-en="We offer FREE, in person tutoring sessions for students learning English at Miami Coral Park Senior High School and Paul W. Bell Middle School." data-es="Ofrecemos sesiones de tutoría GRATUITAS y en persona para estudiantes que aprenden inglés en Miami Coral Park Senior High School y Paul W. Bell Middle School."></p>
+                <div class="scroll-animated">
+                    <a data-page-id="receive-tutoring" class="btn lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
+                    <a data-page-id="get-involved" class="btn lang-switch nav-link" data-en="Become a Tutor" data-es="Conviértete en Tutor"></a>
+                </div>
             </div>
         </section>
         <section class="section section-theme-green">
@@ -245,8 +249,7 @@
             <div class="container">
                 <div class="title-box scroll-animated"><div class="title-number">2</div><h2 class="title-main lang-switch" data-en="Supporting Local Community" data-es="Apoyando a la Comunidad Local"></h2></div>
                 <div class="image-grid-2 scroll-animated"><img src="https://i.imgur.com/F7Kb5Gz.jpeg" alt="Donation boxes in car" class="placeholder-img"><img src="https://i.imgur.com/UQUm6Gb.jpeg" alt="Group photo Happy Mother's Day" class="placeholder-img"></div>
-                <h3 class="section-title small scroll-animated lang-switch" data-en="Organizations and Institutions We've Supported:" data-es="Organizaciones e Instituciones que Hemos Apoyado:"></h3>
-                <div class="logo-strip scroll-animated">
+                <h3 class="section-title small scroll-animated lang-switch" style="margin-top: 30px;" data-en="Organizations and Institutions We've Supported:" data-es="Organizaciones e Instituciones que Hemos Apoyado:"></h3><div class="logo-strip scroll-animated">
                     <a href="https://www3.dadeschools.net/home" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/lyc4Qhu.png" alt="Miami-Dade County Public Schools Logo" class="placeholder-img"></a>
                     <a href="https://www.mcpshs.net/" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/6ZE4lPq.png" alt="Miami Coral Park Senior High School Logo" class="placeholder-img"></a>
                     <a href="https://www.miamianimalrescue.org/" target="_blank" rel="noopener noreferrer"><img src="https://i.imgur.com/GG4krxg.png" alt="Miami Animal Rescue Logo" class="placeholder-img"></a>
@@ -268,9 +271,13 @@
             <div class="container">
                 <div class="title-box scroll-animated"><div class="title-number">3</div><h2 class="title-main lang-switch" data-en="Online Tutoring and Lessons" data-es="Tutoría y Lecciones en Línea"></h2></div>
                 <img src="https://i.imgur.com/aIDN2J3.jpeg" alt="Students in online tutoring session" class="placeholder-img scroll-animated">
-                <p class="section-subtitle scroll-animated lang-switch" data-en="Starting Fall 2025, we will be offering free online tutoring and developing online lessons for self-guided learning." data-es="A partir del otoño de 2025, ofreceremos tutorías en línea gratuitas y desarrollaremos lecciones en línea para el aprendizaje autoguiado."></p>
+                <p class="section-subtitle scroll-animated lang-switch" style="margin-top: 40px;" data-en="Starting Fall 2025, we will be offering free online tutoring and developing online lessons for self-guided learning." data-es="A partir del otoño de 2025, ofreceremos tutorías en línea gratuitas y desarrollaremos lecciones en línea para el aprendizaje autoguiado."></p>
                 <h3 class="section-title small scroll-animated lang-switch" data-en="Looking for Online Tutors and Lesson Writers" data-es="Buscando Tutores y Escritores de Lecciones en Línea"></h3>
-                <div class="scroll-animated"><a href="#" class="btn lang-switch" data-en="Volunteer" data-es="Voluntario"></a><a href="#" class="btn lang-switch" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a><a href="#" class="btn lang-switch" data-en="Lessons" data-es="Lecciones"></a></div>
+                <div class="scroll-animated">
+                    <a data-page-id="get-involved" class="btn lang-switch nav-link" data-en="Volunteer" data-es="Voluntario"></a>
+                    <a data-page-id="receive-tutoring" class="btn lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
+                    <a data-page-id="lessons" class="btn lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
+                </div>
             </div>
         </section>
         <section class="section section-theme-red">
@@ -282,9 +289,12 @@
             <div class="container">
                 <div class="title-box scroll-animated"><div class="title-number">4</div><h2 class="title-main lang-switch" data-en="Essay and College Application Assistance" data-es="Asistencia para Ensayos y Solicitudes Universitarias"></h2></div>
                 <img src="https://i.imgur.com/9VueW1Z.jpeg" alt="Students getting essay help" class="placeholder-img scroll-animated">
-                <p class="section-subtitle scroll-animated lang-switch" data-en="Starting Fall 2025, we will be offering online assistance with essay editing and applying to college." data-es="A partir del otoño de 2025, ofreceremos asistencia en línea con la edición de ensayos y la solicitud de ingreso a la universidad."></p>
+                <p class="section-subtitle scroll-animated lang-switch" style="margin-top: 40px;" data-en="Starting Fall 2025, we will be offering online assistance with essay editing and applying to college." data-es="A partir del otoño de 2025, ofreceremos asistencia en línea con la edición de ensayos y la solicitud de ingreso a la universidad."></p>
                 <h3 class="section-title small scroll-animated lang-switch" data-en="Looking for Online Editors and Councilors" data-es="Buscando Editores y Consejeros en Línea"></h3>
-                <div class="scroll-animated"><a href="#" class="btn lang-switch" data-en="Volunteer" data-es="Voluntario"></a><a href="#" class="btn lang-switch" data-en="Receive Assistance" data-es="Recibir Asistencia"></a></div>
+                <div class="scroll-animated">
+                    <a data-page-id="get-involved" class="btn lang-switch nav-link" data-en="Volunteer" data-es="Voluntario"></a>
+                    <a data-page-id="receive-tutoring" class="btn lang-switch nav-link" data-en="Receive Assistance" data-es="Recibir Asistencia"></a>
+                </div>
             </div>
         </section>
         <section class="section section-theme-green-2" id="articles-section">
