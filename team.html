@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Team - Literary Speaking</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        :root{--font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--color-text:#222;--color-text-light:#555;--transition-speed:0.4s;--color-blue-light:#c3e5ff;--color-blue-dark:#0a1763;--color-beige:#fff0db;--color-beige-dark:#8b4102;--color-purple:#f2e7ff;--color-purple-dark:#4b0082;--color-green:#d1ffe6;--color-green-dark:#186d5e;--color-pink:#ffebf2;--color-pink-dark:#c71585;--color-yellow:#fffacd;--color-yellow-dark:#8B4513;--color-red:#ffdddd;--color-red-dark:#b22222;--color-teal:#e0ffff;--color-teal-dark:#008080;--color-footer-bg:#f7f7ff;--color-footer-text:#4a0e7e}
+        *,*:before,*:after{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{margin:0;font-family:var(--font-family);background-color:#fff;color:var(--color-text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        body.menu-open{overflow:hidden}
+        .container{max-width:1100px;margin:0 auto;padding:0 30px}
+        .section{padding:80px 0;text-align:center;background-color:var(--section-bg,white);color:var(--section-text,var(--color-text))}
+        .section-title{font-size:2.5rem;font-weight:900;margin:0 0 10px;line-height:1.2}
+        .section-subtitle{font-size:1.1rem;color:var(--color-text-light);max-width:700px;margin:0 auto 50px}
+        .site-header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:background-color var(--transition-speed) ease,border-color var(--transition-speed) ease,box-shadow var(--transition-speed) ease}
+        .site-header .container{display:flex;justify-content:space-between;align-items:center;height:70px}
+        .site-header .logo{cursor:pointer}
+        .site-header .logo img{height:40px;width:auto;transition:filter var(--transition-speed) ease}
+        .logo .logo-scrolled{display:none}
+        .site-header.scrolled .logo .logo-unscrolled{display:none}
+        .site-header.scrolled .logo .logo-scrolled{display:block}
+        .site-header:not(.scrolled) .logo .logo-unscrolled{height:41px;transform:translate(0px,2px)}
+        .desktop-nav{display:flex;align-items:center}
+        .desktop-nav a{margin:0 10px;padding:5px 0;text-decoration:none;font-weight:500;font-size:.85rem;transition:color var(--transition-speed) ease, border-color var(--transition-speed) ease; cursor: pointer;}
+        .desktop-nav a.active-page-link{border:2px solid;padding:5px 15px;border-radius:5px}
+        .site-header:not(.scrolled) .desktop-nav a.active-page-link{border-color:#fff}
+        .site-header:not(.scrolled) .desktop-nav a.active-page-link:hover{color:#ddd;border-color:#ddd}
+        .site-header.scrolled .desktop-nav a.active-page-link{border-color:var(--color-text)}
+        .site-header.scrolled .desktop-nav a.active-page-link:hover{color:var(--color-text);border-color:var(--color-text)}
+        .lang-switcher{display:flex;border:1px solid;border-radius:100px;transition:border-color var(--transition-speed) ease;cursor:pointer;-webkit-tap-highlight-color:transparent}
+        .lang-switcher button{background:0 0;border:0;padding:5px 10px;font-family:var(--font-family);font-weight:700;font-size:.75rem;cursor:pointer;border-radius:100px;transition:all var(--transition-speed) ease;pointer-events:none}
+        .site-header:not(.scrolled){background-color:transparent;border-bottom-color:transparent}
+        .site-header:not(.scrolled) .desktop-nav a{color:#fff;text-shadow:1px 1px 2px rgba(0,0,0,.2)}
+        .site-header:not(.scrolled) .desktop-nav a:hover{color:#ddd}
+        .site-header:not(.scrolled) .desktop-nav .lang-switcher{border-color:rgba(255,255,255,.5)}
+        .site-header:not(.scrolled) .desktop-nav .lang-switcher button{color:#fff}
+        .site-header:not(.scrolled) .desktop-nav .lang-switcher button.active{background-color:#fff;color:var(--color-text)}
+        .site-header.scrolled{background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0f0f0}
+        .site-header.scrolled .desktop-nav a{color:var(--color-text-light);text-shadow:none}
+        .site-header.scrolled .desktop-nav a:hover{color:var(--color-text)}
+        .site-header.scrolled .desktop-nav .lang-switcher{border-color:rgba(0,0,0,.1)}
+        .site-header.scrolled .desktop-nav .lang-switcher button{color:var(--color-text-light)}
+        .site-header.scrolled .desktop-nav .lang-switcher button.active{background-color:var(--color-text);color:#fff}
+        .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:none}
+        .hero-banner{height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;position:relative;padding:0 20px;background-image:url(https://i.imgur.com/hs1heGf.png);background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover}
+        .hero-banner .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:2}
+        .hero-banner .content{position:relative;z-index:3}
+        .hero-banner h1{font-size:3.8rem;font-weight:900;margin:0;line-height:1.2}
+        .founder-box{background-color:#d396ff;padding:40px;border-radius:20px;margin-top:50px}
+        .founder-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:40px;align-items:center;text-align:left}
+        .founder-images img{width:100%;border-radius:16px;margin-bottom:20px}
+        .founder-bio p{line-height:1.7;white-space:pre-wrap;margin:0;color:#2d0070;}
+        .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;justify-content:center;margin-top:50px}
+        .newsletter-team-grid{max-width:260px;margin:50px auto 0}
+        .team-member{text-align:center;cursor:pointer}
+        .team-member .portrait{width:100%;max-width:220px;aspect-ratio:1/1;object-fit:cover;border-radius:50%;transition:transform .3s ease, box-shadow .3s ease; margin-bottom: 15px; display: inline-block;}
+        .team-member:hover .portrait{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,0.1)}
+        .team-member-name{font-size:1.2rem;font-weight:700;margin:0}
+        .team-member-title{font-size:1rem;color:var(--color-text-light);margin-top:5px}
+        .site-footer{background-color:var(--color-footer-bg);padding:60px 0;text-align:center}
+        .site-footer img{height:80px;margin:0 auto 20px}
+        .site-footer p{margin:10px 0;color:var(--color-footer-text)}
+        .site-footer nav{margin-top:10px}
+        .site-footer nav a{margin:0 5px;color:var(--color-footer-text);text-decoration:underline;font-weight:500;cursor:pointer}
+        .site-footer nav a:not(:last-child):after{content:'|';text-decoration:none;margin-left:10px;color:var(--color-footer-text);font-weight:500}
+        .site-footer nav a:hover{color:var(--color-text)}
+        .scroll-animated{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
+        .scroll-animated.is-visible{opacity:1;transform:translateY(0)}
+        @media (max-width:1150px){.desktop-nav{display:none}
+        .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:flex}
+        .site-header .container{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+        .lang-switcher-mobile-wrapper{justify-self:start}
+        .lang-switcher-mobile-wrapper .lang-switcher{margin-left:0}
+        .site-header .logo{justify-self:center}
+        .mobile-nav{position:fixed;top:0;left:0;width:100%;height:100vh;background-color:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform var(--transition-speed) ease-in-out;padding-top:70px}
+        body.menu-open .mobile-nav{transform:translateY(0)}
+        .mobile-nav a{margin:15px 0;font-size:1.5rem;color:var(--color-text);text-shadow:none;text-decoration:none; cursor: pointer;}
+        .mobile-nav a.active-page-link{background-color:var(--color-purple);border-radius:10px;padding-left:15px;padding-right:15px}
+        .mobile-nav a:hover{color:var(--color-purple-dark)}
+        .menu-toggle{flex-direction:column;justify-content:space-between;width:30px;height:21px;background:0 0;border:0;cursor:pointer;padding:0;z-index:1001;justify-self:end}
+        .menu-toggle span{width:30px;height:3px;border-radius:10px;transition:all var(--transition-speed) ease-in-out}
+        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher{border-color:rgba(255,255,255,.5)}
+        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button{color:#fff}
+        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button.active{background-color:#fff;color:var(--color-text)}
+        .site-header:not(.scrolled):not(.menu-active-state) .menu-toggle span{background-color:#fff}
+        .site-header.scrolled,.site-header.menu-active-state{background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0f0f0}
+        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher{border-color:rgba(0,0,0,.1)}
+        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button{color:var(--color-text-light)}
+        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button.active{background-color:var(--color-text);color:#fff}
+        :is(.site-header.scrolled,.site-header.menu-active-state) .menu-toggle span{background-color:var(--color-text)}
+        .menu-toggle.active span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+        .menu-toggle.active span:nth-child(2){opacity:0;transform:translateX(-20px)}
+        .menu-toggle.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}}
+        @media (max-width:768px){
+        .section{padding:60px 0}
+        .section-title{font-size:2rem}
+        .hero-banner{background-attachment:scroll}
+        .hero-banner h1{font-size:2.2rem}
+        .founder-grid{grid-template-columns:1fr; text-align: center;}
+        .team-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
+        }
+    </style>
+</head>
+<body data-current-page="the-team">
+    <header class="site-header" id="header"></header>
+
+    <main>
+        <section class="hero-banner">
+            <div class="overlay"></div>
+            <div class="content scroll-animated">
+                <h1 class="lang-switch" data-en="Who are We?" data-es="¿Quiénes Somos?"></h1>
+            </div>
+        </section>
+
+        <section class="section" style="--section-bg: var(--color-purple)">
+            <div class="container">
+                <h2 class="section-title lang-switch" data-en="Founder and Director" data-es="Fundadora y Directora"></h2>
+                <div class="founder-box scroll-animated">
+                    <div class="founder-grid">
+                        <div class="founder-images">
+                            <img src="https://i.imgur.com/kSx0mKf.png" alt="Alejandra Perry Portrait">
+                            <img src="https://i.imgur.com/HYqSjLz.jpeg" alt="Alejandra Perry Secondary">
+                        </div>
+                        <div class="founder-bio">
+                            <p class="lang-switch" data-en="Hello Everyone!
+
+My name is Alejandra Perry, and I coordinate tutoring at Paul W. Bell Middle School and Miami Coral Park High School. My experience tutoring started in middle school with helping family and friends. As I got to know my students better, I realized that many had the willingness and ability to excel but lacked support systems to do so. Many came from other countries not knowing English, and many more came from low-income backgrounds. To mitigate the impact these disadvantages would have on them in school, I began to organize school-wide tutoring my Freshman year. At first, I focused on English language skills, but I soon realized that helping students learning English (ELL) extended beyond that. With other tutors involved, we began to offer any academic subject students need assistance with, as well as FAST test and SAT preparation. I am proud to say that I personally helped an ELL student rise from level 2 to level 4 on the FAST exam after a year of tutoring. Between the dedicated tutors I work with to my perseverant students, tutoring is a passion I plan to continue after high school. I hope you can join us and help impact other's lives one lesson at a time :)
+
+Sincerely,
+Alejandra 
+Literary Speaking
+Tutoring & Mentorship" data-es="¡Hola a todos!
+
+Mi nombre es Alejandra Perry, y coordino la tutoría en la Escuela Intermedia Paul W. Bell y en la Escuela Secundaria Miami Coral Park. Mi experiencia como tutora comenzó en la escuela intermedia ayudando a familiares y amigos. A medida que conocía mejor a mis estudiantes, me di cuenta de que muchos tenían la voluntad y la capacidad de sobresalir, pero carecían de los sistemas de apoyo para hacerlo. Muchos venían de otros países sin saber inglés, y muchos más provenían de entornos de bajos ingresos. Para mitigar el impacto que estas desventajas tendrían en ellos en la escuela, comencé a organizar tutorías a nivel escolar en mi primer año de secundaria. Al principio, me centré en las habilidades del idioma inglés, pero pronto me di cuenta de que ayudar a los estudiantes que aprenden inglés (ELL) iba más allá. Con la participación de otros tutores, comenzamos a ofrecer cualquier materia académica en la que los estudiantes necesitaran ayuda, así como preparación para los exámenes FAST y SAT. Me enorgullece decir que personalmente ayudé a un estudiante de ELL a pasar del nivel 2 al nivel 4 en el examen FAST después de un año de tutoría. Entre los tutores dedicados con los que trabajo y mis estudiantes perseverantes, la tutoría es una pasión que planeo continuar después de la secundaria. ¡Espero que puedan unirse a nosotros y ayudar a impactar la vida de otros, una lección a la vez! :)
+
+Sinceramente,
+Alejandra 
+Tutoría y Mentoría de Literary Speaking"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="--section-bg: var(--color-green)">
+            <div class="container">
+                <h2 class="section-title lang-switch" data-en="Paul W. Bell Middle School Board of Directors" data-es="Junta Directiva de Paul W. Bell Middle School"></h2>
+                <div class="team-grid">
+                    <div class="team-member scroll-animated" data-member-id="aitana-avila000">
+                        <img src="https://i.imgur.com/W1Upqjf.png" alt="Aitana Avila" class="portrait">
+                        <h3 class="team-member-name">Aitana Avila</h3>
+                        <p class="team-member-title lang-switch" data-en="Vice President" data-es="Vicepresidenta"></p>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="amaylor-torres000">
+                        <img src="https://i.imgur.com/qKn2wFX.jpeg" alt="Amaylor Torres" class="portrait">
+                        <h3 class="team-member-name">Amaylor Torres</h3>
+                        <p class="team-member-title lang-switch" data-en="Historian" data-es="Historiador"></p>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="amiel-cabellero000">
+                        <img src="https://i.imgur.com/qLcPzcc.jpeg" alt="Amiel Cabellero" class="portrait">
+                        <h3 class="team-member-name">Amiel Cabellero</h3>
+                        <p class="team-member-title lang-switch" data-en="Secretary" data-es="Secretario"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="--section-bg: var(--color-purple)">
+            <div class="container">
+                <h2 class="section-title lang-switch" data-en="Miami Coral Park Senior High School Board of Directors" data-es="Junta Directiva de Miami Coral Park Senior High School"></h2>
+                <div class="team-grid">
+                    <div class="team-member scroll-animated" data-member-id="camila-lopez000">
+                        <img src="https://i.imgur.com/x6nu22B.jpeg" alt="Camila Lopez" class="portrait">
+                        <h3 class="team-member-name">Camila Lopez</h3>
+                        <p class="team-member-title lang-switch" data-en="Vice President" data-es="Vicepresidenta"></p>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="vanessa-garcia000">
+                        <img src="https://i.imgur.com/1W5K5l9.jpeg" alt="Vanessa Garcia" class="portrait">
+                        <h3 class="team-member-name">Vanessa Garcia</h3>
+                        <p class="team-member-title lang-switch" data-en="Secretary" data-es="Secretaria"></p>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="angelina-garma000">
+                        <img src="https://i.imgur.com/dJMzmhq.jpeg" alt="Angelina Garma" class="portrait">
+                        <h3 class="team-member-name">Angelina Garma</h3>
+                        <p class="team-member-title lang-switch" data-en="Historian" data-es="Historiadora"></p>
+                    </div>
+                     <div class="team-member scroll-animated" data-member-id="jeanmichael-gonzalvo000">
+                        <img src="https://i.imgur.com/57KWNYp.png" alt="Jeanmichael Gonzalvo" class="portrait">
+                        <h3 class="team-member-name">Jeanmichael Gonzalvo</h3>
+                        <p class="team-member-title lang-switch" data-en="Historian" data-es="Historiador"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="--section-bg: var(--color-yellow)">
+            <div class="container">
+                <h2 class="section-title lang-switch" data-en="Article and Newsletter Team" data-es="Equipo de Artículos y Boletín"></h2>
+                <p class="section-subtitle">Some of our educational content writers. Click on each picture for each tutor's testimonial.</p>
+                <div class="team-grid newsletter-team-grid">
+                    <div class="team-member scroll-animated" data-member-id="natalie-arenal000">
+                        <img src="https://i.imgur.com/SMlS7uy.jpeg" alt="Natalie Arenal" class="portrait">
+                        <h3 class="team-member-name">Natalie Arenal</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="--section-bg: var(--color-teal)">
+            <div class="container">
+                <h2 class="section-title lang-switch" data-en="Our Tutors" data-es="Nuestros Tutores"></h2>
+                <div class="team-grid">
+                    <div class="team-member scroll-animated" data-member-id="sofia-gonzalez-carba000">
+                        <img src="https://i.imgur.com/fFgHnil.jpeg" alt="Sofia Gonzalez-Carba" class="portrait">
+                        <h3 class="team-member-name">Sofia Gonzalez-Carba</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="isabella-stubbs000">
+                        <img src="https://i.imgur.com/BqaQwiu.png" alt="Isabella Stubbs" class="portrait">
+                        <h3 class="team-member-name">Isabella Stubbs</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="eimy-gil000">
+                        <img src="https://i.imgur.com/meQImyb.jpeg" alt="Eimy Gil" class="portrait">
+                        <h3 class="team-member-name">Eimy Gil</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="nicole-alvarez000">
+                        <img src="https://i.imgur.com/KQ35YhW.jpeg" alt="Nicole Alvarez" class="portrait">
+                        <h3 class="team-member-name">Nicole Alvarez</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="andrew-cuellar000">
+                        <img src="https://i.imgur.com/X8kuRwU.jpeg" alt="Andrew Cuellar" class="portrait">
+                        <h3 class="team-member-name">Andrew Cuellar</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="nicolas-vilches000">
+                        <img src="https://i.imgur.com/P3EN0BH.jpeg" alt="Nicolas Vilches" class="portrait">
+                        <h3 class="team-member-name">Nicolas Vilches</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="johann-lara000">
+                        <img src="https://i.imgur.com/cHgC9rn.jpeg" alt="Johann Lara" class="portrait">
+                        <h3 class="team-member-name">Johann Lara</h3>
+                    </div>
+                     <div class="team-member scroll-animated" data-member-id="amelia-guerra000">
+                        <img src="https://i.imgur.com/Ol9vqAP.jpeg" alt="Amelia Guerra" class="portrait">
+                        <h3 class="team-member-name">Amelia Guerra</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="--section-bg: var(--color-pink)">
+            <div class="container">
+                <h2 class="section-title lang-switch" data-en="Our Alumni" data-es="Nuestros Exalumnos"></h2>
+                <div class="team-grid">
+                    <div class="team-member scroll-animated" data-member-id="stephanie-jimenez000">
+                        <img src="https://i.imgur.com/jxhWwce.jpeg" alt="Stephanie Jimenez" class="portrait">
+                        <h3 class="team-member-name">Stephanie Jimenez</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="jose-unanue000">
+                        <img src="https://i.imgur.com/ciF5FZH.jpeg" alt="Jose Unanue" class="portrait">
+                        <h3 class="team-member-name">Jose Unanue</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="ilie-tornes000">
+                        <img src="https://i.imgur.com/j16riwK.jpeg" alt="Ilie Tornes" class="portrait">
+                        <h3 class="team-member-name">Ilie Tornes</h3>
+                    </div>
+                    <div class="team-member scroll-animated" data-member-id="adrian-gomez000">
+                        <img src="https://i.imgur.com/3FWs7Eo.jpeg" alt="Adrian Gomez" class="portrait">
+                        <h3 class="team-member-name">Adrian Gomez</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer"></footer>
+
+    <script src="router.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerContainer = document.getElementById('header');
+            const footerContainer = document.querySelector('.site-footer');
+
+            const headerHTML = `
+                <div class="container">
+                    <div class="lang-switcher-mobile-wrapper"><div class="lang-switcher"><button id="lang-en-btn-mobile">EN</button><button id="lang-es-btn-mobile">ES</button></div></div>
+                    <a data-page-id="home" class="logo nav-link"><img src="https://i.imgur.com/vyE0G43.png" alt="Literary Speaking Logo" class="logo-unscrolled"><img src="https://i.imgur.com/UnpZvgZ.png" alt="Literary Speaking Logo" class="logo-scrolled"></a>
+                    <nav class="desktop-nav">
+                        <a data-page-id="support" class="lang-switch nav-link" data-en="Support Us" data-es="Apóyanos"></a>
+                        <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Get Involved" data-es="Involúcrate"></a>
+                        <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
+                        <a data-page-id="the-team" class="lang-switch nav-link" data-en="The Team" data-es="El Equipo"></a>
+                        <a data-page-id="news" class="lang-switch nav-link" data-en="News" data-es="Noticias"></a>
+                        <a data-page-id="articles" class="lang-switch nav-link" data-en="Articles" data-es="Artículos"></a>
+                        <a data-page-id="lessons" class="lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
+                        <a data-page-id="report-time" class="lang-switch nav-link" data-en="Report Time" data-es="Reportar Horas"></a>
+                        <div class="lang-switcher"><button id="lang-en-btn">EN</button><button id="lang-es-btn">ES</button></div>
+                    </nav>
+                    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+                </div>
+                <nav class="mobile-nav">
+                    <a data-page-id="support" class="lang-switch nav-link" data-en="Support Us" data-es="Apóyanos"></a>
+                    <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Get Involved" data-es="Involúcrate"></a>
+                    <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
+                    <a data-page-id="the-team" class="lang-switch nav-link" data-en="The Team" data-es="El Equipo"></a>
+                    <a data-page-id="news" class="lang-switch nav-link" data-en="News" data-es="Noticias"></a>
+                    <a data-page-id="articles" class="lang-switch nav-link" data-en="Articles" data-es="Artículos"></a>
+                    <a data-page-id="lessons" class="lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
+                    <a data-page-id="report-time" class="lang-switch nav-link" data-en="Report Time" data-es="Reportar Horas"></a>
+                </nav>
+            `;
+            headerContainer.innerHTML = headerHTML;
+
+            const footerHTML = `
+                <div class="container">
+                    <img src="https://i.imgur.com/vyE0G43.png" alt="Literary Speaking Footer Logo" class="scroll-animated">
+                    <p class="lang-switch scroll-animated" data-en="Copyright © 2025 Literary Speaking Tutoring" data-es="Copyright © 2025 Tutoría de Literary Speaking"></p>
+                    <nav class="scroll-animated">
+                        <a data-page-id="about" class="lang-switch nav-link" data-en="About" data-es="Sobre Nosotros"></a>
+                        <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
+                        <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Become a Tutor" data-es="Conviértete en Tutor"></a>
+                        <a data-page-id="contact" class="lang-switch nav-link" data-en="Contact" data-es="Contacto"></a>
+                    </nav>
+                </div>
+            `;
+            footerContainer.innerHTML = footerHTML;
+
+            const header = document.getElementById('header');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const body = document.body;
+            const langSwitches = document.querySelectorAll('.lang-switch');
+            const langEnBtn = document.getElementById('lang-en-btn');
+            const langEsBtn = document.getElementById('lang-es-btn');
+            const langEnBtnMobile = document.getElementById('lang-en-btn-mobile');
+            const langEsBtnMobile = document.getElementById('lang-es-btn-mobile');
+
+            const handleScroll = () => header.classList.toggle('scrolled', window.pageYOffset > 50);
+            window.addEventListener('scroll', handleScroll);
+            handleScroll();
+
+            const closeMenu = () => {
+                body.classList.remove('menu-open');
+                menuToggle.classList.remove('active');
+                header.classList.remove('menu-active-state');
+            };
+
+            menuToggle.addEventListener('click', () => {
+                const isOpen = body.classList.toggle('menu-open');
+                menuToggle.classList.toggle('active', isOpen);
+                header.classList.toggle('menu-active-state', isOpen);
+            });
+
+            document.querySelectorAll('.mobile-nav a, .site-footer nav a, .nav-link').forEach(link => {
+                 if (link.dataset.pageId) {
+                    link.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        const pageId = link.dataset.pageId;
+                        siteRouter.navigateTo(pageId);
+                        closeMenu();
+                    });
+                }
+            });
+
+            document.querySelectorAll('.team-member').forEach(member => {
+                member.addEventListener('click', () => {
+                    const memberId = member.dataset.memberId;
+                    siteRouter.navigateTo('member', memberId);
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-animated').forEach(el => {
+                if ('IntersectionObserver' in window) {
+                    observer.observe(el);
+                } else {
+                    el.classList.add('is-visible');
+                }
+            });
+
+            const setLanguage = (lang) => {
+                langSwitches.forEach(el => {
+                    const text = el.dataset[lang];
+                    if (text) {
+                       el.innerHTML = text;
+                    }
+                });
+                localStorage.setItem('language', lang);
+                const isEn = lang === 'en';
+                langEnBtn?.classList.toggle('active', isEn);
+                langEsBtn?.classList.toggle('active', !isEn);
+                langEnBtnMobile?.classList.toggle('active', isEn);
+                langEsBtnMobile?.classList.toggle('active', !isEn);
+                document.documentElement.lang = lang;
+            };
+
+            const toggleLanguage = () => {
+                const currentLang = localStorage.getItem('language') || 'en';
+                setLanguage(currentLang === 'en' ? 'es' : 'en');
+            };
+
+            document.querySelectorAll('.desktop-nav .lang-switcher, .lang-switcher-mobile-wrapper .lang-switcher').forEach(el => el.addEventListener('click', toggleLanguage));
+            
+            const currentPage = document.body.dataset.currentPage;
+            if (currentPage) {
+                document.querySelectorAll(`.nav-link[data-page-id="${currentPage}"]`).forEach(link => {
+                    link.classList.add('active-page-link');
+                });
+            }
+
+            setLanguage(localStorage.getItem('language') || 'en');
+        });
+    </script>
+</body>
+</html>
