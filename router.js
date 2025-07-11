@@ -16,8 +16,8 @@ const siteRouter = {
     members: {
         "alejandra-perry000": {
             name: "Alejandra Perry",
-            portrait: "https://i.imgur.com/PRlDxs2.png",
-            secondaryImage: "https://i.imgur.com/HYqSjLz.jpeg",
+            portrait: "https://i.imgur.com/uG5z2d0.jpeg",
+            secondaryImage: "https://i.imgur.com/9nF7sJp.jpeg",
             bio_en: "Hello Everyone! My name is Alejandra, and I coordinate tutoring at Paul W. Bell Middle School and Miami Coral Park High School. My experience tutoring started in middle school with helping family and friends. As I got to know my students better, I realized that many had the willingness and ability to excel but lacked support systems to do so. Many came from other countries not knowing English, and many more came from low-income backgrounds. To resolve the issue these disadvantages would have on them in school, I chose to organize school-wide tutoring. At first, I focused on English language skills, but I soon realized that helping students learning English (ELL) extended beyond that. With other tutors involved, we began to offer any academic subject students need assistance with, as well as FAST test and SAT preparation. I am proud to say that I helped an ELL student rise from level 2 to level 4 on the FAST exam after a year of tutoring. Between the dedicated tutors I work with to my perseverant students, creating a lesson plan to continue after high school.",
             bio_es: "¡Hola a todos! Mi nombre es Alejandra y coordino la tutoría en la Escuela Intermedia Paul W. Bell y en la Escuela Secundaria Miami Coral Park. Mi experiencia con la tutoría comenzó en la escuela intermedia ayudando a familiares y amigos. A medida que conocía mejor a mis estudiantes, me di cuenta de que muchos tenían la voluntad y la capacidad de sobresalir, pero carecían de sistemas de apoyo para hacerlo. Muchos venían de otros países sin saber inglés, y muchos más provenían de entornos de bajos ingresos. Para resolver el problema que estas desventajas tendrían en ellos en la escuela, decidí organizar tutorías en toda la escuela. Al principio, me centré en las habilidades del idioma inglés, pero pronto me di cuenta de que ayudar a los estudiantes que aprenden inglés (ELL) se extendía más allá de eso. Con otros tutores involucrados, comenzamos a ofrecer cualquier materia académica en la que los estudiantes necesitaran ayuda, así como preparación para los exámenes FAST y SAT. Me enorgullece decir que ayudé a un estudiante de ELL a subir del nivel 2 al nivel 4 en el examen FAST después de un año de tutoría. Entre los tutores dedicados con los que trabajo y mis estudiantes perseverantes, crear un plan de lecciones para continuar después de la escuela secundaria.",
             facts_en: ["Sophomore", "Tutors at Miami Coral Park High School and Paul W. Bell Middle School", "Tutoring since February 2024", "Teaches FAST Test Prep, ESOL English, Middle School Math, Algebra 1, and Geometry", "Aspiring Neurosurgeon and Science Researcher"],
@@ -169,7 +169,7 @@ const siteRouter = {
             portrait: "https://i.imgur.com/cHgC9rn.jpeg",
             secondaryImage: "https://i.imgur.com/akdG8CI.png",
             bio_en: "Hello, I'm Johann! Tutoring is a method to help people understand what they have experienced in class through another person. Through tutoring, I can teach not only others my way of thinking but how they think as well. This allows a tutoring session to be a two way learning session but a session where two people grow and learn together.",
-            bio_es: "¡Hola, soy Johann! La tutoría es un método para ayudar a las personas a entender lo que han experimentado en clase a través de otra persona. A través de la tutoría, puedo enseñar no solo a otros mi forma de pensar, sino también cómo piensan ellos. Esto permite que una sesión de tutoría sea una sesión de aprendizaje bidireccional, pero una sesión donde dos personas crecen y aprenden juntas.",
+            bio_es: "¡Hola, soy Johann! La tutoría es un método para ayudar a las personas a entender lo que han experimentado en clase a través de otra person. A través de la tutoría, puedo enseñar no solo a otros mi forma de pensar, sino también cómo piensan ellos. Esto permite que una sesión de tutoría sea una sesión de aprendizaje bidireccional, pero una sesión donde dos personas crecen y aprenden juntas.",
             facts_en: ["Senior", "Tutors at Miami Coral Park Senior High School", "Tutoring since February 2025", "Teaches Honors Physics", "Aspiring Engineer"],
             facts_es: ["Estudiante de último año", "Tutor en Miami Coral Park Senior High School", "Tutor desde febrero de 2025", "Enseña Física de Honores", "Aspirante a Ingeniero"],
             color: "#9400D3"
@@ -237,21 +237,3 @@ const siteRouter = {
         }
     }
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const pageId = link.dataset.pageId;
-            if (pageId) {
-                siteRouter.navigateTo(pageId);
-            }
-        });
-    });
-    const currentPage = document.body.dataset.currentPage;
-    if (currentPage) {
-        document.querySelectorAll(`.nav-link[data-page-id="${currentPage}"]`).forEach(link => {
-            link.classList.add('active-page-link');
-        });
-    }
-});
