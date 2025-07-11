@@ -14,15 +14,25 @@ const siteRouter = {
         "member": "members.html"
     },
     members: {
+        "alejandra-perry000": {
+            name: "Alejandra Perry",
+            portrait: "https://i.imgur.com/uG5z2d0.jpeg",
+            secondaryImage: "https://i.imgur.com/9nF7sJp.jpeg",
+            bio_en: "Hello Everyone! My name is Alejandra, and I coordinate tutoring at Paul W. Bell Middle School and Miami Coral Park High School. My experience tutoring started in middle school with helping family and friends. As I got to know my students better, I realized that many had the willingness and ability to excel but lacked support systems to do so. Many came from other countries not knowing English, and many more came from low-income backgrounds. To resolve the issue these disadvantages would have on them in school, I chose to organize school-wide tutoring. At first, I focused on English language skills, but I soon realized that helping students learning English (ELL) extended beyond that. With other tutors involved, we began to offer any academic subject students need assistance with, as well as FAST test and SAT preparation. I am proud to say that I helped an ELL student rise from level 2 to level 4 on the FAST exam after a year of tutoring. Between the dedicated tutors I work with to my perseverant students, creating a lesson plan to continue after high school.",
+            bio_es: "¡Hola a todos! Mi nombre es Alejandra y coordino la tutoría en la Escuela Intermedia Paul W. Bell y en la Escuela Secundaria Miami Coral Park. Mi experiencia con la tutoría comenzó en la escuela intermedia ayudando a familiares y amigos. A medida que conocía mejor a mis estudiantes, me di cuenta de que muchos tenían la voluntad y la capacidad de sobresalir, pero carecían de sistemas de apoyo para hacerlo. Muchos venían de otros países sin saber inglés, y muchos más provenían de entornos de bajos ingresos. Para resolver el problema que estas desventajas tendrían en ellos en la escuela, decidí organizar tutorías en toda la escuela. Al principio, me centré en las habilidades del idioma inglés, pero pronto me di cuenta de que ayudar a los estudiantes que aprenden inglés (ELL) se extendía más allá de eso. Con otros tutores involucrados, comenzamos a ofrecer cualquier materia académica en la que los estudiantes necesitaran ayuda, así como preparación para los exámenes FAST y SAT. Me enorgullece decir que ayudé a un estudiante de ELL a subir del nivel 2 al nivel 4 en el examen FAST después de un año de tutoría. Entre los tutores dedicados con los que trabajo y mis estudiantes perseverantes, crear un plan de lecciones para continuar después de la escuela secundaria.",
+            facts_en: ["Sophomore", "Tutors at Miami Coral Park High School and Paul W. Bell Middle School", "Tutoring since February 2024", "Teaches FAST Test Prep, ESOL English, Middle School Math, Algebra 1, and Geometry", "Aspiring Neurosurgeon and Science Researcher"],
+            facts_es: ["Estudiante de segundo año", "Tutora en Miami Coral Park High School y la Escuela Intermedia Paul W. Bell", "Tutora desde febrero de 2024", "Enseña preparación para el examen FAST, inglés de ESOL, matemáticas de escuela intermedia, álgebra 1 y geometría", "Aspirante a Neurocirujana e Investigadora Científica"],
+            color: "#D1C4E9"
+        },
         "aitana-avila000": {
             name: "Aitana Avila",
             portrait: "https://i.imgur.com/W1Upqjf.png",
             secondaryImage: "https://i.imgur.com/DGQhsGT.jpeg",
             bio_en: "Hi, I'm Aitana! Something I enjoy about tutoring is that I can help other people understand subjects they are struggling with and create logical thinking in them. Tutoring helps me reaffirm my knowledge and improve myself more and more every day.",
             bio_es: "¡Hola, soy Aitana! Algo que disfruto de la tutoría es que puedo ayudar a otras personas a entender materias con las que tienen dificultades y a desarrollar en ellas un pensamiento lógico. La tutoría me ayuda a reafirmar mis conocimientos y a mejorar cada día más.",
-            facts_en: ["Vice President, Paul W. Bell Middle School"],
-            facts_es: ["Vicepresidenta, Escuela Intermedia Paul W. Bell"],
-            color: "#008080"
+            facts_en: ["Sophomore", "Tutors at Miami Coral Park Senior High School and Paul W. Bell Middle School", "Tutoring since October 2024", "Teaches Middle School Math and Geometry", "Aspiring Dentist or Software Programmer"],
+            facts_es: ["Estudiante de segundo año", "Tutora en Miami Coral Park Senior High School y en la Escuela Intermedia Paul W. Bell", "Tutora desde octubre de 2024", "Enseña Matemáticas y Geometría de escuela intermedia", "Aspirante a Dentista o Programadora de Software"],
+            color: "#B39DDB"
         },
         "amaylor-torres000": {
             name: "Amaylor Torres",
@@ -30,9 +40,9 @@ const siteRouter = {
             secondaryImage: "https://i.imgur.com/zpZwVGr.jpeg",
             bio_en: "Hello, I'm Amaylor! One of the things I like about tutoring is helping out the kids. I remember when I was in the same room as they are now trying to get through class work and homework. Man, I needed at tutor then. I’m just happy they don’t have to say that. Tutoring helps me personally in being well spoken, the students always have different things to get through, I say bring it on. Love tutoring at Paul W. Bell.",
             bio_es: "¡Hola, soy Amaylor! Una de las cosas que me gustan de la tutoría es ayudar a los niños. Recuerdo cuando estaba en el mismo salón que ellos ahora, tratando de superar el trabajo de clase y las tareas. Vaya, necesitaba un tutor en ese entonces. Me alegro de que ellos no tengan que decir eso. La tutoría me ayuda personalmente a ser más elocuente, los estudiantes siempre tienen cosas diferentes que superar, y yo digo, ¡adelante! Me encanta dar tutoría en Paul W. Bell.",
-            facts_en: ["Historian, Paul W. Bell Middle School"],
-            facts_es: ["Historiador, Escuela Intermedia Paul W. Bell"],
-            color: "#006400"
+            facts_en: ["Sophomore", "Tutors at Paul W. Bell Middle School", "Tutoring since November 2024", "Teaches Middle School ESOL English", "Aspiring Bass Player and Musician"],
+            facts_es: ["Estudiante de segundo año", "Tutor en la Escuela Intermedia Paul W. Bell", "Tutor desde noviembre de 2024", "Enseña inglés como segundo idioma en la escuela intermedia", "Aspirante a Bajista y Músico"],
+            color: "#90CAF9"
         },
         "amiel-cabellero000": {
             name: "Amiel Cabellero",
@@ -50,9 +60,9 @@ const siteRouter = {
             secondaryImage: "https://i.imgur.com/4PzONFl.jpeg",
             bio_en: "Hi, I'm Camila! My inspiration for tutoring is to teach students English and use the things I learned from tutoring to teach my little sister English so she can follow her dreams and also try teaching my mom English that she always wanted to learn.",
             bio_es: "¡Hola, soy Camila! Mi inspiración para la tutoría es enseñar inglés a los estudiantes y usar lo que aprendí de la tutoría para enseñarle inglés a mi hermana pequeña para que pueda seguir sus sueños, y también intentar enseñarle inglés a mi mamá, que siempre quiso aprender.",
-            facts_en: ["Vice President, Miami Coral Park Senior High"],
-            facts_es: ["Vicepresidenta, Miami Coral Park Senior High"],
-            color: "#4B0082"
+            facts_en: ["Freshman", "Tutors at Miami Coral Park Senior High School", "Tutoring since January 2025", "Teaches High School ESOL English", "Aspiring Artist and Teacher"],
+            facts_es: ["Estudiante de primer año", "Tutora en Miami Coral Park Senior High School", "Tutora desde enero de 2025", "Enseña inglés como segundo idioma en la escuela secundaria", "Aspirante a Artista y Maestra"],
+            color: "#F06292"
         },
         "vanessa-garcia000": {
             name: "Vanessa Garcia",
@@ -60,9 +70,9 @@ const siteRouter = {
             secondaryImage: "https://i.imgur.com/okdI6rv.jpeg",
             bio_en: "Hello, I’m Vanessa and I started tutoring because I’ve always loved helping others understanding contents they might struggle with. Tutoring has helped me reinforce my knowledge and practice my teaching skills for my future students besides helping me grow as a person. One of the things that motivate me to tutor is that I like seeing my students improvement and inspire them to be better students and people in their daily life.",
             bio_es: "Hola, soy Vanessa y empecé a dar tutorías porque siempre me ha encantado ayudar a otros a entender contenidos con los que podrían tener dificultades. La tutoría me ha ayudado a reforzar mis conocimientos y a practicar mis habilidades de enseñanza para mis futuros estudiantes, además de ayudarme a crecer como persona. Una de las cosas que me motivan a ser tutora es que me gusta ver la mejora de mis estudiantes e inspirarlos a ser mejores estudiantes y personas en su vida diaria.",
-            facts_en: ["Secretary, Miami Coral Park Senior High"],
-            facts_es: ["Secretaria, Miami Coral Park Senior High"],
-            color: "#5D3FD3"
+            facts_en: ["Sophomore", "Tutors at Miami Coral Park Senior High School", "Tutoring since November 2024", "Teaches High School ESOL English", "Aspiring Teacher"],
+            facts_es: ["Estudiante de segundo año", "Tutora en Miami Coral Park Senior High School", "Tutora desde noviembre de 2024", "Enseña inglés como segundo idioma en la escuela secundaria", "Aspirante a Maestra"],
+            color: "#7E57C2"
         },
         "angelina-garma000": {
             name: "Angelina Garma",
