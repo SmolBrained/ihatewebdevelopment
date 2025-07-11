@@ -44,14 +44,14 @@
         .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:none}
         .member-profile-section{padding:120px 0 80px; min-height: 100vh; display: flex; align-items: center; transition: background-color 0.5s ease;}
         .member-profile-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:flex-start}
-        .member-portrait{width:100%;border-radius:16px}
-        .member-name{font-size:3rem;font-weight:900;margin:0 0 20px;line-height:1.2; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);}
-        .member-bio{font-size:1.1rem;line-height:1.8;margin-bottom:30px;white-space:pre-wrap; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-weight: 500;}
-        .quick-facts{padding:25px;border-radius:12px; margin-top: 30px; text-align: left;}
+        .member-portrait{width:100%;border-radius:16px;grid-column:1;grid-row:2}
+        .member-name{font-size:3rem;font-weight:900;margin:0 0 20px;line-height:1.2; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);grid-column:2;grid-row:1}
+        .member-bio{font-size:1.1rem;line-height:1.8;margin-bottom:30px;white-space:pre-wrap; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-weight: 500;grid-column:2;grid-row:2}
+        .quick-facts{padding:25px;border-radius:12px; margin-top: 30px; text-align: left;grid-column:1;grid-row:3}
         .quick-facts h3{font-size:1.5rem;font-weight:700;margin-top:0;margin-bottom:15px}
         .quick-facts ul{list-style-type:disc;padding-left: 20px;margin:0}
         .quick-facts ul li{margin-bottom:10px;font-size:1.1rem}
-        .secondary-image{width:100%;border-radius:16px;margin-top:40px}
+        .secondary-image{width:100%;border-radius:16px;margin-top:40px;grid-column:2;grid-row:3}
         .site-footer{background-color:var(--color-footer-bg);padding:60px 0;text-align:center}
         .site-footer img{height:80px;margin:0 auto 20px}
         .site-footer p{margin:10px 0;color:var(--color-footer-text)}
@@ -87,6 +87,7 @@
         @media (max-width:768px){
         .member-profile-section{padding:100px 0 60px}
         .member-profile-grid{grid-template-columns:1fr;text-align:center}
+        .member-name, .member-portrait, .member-bio, .quick-facts, .secondary-image {grid-column:auto;grid-row:auto}
         .member-name{font-size:2.5rem}
         .member-portrait{max-width:300px;margin:0 auto 30px}
         }
@@ -99,18 +100,14 @@
         <section class="member-profile-section" id="member-profile">
             <div class="container">
                 <div class="member-profile-grid">
-                    <div class="member-image-column">
-                        <img src="" alt="" class="member-portrait">
-                        <div class="quick-facts">
-                            <h3 class="lang-switch" data-en="Quick Facts" data-es="Datos Rápidos"></h3>
-                            <ul></ul>
-                        </div>
+                    <h1 class="member-name"></h1>
+                    <img src="" alt="" class="member-portrait">
+                    <p class="member-bio"></p>
+                    <div class="quick-facts">
+                        <h3 class="lang-switch" data-en="Quick Facts" data-es="Datos Rápidos"></h3>
+                        <ul></ul>
                     </div>
-                    <div class="member-info-column">
-                        <h1 class="member-name"></h1>
-                        <p class="member-bio"></p>
-                        <img src="" alt="" class="secondary-image">
-                    </div>
+                    <img src="" alt="" class="secondary-image">
                 </div>
             </div>
         </section>
