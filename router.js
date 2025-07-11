@@ -22,7 +22,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Aitana! Algo que disfruto de la tutoría es que puedo ayudar a otras personas a entender materias con las que tienen dificultades y a desarrollar en ellas un pensamiento lógico. La tutoría me ayuda a reafirmar mis conocimientos y a mejorar cada día más.",
             facts_en: ["Vice President, Paul W. Bell Middle School"],
             facts_es: ["Vicepresidenta, Escuela Intermedia Paul W. Bell"],
-            color: "#d1ffe6"
+            color: "#008080"
         },
         "amaylor-torres000": {
             name: "Amaylor Torres",
@@ -32,7 +32,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Amaylor! Una de las cosas que me gustan de la tutoría es ayudar a los niños. Recuerdo cuando estaba en el mismo salón que ellos ahora, tratando de superar el trabajo de clase y las tareas. Vaya, necesitaba un tutor en ese entonces. Me alegro de que ellos no tengan que decir eso. La tutoría me ayuda personalmente a ser más elocuente, los estudiantes siempre tienen cosas diferentes que superar, y yo digo, ¡adelante! Me encanta dar tutoría en Paul W. Bell.",
             facts_en: ["Historian, Paul W. Bell Middle School"],
             facts_es: ["Historiador, Escuela Intermedia Paul W. Bell"],
-            color: "#d1ffe6"
+            color: "#006400"
         },
         "amiel-cabellero000": {
             name: "Amiel Cabellero",
@@ -42,7 +42,7 @@ const siteRouter = {
             bio_es: "Mi inspiración para formar parte de Literary Speaking es que tengo la oportunidad de ayudar a otros estudiantes a entender mejor lo que se les enseña, esto es también lo que disfruto. Se alinea con mis metas porque obtengo horas de servicio comunitario, las cuales necesito para graduarme.",
             facts_en: ["Secretary, Paul W. Bell Middle School"],
             facts_es: ["Secretario, Escuela Intermedia Paul W. Bell"],
-            color: "#d1ffe6"
+            color: "#1E4D2B"
         },
         "camila-lopez000": {
             name: "Camila Lopez",
@@ -52,7 +52,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Camila! Mi inspiración para la tutoría es enseñar inglés a los estudiantes y usar lo que aprendí de la tutoría para enseñarle inglés a mi hermana pequeña para que pueda seguir sus sueños, y también intentar enseñarle inglés a mi mamá, que siempre quiso aprender.",
             facts_en: ["Vice President, Miami Coral Park Senior High"],
             facts_es: ["Vicepresidenta, Miami Coral Park Senior High"],
-            color: "#f2e7ff"
+            color: "#4B0082"
         },
         "vanessa-garcia000": {
             name: "Vanessa Garcia",
@@ -62,7 +62,7 @@ const siteRouter = {
             bio_es: "Hola, soy Vanessa y empecé a dar tutorías porque siempre me ha encantado ayudar a otros a entender contenidos con los que podrían tener dificultades. La tutoría me ha ayudado a reforzar mis conocimientos y a practicar mis habilidades de enseñanza para mis futuros estudiantes, además de ayudarme a crecer como persona. Una de las cosas que me motivan a ser tutora es que me gusta ver la mejora de mis estudiantes e inspirarlos a ser mejores estudiantes y personas en su vida diaria.",
             facts_en: ["Secretary, Miami Coral Park Senior High"],
             facts_es: ["Secretaria, Miami Coral Park Senior High"],
-            color: "#f2e7ff"
+            color: "#5D3FD3"
         },
         "angelina-garma000": {
             name: "Angelina Garma",
@@ -72,7 +72,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Angelina! Decidí empezar a dar tutoría porque disfruto ayudando a los demás. La tutoría ofrece grandes oportunidades para ayudar a tu escuela, obtener más horas comunitarias y mejorar el aprendizaje. Disfruto de la naturaleza interactiva de la tutoría dirigida por estudiantes y el esfuerzo puesto tanto por el tutor como por el estudiante. Enseñar a otros compañeros mejora tus habilidades de comunicación y al mismo tiempo ayuda al estudiante a mejorar sus propias habilidades en la materia que estás enseñando. Con las horas comunitarias que ofrece, se alinea con mis metas de obtener una beca.",
             facts_en: ["Sophomore", "Tutors at Miami Coral Park Senior High School", "Tutoring since October 2024", "Teaches Honors Algebra 2", "Aspiring Family Lawyer"],
             facts_es: ["Estudiante de segundo año", "Tutora en Miami Coral Park Senior High School", "Tutora desde octubre de 2024", "Enseña Álgebra 2 de Honores", "Aspirante a Abogada de Familia"],
-            color: "#c3e5ff"
+            color: "#0047AB"
         },
         "jeanmichael-gonzalvo000": {
             name: "Jeanmichael Gonzalvo",
@@ -82,7 +82,7 @@ const siteRouter = {
             bio_es: "",
             facts_en: ["Historian, Miami Coral Park Senior High"],
             facts_es: ["Historiador, Miami Coral Park Senior High"],
-            color: "#f2e7ff"
+            color: "#483D8B"
         },
         "natalie-arenal000": {
             name: "Natalie Arenal",
@@ -92,7 +92,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Natalie! Estoy interesada en mejorar mis habilidades literarias y en ayudar a los estudiantes a mejorar sus propias habilidades académicas. Me inspira la Tutoría de Literary Speaking porque quiero tener un impacto y ver cómo es estar en una posición de mentoría. Empecé como tutora enseñando análisis literario, pero ahora continúo como escritora. Siempre me ha gustado la idea de ser mentora, y esta sería mi oportunidad de impactar positivamente a los demás.",
             facts_en: ["Junior", "Tutors at Miami Coral Park Senior High School", "Writing since June 2025", "Writes educational content (articles and lessons)", "Aspiring Nurse"],
             facts_es: ["Estudiante de tercer año", "Tutora en Miami Coral Park Senior High School", "Escribiendo desde junio de 2025", "Escribe contenido educativo (artículos y lecciones)", "Aspirante a Enfermera"],
-            color: "#f2e7ff"
+            color: "#8B008B"
         },
         "sofia-gonzalez-carba000": {
             name: "Sofia Gonzalez-Carba",
@@ -102,7 +102,7 @@ const siteRouter = {
             bio_es: "Hola, mi nombre es Sofía, y doy tutoría porque disfruto ayudando a los niños a mejorar y expandir sus habilidades de aprendizaje. La tutoría me permite ayudar a los estudiantes, especialmente a mejorar sus habilidades en inglés para que puedan sentirse más seguros en la escuela. Lo que más me gusta de la tutoría es ver a los estudiantes crecer y saber que estoy marcando una diferencia en su educación. Los beneficios de la tutoría van más allá del presente; me ayuda a desarrollar habilidades como la comunicación, la paciencia y el liderazgo que serán valiosas para mi futuro.",
             facts_en: ["Junior", "Tutors at Paul W. Bell Middle School", "Tutoring since December 2024", "Teaches Middle School ESOL English", "Aspiring CRNA (Certified Registered Nurse Anesthetist)"],
             facts_es: ["Estudiante de tercer año", "Tutora en la Escuela Intermedia Paul W. Bell", "Tutora desde diciembre de 2024", "Enseña inglés como segundo idioma en la escuela intermedia", "Aspirante a CRNA (Enfermera Anestesista Registrada Certificada)"],
-            color: "#e0ffff"
+            color: "#008B8B"
         },
         "isabella-stubbs000": {
             name: "Isabella Stubbs",
@@ -112,7 +112,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Isabella! He elegido convertirme en tutora para mejorar mis propias habilidades de enseñanza y al mismo tiempo tener la oportunidad de ayudar a otros.",
             facts_en: ["Freshman", "Tutors at Paul W. Bell Middle School", "Tutoring since December 2024", "Teaches Middle School ESOL English and Math", "Aspiring Computer Engineer"],
             facts_es: ["Estudiante de primer año", "Tutora en la Escuela Intermedia Paul W. Bell", "Tutora desde diciembre de 2024", "Enseña inglés y matemáticas de ESOL en la escuela intermedia", "Aspirante a Ingeniera Informática"],
-            color: "#c3e5ff"
+            color: "#4169E1"
         },
         "eimy-gil000": {
             name: "Eimy Gil",
@@ -122,7 +122,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Eimy! Me gusta dar tutoría porque tengo una hermana pequeña. A veces tiene dificultades para hacer sus deberes, así que quise enseñar a otras personas para poder practicar y ser una mejor maestra para mi hermana. También quiero hacer algo relacionado con la medicina en el futuro, para lo cual necesitaré buenas habilidades de comunicación. Disfruto de la tutoría porque sé lo que se siente al no saber algo y lo difícil que es, especially con un idioma, necesitas ayuda para aprender esas cosas, y me siento muy bien cuando sé que estoy ayudando a alguien con cosas con las que está luchando.",
             facts_en: ["Freshman", "Tutors at Miami Coral Park Senior High School", "Tutoring since October 2024", "Teaches High School ESOL English", "Aspiring Children's Doctor or Psychologist"],
             facts_es: ["Estudiante de primer año", "Tutora en Miami Coral Park Senior High School", "Tutora desde octubre de 2024", "Enseña inglés como segundo idioma en la escuela secundaria", "Aspirante a Doctora o Psicóloga Infantil"],
-            color: "#d1ffe6"
+            color: "#228B22"
         },
         "nicole-alvarez000": {
             name: "Nicole Alvarez",
@@ -132,7 +132,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Nicole! Disfruto de la tutoría porque me encanta ayudar a otros a aprender y crecer. Ver a los estudiantes ganar confianza y tener éxito es muy gratificante. La tutoría me permite compartir conocimientos, construir conexiones y apoyar a las personas para que alcancen sus metas, lo que se alinea con mi propio objetivo de generar un impacto positivo.",
             facts_en: ["Senior", "Tutors at Paul W. Bell Middle School", "Tutoring since January 2025", "Teaches Middle School English", "Aspiring Dermatologist"],
             facts_es: ["Estudiante de último año", "Tutora en la Escuela Intermedia Paul W. Bell", "Tutora desde enero de 2025", "Enseña inglés en la escuela intermedia", "Aspirante a Dermatóloga"],
-            color: "#ffebf2"
+            color: "#C71585"
         },
         "andrew-cuellar000": {
             name: "Andrew Cuellar",
@@ -142,7 +142,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Andrew! La tutoría es un regalo que sigue dando. No llevo mucho tiempo dando tutorías y, sinceramente, durante la primera lección pensé que no estaba listo para ello. Pero luego recordé la sensación de ayudar a otros justo como cuando yo necesité ayuda. Creo que la tutoría es algo increíble, y definitivamente se alinea con mis metas de querer aprovechar al máximo mi experiencia en la escuela secundaria. Creo que mi inspiración para querer ser tutor son mis padres y maestros que siempre me han ayudado y el deseo de seguir avanzando.",
             facts_en: ["Freshman", "Tutors at Miami Coral Park Senior High School", "Tutoring since December 2024", "Teaches Algebra 1", "Aspiring Children's Doctor or Psychologist"],
             facts_es: ["Estudiante de primer año", "Tutor en Miami Coral Park Senior High School", "Tutor desde diciembre de 2024", "Enseña Álgebra 1", "Aspirante a Doctor o Psicólogo Infantil"],
-            color: "#f2e7ff"
+            color: "#9932CC"
         },
         "nicolas-vilches000": {
             name: "Nicolas Vilches",
@@ -162,7 +162,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Johann! La tutoría es un método para ayudar a las personas a entender lo que han experimentado en clase a través de otra persona. A través de la tutoría, puedo enseñar no solo a otros mi forma de pensar, sino también cómo piensan ellos. Esto permite que una sesión de tutoría sea una sesión de aprendizaje bidireccional, pero una sesión donde dos personas crecen y aprenden juntas.",
             facts_en: ["Senior", "Tutors at Miami Coral Park Senior High School", "Tutoring since February 2025", "Teaches Honors Physics", "Aspiring Engineer"],
             facts_es: ["Estudiante de último año", "Tutor en Miami Coral Park Senior High School", "Tutor desde febrero de 2025", "Enseña Física de Honores", "Aspirante a Ingeniero"],
-            color: "#f2e7ff"
+            color: "#9400D3"
         },
         "amelia-guerra000": {
             name: "Amelia Guerra",
@@ -172,7 +172,7 @@ const siteRouter = {
             bio_es: "Hola, soy Amelia. Elegí empezar a dar tutoría porque me gusta ayudar a los demás. La tutoría da a otros la oportunidad de identificar en qué tienen dificultades para seguir aprendiendo y mejorando a partir de ahí. Lo que diría que disfruto de la tutoría es aprender junto a los demás y poder ver el esfuerzo realizado en el camino. La tutoría se alinea con mis metas porque me ayuda a mejorar mis habilidades de comunicación, cooperación, tolerancia y resolución de problemas para mis metas futuras y presentes.",
             facts_en: ["Junior", "Tutors at Paul W. Bell Middle School", "Tutoring since December 2024", "Teaches Middle School ESOL English", "Aspiring Nurse Practitioner"],
             facts_es: ["Estudiante de tercer año", "Tutora en la Escuela Intermedia Paul W. Bell", "Tutora desde diciembre de 2024", "Enseña inglés como segundo idioma en la escuela intermedia", "Aspirante a Enfermera Practicante"],
-            color: "#ffebf2"
+            color: "#DC143C"
         },
         "stephanie-jimenez000": {
             name: "Stephanie Jimenez",
@@ -182,7 +182,7 @@ const siteRouter = {
             bio_es: "¡Hola a todos! Soy Stephanie y disfruto de la tutoría porque me da la oportunidad de ayudar a otros a entender cosas con las que podrían tener dificultades y a mejorar. La tutoría también me ayuda a fortalecer mis propias habilidades y me enseña a explicar las cosas mejor, lo que se alinea con mis metas de mejorar mis habilidades y ser una mejor estudiante.",
             facts_en: ["Sophomore", "Tutors at Miami Coral Park Senior High School", "Tutoring since October 2024", "Teaches Highschool ESOL English", "Aspiring Doctor"],
             facts_es: ["Estudiante de segundo año", "Tutora en Miami Coral Park Senior High School", "Tutora desde octubre de 2024", "Enseña inglés como segundo idioma en la escuela secundaria", "Aspirante a Doctora"],
-            color: "#f2e7ff"
+            color: "#6A5ACD"
         },
         "jose-unanue000": {
             name: "Jose Unanue",
@@ -192,7 +192,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy José! Al principio consideré la tutoría como un desafío para ver si podía enseñar a otros conceptos que me habían enseñado en el pasado. Después de múltiples interacciones, dejé de verlo así y comencé a ver cómo la mejora de los estudiantes ha sido lo que me ha impulsado a continuar dando tutorías.",
             facts_en: ["Sophomore", "Tutored at Paul W. Bell Middle School", "Tutoring from November to December 2024", "Teaches Middle School Math", "Aspiring Mechanical Engineer"],
             facts_es: ["Estudiante de segundo año", "Tutor en la Escuela Intermedia Paul W. Bell", "Tutor de noviembre a diciembre de 2024", "Enseña Matemáticas de escuela intermedia", "Aspirante a Ingeniero Mecánico"],
-            color: "#c3e5ff"
+            color: "#4682B4"
         },
         "ilie-tornes000": {
             name: "Ilie Tornes",
@@ -202,7 +202,7 @@ const siteRouter = {
             bio_es: "¡Hola, mi nombre es Ilie! Empecé a interesarme en la tutoría cuando me di cuenta de cuántos estudiantes nuevos de otros países necesitaban orientación en el idioma inglés. Aquellos que no hablan inglés tienen una desventaja en la escuela y en futuras oportunidades laborales, por lo que es importante empezar a cultivar un gran ambiente de aprendizaje desde la escuela secundaria. Lo que más disfruto de la tutoría es poder ayudar a gente nueva y verlos progresar en el idioma a medida que avanza el año.",
             facts_en: ["Sophomore", "Tutors at Miami Coral Park Senior High School", "Tutoring since October 2024", "Teaches Highschool ESOL English", "Aspiring Psychologist"],
             facts_es: ["Estudiante de segundo año", "Tutora en Miami Coral Park Senior High School", "Tutora desde octubre de 2024", "Enseña inglés como segundo idioma en la escuela secundaria", "Aspirante a Psicóloga"],
-            color: "#f2e7ff"
+            color: "#2F4F4F"
         },
         "adrian-gomez000": {
             name: "Adrian Gomez",
@@ -212,7 +212,7 @@ const siteRouter = {
             bio_es: "“La educación no es llenar un cubo, sino encender un fuego.” – William Butler Yeats\n\nSoy Adrián Gómez, y empecé a dar tutorías porque me encanta ayudar a los estudiantes a comprender conceptos de una manera que tenga sentido para ellos. No hay nada más gratificante que ver la cara de un estudiante iluminarse cuando pasa de tener dificultades a finalmente entender o incluso dominar algo. Lo que más disfruto es crear un ambiente de aprendizaje donde los niños pueden progresar a su propio ritmo, libres del enfoque rígido y de talla única que a menudo se ve en las escuelas. Creo que el verdadero aprendizaje ocurre cuando a los estudiantes se les da el tiempo y el apoyo que necesitan para entender, no solo para memorizar. Si bien las horas de servicio comunitario son una buena ventaja, lo que realmente me impulsa es presenciar a los estudiantes darse cuenta de que aprender no es una obligación, sino un regalo.",
             facts_en: ["Sophomore", "Tutored at Paul W. Bell Middle School", "Tutoring from November to December 2024", "Teaches Middle School Math", "Aspiring Biomechanical Systems Engineer"],
             facts_es: ["Estudiante de segundo año", "Tutor en la Escuela Intermedia Paul W. Bell", "Tutor de noviembre a diciembre de 2024", "Enseña Matemáticas de escuela intermedia", "Aspirante a Ingeniero de Sistemas Biomecánicos"],
-            color: "#c3e5ff"
+            color: "#191970"
         }
     },
     navigateTo(pageId, params = null) {
