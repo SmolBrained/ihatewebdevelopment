@@ -169,7 +169,7 @@ const siteRouter = {
             portrait: "https://i.imgur.com/cHgC9rn.jpeg",
             secondaryImage: "https://i.imgur.com/akdG8CI.png",
             bio_en: "Hello, I'm Johann! Tutoring is a method to help people understand what they have experienced in class through another person. Through tutoring, I can teach not only others my way of thinking but how they think as well. This allows a tutoring session to be a two way learning session but a session where two people grow and learn together.",
-            bio_es: "¡Hola, soy Johann! La tutoría es un método para ayudar a las personas a entender lo que han experimentado en clase a través de otra person. A través de la tutoría, puedo enseñar no solo a otros mi forma de pensar, sino también cómo piensan ellos. Esto permite que una sesión de tutoría sea una sesión de aprendizaje bidireccional, pero una sesión donde dos personas crecen y aprenden juntas.",
+            bio_es: "¡Hola, soy Johann! La tutoría es un método para ayudar a las personas a entender lo que han experimentado en clase a través de otra persona. A través de la tutoría, puedo enseñar no solo a otros mi forma de pensar, sino también cómo piensan ellos. Esto permite que una sesión de tutoría sea una sesión de aprendizaje bidireccional, pero una sesión donde dos personas crecen y aprenden juntas.",
             facts_en: ["Senior", "Tutors at Miami Coral Park Senior High School", "Tutoring since February 2025", "Teaches Honors Physics", "Aspiring Engineer"],
             facts_es: ["Estudiante de último año", "Tutor en Miami Coral Park Senior High School", "Tutor desde febrero de 2025", "Enseña Física de Honores", "Aspirante a Ingeniero"],
             color: "#9400D3"
@@ -237,3 +237,21 @@ const siteRouter = {
         }
     }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const pageId = link.dataset.pageId;
+            if (pageId) {
+                siteRouter.navigateTo(pageId);
+            }
+        });
+    });
+    const currentPage = document.body.dataset.currentPage;
+    if (currentPage) {
+        document.querySelectorAll(`.nav-link[data-page-id="${currentPage}"]`).forEach(link => {
+            link.classList.add('active-page-link');
+        });
+    }
+});
