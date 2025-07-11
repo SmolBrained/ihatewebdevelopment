@@ -22,7 +22,7 @@ const siteRouter = {
             bio_es: "¡Hola a todos! Mi nombre es Alejandra y coordino la tutoría en la Escuela Intermedia Paul W. Bell y en la Escuela Secundaria Miami Coral Park. Mi experiencia con la tutoría comenzó en la escuela intermedia ayudando a familiares y amigos. A medida que conocía mejor a mis estudiantes, me di cuenta de que muchos tenían la voluntad y la capacidad de sobresalir, pero carecían de sistemas de apoyo para hacerlo. Muchos venían de otros países sin saber inglés, y muchos más provenían de entornos de bajos ingresos. Para resolver el problema que estas desventajas tendrían en ellos en la escuela, decidí organizar tutorías en toda la escuela. Al principio, me centré en las habilidades del idioma inglés, pero pronto me di cuenta de que ayudar a los estudiantes que aprenden inglés (ELL) se extendía más allá de eso. Con otros tutores involucrados, comenzamos a ofrecer cualquier materia académica en la que los estudiantes necesitaran ayuda, así como preparación para los exámenes FAST y SAT. Me enorgullece decir que ayudé a un estudiante de ELL a subir del nivel 2 al nivel 4 en el examen FAST después de un año de tutoría. Entre los tutores dedicados con los que trabajo y mis estudiantes perseverantes, crear un plan de lecciones para continuar después de la escuela secundaria.",
             facts_en: ["Sophomore", "Tutors at Miami Coral Park High School and Paul W. Bell Middle School", "Tutoring since February 2024", "Teaches FAST Test Prep, ESOL English, Middle School Math, Algebra 1, and Geometry", "Aspiring Neurosurgeon and Science Researcher"],
             facts_es: ["Estudiante de segundo año", "Tutora en Miami Coral Park High School y la Escuela Intermedia Paul W. Bell", "Tutora desde febrero de 2024", "Enseña preparación para el examen FAST, inglés de ESOL, matemáticas de escuela intermedia, álgebra 1 y geometría", "Aspirante a Neurocirujana e Investigadora Científica"],
-            color: "#D1C4E9"
+            color: "#B34AFF"
         },
         "aitana-avila000": {
             name: "Aitana Avila",
@@ -32,7 +32,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Aitana! Algo que disfruto de la tutoría es que puedo ayudar a otras personas a entender materias con las que tienen dificultades y a desarrollar en ellas un pensamiento lógico. La tutoría me ayuda a reafirmar mis conocimientos y a mejorar cada día más.",
             facts_en: ["Sophomore", "Tutors at Miami Coral Park Senior High School and Paul W. Bell Middle School", "Tutoring since October 2024", "Teaches Middle School Math and Geometry", "Aspiring Dentist or Software Programmer"],
             facts_es: ["Estudiante de segundo año", "Tutora en Miami Coral Park Senior High School y en la Escuela Intermedia Paul W. Bell", "Tutora desde octubre de 2024", "Enseña Matemáticas y Geometría de escuela intermedia", "Aspirante a Dentista o Programadora de Software"],
-            color: "#B39DDB"
+            color: "#8865C6"
         },
         "amaylor-torres000": {
             name: "Amaylor Torres",
@@ -42,7 +42,7 @@ const siteRouter = {
             bio_es: "¡Hola, soy Amaylor! Una de las cosas que me gustan de la tutoría es ayudar a los niños. Recuerdo cuando estaba en el mismo salón que ellos ahora, tratando de superar el trabajo de clase y las tareas. Vaya, necesitaba un tutor en ese entonces. Me alegro de que ellos no tengan que decir eso. La tutoría me ayuda personalmente a ser más elocuente, los estudiantes siempre tienen cosas diferentes que superar, y yo digo, ¡adelante! Me encanta dar tutoría en Paul W. Bell.",
             facts_en: ["Sophomore", "Tutors at Paul W. Bell Middle School", "Tutoring since November 2024", "Teaches Middle School ESOL English", "Aspiring Bass Player and Musician"],
             facts_es: ["Estudiante de segundo año", "Tutor en la Escuela Intermedia Paul W. Bell", "Tutor desde noviembre de 2024", "Enseña inglés como segundo idioma en la escuela intermedia", "Aspirante a Bajista y Músico"],
-            color: "#90CAF9"
+            color: "#47A7F5"
         },
         "amiel-cabellero000": {
             name: "Amiel Cabellero",
@@ -51,7 +51,7 @@ const siteRouter = {
             bio_en: "My inspiration for being part of Literary Speaking is that I have the chance to help other students understand what they are being thought better, this is also what I enjoy. It aligns with my goals because I get community service hours from it which I need in order to graduate.",
             bio_es: "Mi inspiración para formar parte de Literary Speaking es que tengo la oportunidad de ayudar a otros estudiantes a entender mejor lo que se les enseña, esto es también lo que disfruto. Se alinea con mis metas porque obtengo horas de servicio comunitario, las cuales necesito para graduarme.",
             facts_en: ["Secretary, Paul W. Bell Middle School"],
-            facts_es: ["Secretario, Escuela Intermedia Paul W. Bell"],
+            facts_es: ["Secretaria, Escuela Intermedia Paul W. Bell"],
             color: "#1E4D2B"
         },
         "camila-lopez000": {
