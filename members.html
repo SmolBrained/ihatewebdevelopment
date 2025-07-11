@@ -46,10 +46,10 @@
         .member-profile-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:flex-start}
         .member-portrait{width:100%;border-radius:16px}
         .member-name{font-size:3rem;font-weight:900;margin:0 0 20px;line-height:1.2; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);}
-        .member-bio{font-size:1.1rem;line-height:1.8;margin-bottom:30px;white-space:pre-wrap; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
-        .quick-facts{background-color:rgba(255,255,255,0.8);padding:25px;border-radius:12px; margin-top: 30px;}
+        .member-bio{font-size:1.1rem;line-height:1.8;margin-bottom:30px;white-space:pre-wrap; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-weight: 500;}
+        .quick-facts{padding:25px;border-radius:12px; margin-top: 30px; text-align: left;}
         .quick-facts h3{font-size:1.5rem;font-weight:700;margin-top:0;margin-bottom:15px}
-        .quick-facts ul{list-style-type:none;padding:0;margin:0}
+        .quick-facts ul{list-style-type:disc;padding-left: 20px;margin:0}
         .quick-facts ul li{margin-bottom:10px;font-size:1.1rem}
         .secondary-image{width:100%;border-radius:16px;margin-top:40px}
         .site-footer{background-color:var(--color-footer-bg);padding:60px 0;text-align:center}
@@ -199,6 +199,32 @@
                 }
             });
             
+            function hexToHSL(hex) {
+                let r = 0, g = 0, b = 0;
+                if (hex.length == 4) {
+                    r = "0x" + hex[1] + hex[1];
+                    g = "0x" + hex[2] + hex[2];
+                    b = "0x" + hex[3] + hex[3];
+                } else if (hex.length == 7) {
+                    r = "0x" + hex[1] + hex[2];
+                    g = "0x" + hex[3] + hex[4];
+                    b = "0x" + hex[5] + hex[6];
+                }
+                r /= 255; g /= 255; b /= 255;
+                let cmin = Math.min(r,g,b), cmax = Math.max(r,g,b), delta = cmax - cmin, h = 0, s = 0, l = 0;
+                if (delta == 0) h = 0;
+                else if (cmax == r) h = ((g - b) / delta) % 6;
+                else if (cmax == g) h = (b - r) / delta + 2;
+                else h = (r - g) / delta + 4;
+                h = Math.round(h * 60);
+                if (h < 0) h += 360;
+                l = (cmax + cmin) / 2;
+                s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+                s = +(s * 100).toFixed(1);
+                l = +(l * 100).toFixed(1);
+                return { h, s, l };
+            }
+
             const urlParams = new URLSearchParams(window.location.search);
             const memberId = urlParams.get('id');
             const member = siteRouter.members[memberId];
@@ -265,6 +291,11 @@
                 const factsContainer = document.querySelector('.quick-facts');
                 if(member.facts_en && member.facts_en.length > 0){
                     factsContainer.style.display = 'block';
+                    if (member.color) {
+                        const hsl = hexToHSL(member.color);
+                        factsContainer.style.backgroundColor = `hsl(${hsl.h}, ${hsl.s}%, 96%)`;
+                        factsContainer.style.color = `hsl(${hsl.h}, ${hsl.s}%, 20%)`;
+                    }
                 } else {
                     factsContainer.style.display = 'none';
                 }
