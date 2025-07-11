@@ -54,11 +54,11 @@
         .about-info ul{list-style:disc;padding-left:25px;margin-bottom:20px}
         .about-info ul li{margin-bottom:10px}
         .about-info a{color:var(--color-purple-dark);font-weight:700;text-decoration:underline}
-        .team-grid{display:grid;grid-template-columns:repeat(7, 1fr);gap:30px;justify-content:center;margin-top:50px}
-        .team-member{text-align:center;cursor:pointer;display:flex;flex-direction:column;align-items:center}
-        .team-member .portrait{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;transition:transform .3s ease, box-shadow .3s ease; margin-bottom: 15px; display: block;}
+        .team-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(125px, 1fr));gap:30px;justify-content:center;margin-top:50px}
+        .team-member{display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer}
+        .team-member .portrait{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;transition:transform .3s ease, box-shadow .3s ease;margin-bottom:15px}
         .team-member:hover .portrait{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,0.1)}
-        .team-member-name{font-size:1.1rem;font-weight:700;margin:0}
+        .team-member-name{font-size:1.1rem;font-weight:700;margin:0;width:100%}
         .site-footer{background-color:var(--color-footer-bg);padding:60px 0;text-align:center}
         .site-footer img{height:80px;margin:0 auto 20px}
         .site-footer p{margin:10px 0;color:var(--color-footer-text)}
@@ -98,7 +98,7 @@
         .section-title{font-size:2rem}
         .hero-banner{background-attachment:scroll}
         .hero-banner h1{font-size:2.2rem}
-        .team-grid{grid-template-columns:repeat(3, 1fr);gap:20px}
+        .team-grid{gap:20px}
         }
     </style>
 </head>
@@ -135,58 +135,8 @@
 
     <footer class="site-footer"></footer>
 
+    <script src="router.js"></script>
     <script>
-        const siteRouter = {
-            pages: {
-                "home": "index.html",
-                "support": "support.html",
-                "get-involved": "get-involved.html",
-                "receive-tutoring": "receive-tutoring.html",
-                "the-team": "team.html",
-                "news": "news.html",
-                "articles": "articles.html",
-                "lessons": "lessons.html",
-                "report-time": "report-time.html",
-                "about": "about.html",
-                "contact": "contact.html",
-                "member": "members.html"
-            },
-            members: {
-                "alejandra-perry000": { name: "Alejandra Perry", portrait: "https://i.imgur.com/PRlDxs2.png" },
-                "aitana-avila000": { name: "Aitana Avila", portrait: "https://i.imgur.com/W1Upqjf.png" },
-                "amaylor-torres000": { name: "Amaylor Torres", portrait: "https://i.imgur.com/qKn2wFX.jpeg" },
-                "amiel-cabellero000": { name: "Amiel Cabellero", portrait: "https://i.imgur.com/qLcPzcc.jpeg" },
-                "camila-lopez000": { name: "Camila Lopez", portrait: "https://i.imgur.com/x6nu22B.jpeg" },
-                "vanessa-garcia000": { name: "Vanessa Garcia", portrait: "https://i.imgur.com/1W5K5l9.jpeg" },
-                "angelina-garma000": { name: "Angelina Garma", portrait: "https://i.imgur.com/dJMzmhq.jpeg" },
-                "jeanmichael-gonzalvo000": { name: "Jeanmichael Gonzalvo", portrait: "https://i.imgur.com/57KWNYp.png" },
-                "natalie-arenal000": { name: "Natalie Arenal", portrait: "https://i.imgur.com/SMlS7uy.jpeg" },
-                "sofia-gonzalez-carba000": { name: "Sofia Gonzalez-Carba", portrait: "https://i.imgur.com/fFgHnil.jpeg" },
-                "isabella-stubbs000": { name: "Isabella Stubbs", portrait: "https://i.imgur.com/BqaQwiu.png" },
-                "eimy-gil000": { name: "Eimy Gil", portrait: "https://i.imgur.com/meQImyb.jpeg" },
-                "nicole-alvarez000": { name: "Nicole Alvarez", portrait: "https://i.imgur.com/KQ35YhW.jpeg" },
-                "andrew-cuellar000": { name: "Andrew Cuellar", portrait: "https://i.imgur.com/X8kuRwU.jpeg" },
-                "nicolas-vilches000": { name: "Nicolas Vilches", portrait: "https://i.imgur.com/P3EN0BH.jpeg" },
-                "johann-lara000": { name: "Johann Lara", portrait: "https://i.imgur.com/cHgC9rn.jpeg" },
-                "amelia-guerra000": { name: "Amelia Guerra", portrait: "https://i.imgur.com/Ol9vqAP.jpeg" },
-                "stephanie-jimenez000": { name: "Stephanie Jimenez", portrait: "https://i.imgur.com/jxhWwce.jpeg" },
-                "jose-unanue000": { name: "Jose Unanue", portrait: "https://i.imgur.com/ciF5FZH.jpeg" },
-                "ilie-tornes000": { name: "Ilie Tornes", portrait: "https://i.imgur.com/j16riwK.jpeg" },
-                "adrian-gomez000": { name: "Adrian Gomez", portrait: "https://i.imgur.com/3FWs7Eo.jpeg" }
-            },
-            navigateTo(pageId, params = null) {
-                let url = this.pages[pageId];
-                if (url) {
-                    if (params) {
-                        url += `?id=${params}`;
-                    }
-                    window.location.href = url;
-                } else {
-                    window.location.href = this.pages['home'];
-                }
-            }
-        };
-
         document.addEventListener('DOMContentLoaded', () => {
             const headerContainer = document.getElementById('header');
             const footerContainer = document.querySelector('.site-footer');
@@ -265,7 +215,8 @@
                     link.addEventListener('click', (event) => {
                         event.preventDefault();
                         const pageId = link.dataset.pageId;
-                        siteRouter.navigateTo(pageId);
+                        const memberId = link.dataset.memberId;
+                        siteRouter.navigateTo(pageId, memberId);
                         closeMenu();
                     });
                 }
@@ -316,21 +267,9 @@
 
             const populateTutorGrid = () => {
                 const tutorGrid = document.getElementById('tutor-grid');
-                if (!tutorGrid) return;
+                if (!tutorGrid || typeof siteRouter === 'undefined') return;
                 
                 tutorGrid.innerHTML = '';
-
-                const createMemberElement = (memberId) => {
-                    const member = siteRouter.members[memberId];
-                    const memberEl = document.createElement('div');
-                    memberEl.className = 'team-member scroll-animated';
-                    memberEl.dataset.memberId = memberId;
-                    memberEl.innerHTML = `
-                        <img src="${member.portrait}" alt="${member.name}" class="portrait">
-                        <h3 class="team-member-name">${member.name}</h3>
-                    `;
-                    return memberEl;
-                };
 
                 const memberIdsInOrder = [
                     'alejandra-perry000', 'aitana-avila000', 'amaylor-torres000', 'amiel-cabellero000', 'camila-lopez000',
@@ -339,18 +278,25 @@
                     'andrew-cuellar000', 'nicolas-vilches000', 'johann-lara000', 'amelia-guerra000',
                     'stephanie-jimenez000', 'jose-unanue000', 'ilie-tornes000', 'adrian-gomez000'
                 ];
-                
-                memberIdsInOrder.forEach(memberId => {
-                     if (siteRouter.members[memberId]) {
-                        tutorGrid.appendChild(createMemberElement(memberId));
-                    }
-                });
 
-                document.querySelectorAll('.team-member').forEach(member => {
-                    member.addEventListener('click', () => {
-                        const memberId = member.dataset.memberId;
-                        siteRouter.navigateTo('member', memberId);
-                    });
+                memberIdsInOrder.forEach(memberId => {
+                    const member = siteRouter.members[memberId];
+                    if (member) {
+                        const memberEl = document.createElement('div');
+                        memberEl.className = 'team-member scroll-animated';
+                        memberEl.dataset.memberId = memberId;
+                        
+                        memberEl.innerHTML = `
+                            <img src="${member.portrait}" alt="${member.name}" class="portrait">
+                            <h3 class="team-member-name">${member.name}</h3>
+                        `;
+                        
+                        memberEl.addEventListener('click', () => {
+                            siteRouter.navigateTo('member', memberId);
+                        });
+
+                        tutorGrid.appendChild(memberEl);
+                    }
                 });
 
                 document.querySelectorAll('#tutor-grid .scroll-animated').forEach(el => {
