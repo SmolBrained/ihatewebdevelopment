@@ -54,7 +54,7 @@
         .about-info ul{list-style:disc;padding-left:25px;margin-bottom:20px}
         .about-info ul li{margin-bottom:10px}
         .about-info a{color:var(--color-purple-dark);font-weight:700;text-decoration:underline}
-        .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;justify-content:center;margin-top:50px}
+        .team-grid{display:grid;grid-template-columns:repeat(7, 1fr);gap:30px;justify-content:center;margin-top:50px}
         .team-member{text-align:center;cursor:pointer}
         .team-member .portrait{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;transition:transform .3s ease, box-shadow .3s ease; margin-bottom: 15px; display: inline-block;}
         .team-member:hover .portrait{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,0.1)}
@@ -98,7 +98,7 @@
         .section-title{font-size:2rem}
         .hero-banner{background-attachment:scroll}
         .hero-banner h1{font-size:2.2rem}
-        .team-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px}
+        .team-grid{grid-template-columns:repeat(3, 1fr);gap:20px}
         }
     </style>
 </head>
@@ -266,27 +266,47 @@
 
             const populateTutorGrid = () => {
                 const tutorGrid = document.getElementById('tutor-grid');
-                if (tutorGrid) {
-                    tutorGrid.innerHTML = '';
-                    for (const memberId in siteRouter.members) {
-                        const member = siteRouter.members[memberId];
-                        const memberEl = document.createElement('div');
-                        memberEl.className = 'team-member scroll-animated';
-                        memberEl.dataset.memberId = memberId;
-                        memberEl.innerHTML = `
-                            <img src="${member.portrait}" alt="${member.name}" class="portrait">
-                            <h3 class="team-member-name">${member.name}</h3>
-                        `;
-                        tutorGrid.appendChild(memberEl);
-                    }
-                    document.querySelectorAll('.team-member').forEach(member => {
-                        member.addEventListener('click', () => {
-                            const memberId = member.dataset.memberId;
-                            siteRouter.navigateTo('member', memberId);
-                        });
-                    });
-                    document.querySelectorAll('.scroll-animated').forEach(el => observer.observe(el));
+                if (!tutorGrid) return;
+                
+                tutorGrid.innerHTML = '';
+
+                const createMemberElement = (memberId) => {
+                    const member = siteRouter.members[memberId];
+                    const memberEl = document.createElement('div');
+                    memberEl.className = 'team-member scroll-animated';
+                    memberEl.dataset.memberId = memberId;
+                    memberEl.innerHTML = `
+                        <img src="${member.portrait}" alt="${member.name}" class="portrait">
+                        <h3 class="team-member-name">${member.name}</h3>
+                    `;
+                    return memberEl;
+                };
+
+                const alejandraId = 'alejandra-perry000';
+                if (siteRouter.members[alejandraId]) {
+                    tutorGrid.appendChild(createMemberElement(alejandraId));
                 }
+
+                for (const memberId in siteRouter.members) {
+                    if (memberId !== alejandraId) {
+                        tutorGrid.appendChild(createMemberElement(memberId));
+                    }
+                }
+
+                document.querySelectorAll('.team-member').forEach(member => {
+                    member.addEventListener('click', () => {
+                        const memberId = member.dataset.memberId;
+                        siteRouter.navigateTo('member', memberId);
+                    });
+                });
+
+                document.querySelectorAll('#tutor-grid .scroll-animated').forEach(el => {
+                    if ('IntersectionObserver' in window) {
+                        observer.observe(el);
+                    } else {
+                        el.classList.add('is-visible');
+                    }
+                });
             };
 
             const currentPage = document.body.dataset.currentPage;
