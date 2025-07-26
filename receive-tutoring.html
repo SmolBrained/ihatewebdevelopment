@@ -3,52 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receive Tutoring - Literary Speaking</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/WPy5YDY.png">
+    <title>Receive Tutoring | Literary Speaking</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-        :root{--font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--color-text:#222;--color-text-light:#555;--transition-speed:0.4s;--color-blue-light:#c3e5ff;--color-blue-dark:#0a1763;--color-beige:#fff0db;--color-beige-dark:#8b4102;--color-purple:#f2e7ff;--color-purple-dark:#4b0082;--color-green:#d1ffe6;--color-green-dark:#186d5e;--color-pink:#ffebf2;--color-pink-dark:#c71585;--color-yellow:#fffacd;--color-yellow-dark:#8B4513;--color-red:#ffdddd;--color-red-dark:#b22222;--color-teal:#e0ffff;--color-teal-dark:#008080;--color-footer-bg:#f7f7ff;--color-footer-text:#4a0e7e}
-        *,*:before,*:after{box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{margin:0;font-family:var(--font-family);background-color:#fff;color:var(--color-text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-        body.menu-open{overflow:hidden}
-        .container{max-width:1100px;margin:0 auto;padding:0 30px}
-        .section{padding:80px 0;text-align:center;background-color:var(--section-bg,white);color:var(--section-text,var(--color-text))}
-        .section-title{font-size:2.5rem;font-weight:900;margin:0 0 10px;line-height:1.2}
-        .section-subtitle{font-size:1.1rem;color:var(--color-text-light);max-width:700px;margin:0 auto 50px}
-        .placeholder-img{display:block;width:100%;height:100%;object-fit:cover;transition:transform var(--transition-speed) ease;border-radius:12px}
-        .placeholder-img:hover{transform:scale(1.03)}
-        .btn{display:inline-block;padding:18px 48px;border:2px solid;background-color:transparent;text-decoration:none;font-weight:700;font-size:1rem;margin:5px;transition:all var(--transition-speed) ease;cursor:pointer;color:var(--section-main-color,#333);border-color:var(--section-main-color,#333); border-radius: 8px;}
-        .btn:hover{background-color:var(--section-main-color,#333);color:var(--section-bg,white)}
-        .site-header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:background-color var(--transition-speed) ease,border-color var(--transition-speed) ease,box-shadow var(--transition-speed) ease}
-        .site-header .container{display:flex;justify-content:space-between;align-items:center;height:70px}
-        .site-header .logo{cursor:pointer}
-        .site-header .logo img{height:40px;width:auto;transition:filter var(--transition-speed) ease}
-        .logo .logo-scrolled{display:none}
-        .site-header.scrolled .logo .logo-unscrolled{display:none}
-        .site-header.scrolled .logo .logo-scrolled{display:block}
-        .site-header:not(.scrolled) .logo .logo-unscrolled{height:41px;transform:translate(0px,2px)}
-        .desktop-nav{display:flex;align-items:center}
-        .desktop-nav a{margin:0 10px;padding:5px 0;text-decoration:none;font-weight:500;font-size:.85rem;transition:color var(--transition-speed) ease, border-color var(--transition-speed) ease; cursor: pointer;}
-        .desktop-nav a.active-page-link{border:2px solid;padding:5px 15px;border-radius:5px}
-        .site-header:not(.scrolled) .desktop-nav a.active-page-link{border-color:#fff}
-        .site-header:not(.scrolled) .desktop-nav a.active-page-link:hover{color:#ddd;border-color:#ddd}
-        .site-header.scrolled .desktop-nav a.active-page-link{border-color:var(--color-text)}
-        .site-header.scrolled .desktop-nav a.active-page-link:hover{color:var(--color-text);border-color:var(--color-text)}
-        .lang-switcher{display:flex;border:1px solid;border-radius:100px;transition:border-color var(--transition-speed) ease;cursor:pointer;-webkit-tap-highlight-color:transparent}
-        .lang-switcher button{background:0 0;border:0;padding:5px 10px;font-family:var(--font-family);font-weight:700;font-size:.75rem;cursor:pointer;border-radius:100px;transition:all var(--transition-speed) ease;pointer-events:none}
-        .site-header:not(.scrolled){background-color:transparent;border-bottom-color:transparent}
-        .site-header:not(.scrolled) .desktop-nav a{color:#fff;text-shadow:1px 1px 2px rgba(0,0,0,.2)}
-        .site-header:not(.scrolled) .desktop-nav a:hover{color:#ddd}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher{border-color:rgba(255,255,255,.5)}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher button{color:#fff}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher button.active{background-color:#fff;color:var(--color-text)}
-        .site-header.scrolled{background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0f0f0}
-        .site-header.scrolled .desktop-nav a{color:var(--color-text-light);text-shadow:none}
-        .site-header.scrolled .desktop-nav a:hover{color:var(--color-text)}
-        .site-header.scrolled .desktop-nav .lang-switcher{border-color:rgba(0,0,0,.1)}
-        .site-header.scrolled .desktop-nav .lang-switcher button{color:var(--color-text-light)}
-        .site-header.scrolled .desktop-nav .lang-switcher button.active{background-color:var(--color-text);color:#fff}
-        .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:none}
         .hero-banner{height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;position:relative;padding:0 20px;background-image:url(https://i.imgur.com/UnO3ioP.jpeg);background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover}
         .hero-banner .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:2}
         .hero-banner .content{position:relative;z-index:3}
@@ -68,79 +26,16 @@
         .cta-section{background-color:var(--color-purple);padding:60px 0}
         .cta-section h2{font-size:2rem;font-weight:700;margin:0 0 10px}
         .cta-section p{font-size:1.2rem;margin:0 auto 30px;max-width:600px}
-        .site-footer{background-color:var(--color-footer-bg);padding:60px 0;text-align:center}
-        .site-footer img{height:80px;margin:0 auto 20px}
-        .site-footer p{margin:10px 0;color:var(--color-footer-text)}
-        .site-footer nav{margin-top:10px}
-        .site-footer nav a{margin:0 5px;color:var(--color-footer-text);text-decoration:underline;font-weight:500;cursor:pointer}
-        .site-footer nav a:not(:last-child):after{content:'|';text-decoration:none;margin-left:10px;color:var(--color-footer-text);font-weight:500}
-        .site-footer nav a:hover{color:var(--color-text)}
-        .scroll-animated{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
-        .scroll-animated.is-visible{opacity:1;transform:translateY(0)}
-        @media (max-width:1150px){.desktop-nav{display:none}
-        .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:flex}
-        .site-header .container{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
-        .lang-switcher-mobile-wrapper{justify-self:start}
-        .lang-switcher-mobile-wrapper .lang-switcher{margin-left:0}
-        .site-header .logo{justify-self:center}
-        .mobile-nav{position:fixed;top:0;left:0;width:100%;height:100vh;background-color:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform var(--transition-speed) ease-in-out;padding-top:70px}
-        body.menu-open .mobile-nav{transform:translateY(0)}
-        .mobile-nav a{margin:15px 0;font-size:1.5rem;color:var(--color-text);text-shadow:none;text-decoration:none; cursor: pointer;}
-        .mobile-nav a.active-page-link{background-color:var(--color-purple);border-radius:10px;padding-left:15px;padding-right:15px}
-        .mobile-nav a:hover{color:var(--color-purple-dark)}
-        .menu-toggle{flex-direction:column;justify-content:space-between;width:30px;height:21px;background:0 0;border:0;cursor:pointer;padding:0;z-index:1001;justify-self:end}
-        .menu-toggle span{width:30px;height:3px;border-radius:10px;transition:all var(--transition-speed) ease-in-out}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher{border-color:rgba(255,255,255,.5)}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button{color:#fff}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button.active{background-color:#fff;color:var(--color-text)}
-        .site-header:not(.scrolled):not(.menu-active-state) .menu-toggle span{background-color:#fff}
-        .site-header.scrolled,.site-header.menu-active-state{background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0f0f0}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher{border-color:rgba(0,0,0,.1)}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button{color:var(--color-text-light)}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button.active{background-color:var(--color-text);color:#fff}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .menu-toggle span{background-color:var(--color-text)}
-        .menu-toggle.active span:nth-child(1){transform:translateY(9px) rotate(45deg)}
-        .menu-toggle.active span:nth-child(2){opacity:0;transform:translateX(-20px)}
-        .menu-toggle.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}}
         @media (max-width:768px){
-        .section{padding:60px 0}
-        .section-title{font-size:2rem}
         .hero-banner{background-attachment:scroll}
         .hero-banner h1{font-size:2.2rem}
-        .btn{padding:16px 28px;font-size:1rem}
         .opportunity-grid{grid-template-columns: 1fr;}
         }
     </style>
 </head>
 <body data-current-page="receive-tutoring">
-    <header class="site-header" id="header">
-        <div class="container">
-            <div class="lang-switcher-mobile-wrapper"><div class="lang-switcher"><button id="lang-en-btn-mobile">EN</button><button id="lang-es-btn-mobile">ES</button></div></div>
-            <a data-page-id="home" class="logo nav-link"><img src="https://i.imgur.com/vyE0G43.png" alt="Literary Speaking Logo" class="logo-unscrolled"><img src="https://i.imgur.com/UnpZvgZ.png" alt="Literary Speaking Logo" class="logo-scrolled"></a>
-            <nav class="desktop-nav">
-                <a data-page-id="support" class="lang-switch nav-link" data-en="Support Us" data-es="Apóyanos"></a>
-                <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Get Involved" data-es="Involúcrate"></a>
-                <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-                <a data-page-id="the-team" class="lang-switch nav-link" data-en="The Team" data-es="El Equipo"></a>
-                <a data-page-id="news" class="lang-switch nav-link" data-en="News" data-es="Noticias"></a>
-                <a data-page-id="articles" class="lang-switch nav-link" data-en="Articles" data-es="Artículos"></a>
-                <a data-page-id="lessons" class="lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
-                <a data-page-id="report-time" class="lang-switch nav-link" data-en="Report Time" data-es="Reportar Horas"></a>
-                <div class="lang-switcher"><button id="lang-en-btn">EN</button><button id="lang-es-btn">ES</button></div>
-            </nav>
-            <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-        </div>
-        <nav class="mobile-nav">
-            <a data-page-id="support" class="lang-switch nav-link" data-en="Support Us" data-es="Apóyanos"></a>
-            <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Get Involved" data-es="Involúcrate"></a>
-            <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-            <a data-page-id="the-team" class="lang-switch nav-link" data-en="The Team" data-es="El Equipo"></a>
-            <a data-page-id="news" class="lang-switch nav-link" data-en="News" data-es="Noticias"></a>
-            <a data-page-id="articles" class="lang-switch nav-link" data-en="Articles" data-es="Artículos"></a>
-            <a data-page-id="lessons" class="lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
-            <a data-page-id="report-time" class="lang-switch nav-link" data-en="Report Time" data-es="Reportar Horas"></a>
-        </nav>
-    </header>
+    <header class="site-header" id="header"></header>
+
     <main>
         <section class="hero-banner">
             <div class="overlay"></div>
@@ -164,7 +59,7 @@
                                     <li class="lang-switch" data-en="Assistance with coursework and English language skills for ELL students." data-es="Asistencia con el trabajo de curso y habilidades en el idioma inglés para estudiantes ELL."></li>
                                     <li class="lang-switch" data-en="Must currently attend Miami Coral Park Senior High School." data-es="Debe asistir a la escuela secundaria Miami Coral Park."></li>
                                 </ul>
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdT5_sP5bHv69pMezbkuSbEv8WQdp-tBgUMBycHfiK_rejZKw/viewform?usp=header" target="_blank" class="btn lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdT5_sP5bHv69pMezbkuSbEv8WQdp-tBgUMBycHfiK_rejZKw/viewform?usp=header" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
                             </div>
                         </div>
                         <div class="opportunity-card scroll-animated">
@@ -177,7 +72,7 @@
                                     <li class="lang-switch" data-en="Assistance with coursework and English language skills for ELL students." data-es="Asistencia con las tareas y habilidades en el idioma inglés para estudiantes ELL."></li>
                                     <li class="lang-switch" data-en="Must currently attend Paul W. Bell Middle School." data-es="Debe asistir a la escuela intermedia Paul W. Bell."></li>
                                 </ul>
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7yvrEuvtxTIVCN7CWy97XO86FCixMM1_TL5-SOYh_0Q8iOA/viewform?usp=header" target="_blank" class="btn lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7yvrEuvtxTIVCN7CWy97XO86FCixMM1_TL5-SOYh_0Q8iOA/viewform?usp=header" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
                             </div>
                         </div>
                     </div>
@@ -198,7 +93,7 @@
                                     <li class="lang-switch" data-en="Receive weekly homework help and test preparation in various subjects to students (elementary to high school)." data-es="Recibe ayuda semanal con las tareas y preparación para exámenes en varias materias para estudiantes (de primaria a secundaria)."></li>
                                     <li class="lang-switch" data-en="Times vary based on availability." data-es="Los horarios varían según la disponibilidad."></li>
                                 </ul>
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe06QJj76jJ536rwy3A5EMthAD4TTwG_XFGp_TdkNzevnMXTw/viewform?usp=header" target="_blank" class="btn lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe06QJj76jJ536rwy3A5EMthAD4TTwG_XFGp_TdkNzevnMXTw/viewform?usp=header" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
                             </div>
                         </div>
                         <div class="opportunity-card scroll-animated">
@@ -209,7 +104,7 @@
                                     <li class="lang-switch" data-en="Weekly assistance learning English, focusing on writing, reading, and speaking." data-es="Tutoría semanal para aprender inglés, enfocándose en la escritura, la lectura y el habla."></li>
                                     <li class="lang-switch" data-en="Time vary based on availability." data-es="El tiempo varía según la disponibilidad."></li>
                                 </ul>
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe06QJj76jJ536rwy3A5EMthAD4TTwG_XFGp_TdkNzevnMXTw/viewform?usp=header" target="_blank" class="btn lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe06QJj76jJ536rwy3A5EMthAD4TTwG_XFGp_TdkNzevnMXTw/viewform?usp=header" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
                             </div>
                         </div>
                     </div>
@@ -230,7 +125,7 @@
                                     <li class="lang-switch" data-en="Receive online guidance and mentorship regarding the college application process, including applying to scholarships and financial aid." data-es="Recibe orientación y mentoría en línea sobre el proceso de solicitud a la universidad, incluyendo la solicitud de becas y ayuda financiera."></li>
                                     <li class="lang-switch" data-en="Receive assistance with editing essays and resumes." data-es="Recibe asistencia con la edición de ensayos y currículums."></li>
                                 </ul>
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdSZoFeQ3KODY1lN8wsCuOxRPD4satVRbmoUhuOBmDGXEMv2g/viewform?usp=header" target="_blank" class="btn lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdSZoFeQ3KODY1lN8wsCuOxRPD4satVRbmoUhuOBmDGXEMv2g/viewform?usp=header" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
                             </div>
                         </div>
                     </div>
@@ -242,62 +137,16 @@
             <div class="container scroll-animated">
                 <h2 class="lang-switch" data-en="Do you want to be a volunteer?" data-es="¿Quieres ser voluntario?"></h2>
                 <p class="lang-switch" data-en="Help students in our community." data-es="Ayuda a los estudiantes de nuestra comunidad."></p>
-                <a href="get-involved.html" class="btn lang-switch" data-en="Learn More" data-es="Aprende Más"></a>
+                <a data-page-id="become-a-tutor" class="btn btn-small nav-link lang-switch" data-en="Learn More" data-es="Aprende Más"></a>
             </div>
         </section>
-
     </main>
-    <footer class="site-footer">
-        <div class="container">
-            <img src="https://i.imgur.com/vyE0G43.png" alt="Literary Speaking Footer Logo" class="scroll-animated">
-            <p class="lang-switch scroll-animated" data-en="Copyright © 2025 Literary Speaking Tutoring" data-es="Copyright © 2025 Tutoría de Literary Speaking"></p>
-            <nav class="scroll-animated">
-                <a data-page-id="about" class="lang-switch nav-link" data-en="About" data-es="Sobre Nosotros"></a>
-                <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-                <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Become a Tutor" data-es="Conviértete en Tutor"></a>
-                <a data-page-id="contact" class="lang-switch nav-link" data-en="Contact" data-es="Contacto"></a>
-            </nav>
-        </div>
-    </footer>
+
+    <footer class="site-footer"></footer>
+
     <script src="router.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const header = document.getElementById('header');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const body = document.body;
-            const langSwitches = document.querySelectorAll('.lang-switch');
-            const langEnBtn = document.getElementById('lang-en-btn');
-            const langEsBtn = document.getElementById('lang-es-btn');
-            const langEnBtnMobile = document.getElementById('lang-en-btn-mobile');
-            const langEsBtnMobile = document.getElementById('lang-es-btn-mobile');
-
-            const handleScroll = () => header.classList.toggle('scrolled', window.pageYOffset > 50);
-            window.addEventListener('scroll', handleScroll);
-            handleScroll();
-
-            const closeMenu = () => {
-                body.classList.remove('menu-open');
-                menuToggle.classList.remove('active');
-                header.classList.remove('menu-active-state');
-            };
-
-            menuToggle.addEventListener('click', () => {
-                const isOpen = body.classList.toggle('menu-open');
-                menuToggle.classList.toggle('active', isOpen);
-                header.classList.toggle('menu-active-state', isOpen);
-            });
-
-            document.querySelectorAll('.mobile-nav a, .site-footer nav a').forEach(link => {
-                if (link.dataset.pageId) {
-                    link.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        const pageId = link.dataset.pageId;
-                        siteRouter.navigateTo(pageId);
-                        closeMenu();
-                    });
-                }
-            });
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -307,45 +156,9 @@
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.scroll-animated').forEach(el => {
-                if ('IntersectionObserver' in window) {
-                    observer.observe(el);
-                } else {
-                    el.classList.add('is-visible');
-                }
+            document.querySelectorAll('main .scroll-animated').forEach(el => {
+                observer.observe(el);
             });
-
-            const setLanguage = (lang) => {
-                langSwitches.forEach(el => {
-                    const text = el.dataset[lang];
-                    if (text) {
-                       el.innerHTML = text;
-                    }
-                });
-                localStorage.setItem('language', lang);
-                const isEn = lang === 'en';
-                langEnBtn?.classList.toggle('active', isEn);
-                langEsBtn?.classList.toggle('active', !isEn);
-                langEnBtnMobile?.classList.toggle('active', isEn);
-                langEsBtnMobile?.classList.toggle('active', !isEn);
-                document.documentElement.lang = lang;
-            };
-
-            const toggleLanguage = () => {
-                const currentLang = localStorage.getItem('language') || 'en';
-                setLanguage(currentLang === 'en' ? 'es' : 'en');
-            };
-
-            document.querySelectorAll('.desktop-nav .lang-switcher, .lang-switcher-mobile-wrapper .lang-switcher').forEach(el => el.addEventListener('click', toggleLanguage));
-            
-            const currentPage = document.body.dataset.currentPage;
-            if (currentPage) {
-                document.querySelectorAll(`.nav-link[data-page-id="${currentPage}"]`).forEach(link => {
-                    link.classList.add('active-page-link');
-                });
-            }
-
-            setLanguage(localStorage.getItem('language') || 'en');
         });
     </script>
 </body>
