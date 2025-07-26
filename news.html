@@ -148,7 +148,7 @@
                         </div>
                         <img src="${item.thumbnail_url || 'https://i.imgur.com/3Yj6bA1.png'}" alt="" class="news-item-image">
                     `;
-                    link.addEventListener('click', () => siteRouter.navigateTo('news-single', `id=${item.id}`));
+                    link.addEventListener('click', () => siteRouter.navigateTo('news-single', item.id));
                     mainColumn.appendChild(link);
                 });
 
@@ -161,7 +161,7 @@
                         <h4 class="sidebar-item-title">${item[`title_${lang}`] || item.title_en}</h4>
                         <p class="sidebar-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
                     `;
-                    link.addEventListener('click', () => siteRouter.navigateTo('news-single', `id=${item.id}`));
+                    link.addEventListener('click', () => siteRouter.navigateTo('news-single', item.id));
                     sidebarGrid.appendChild(link);
                 });
             };
