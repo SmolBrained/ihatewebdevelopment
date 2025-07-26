@@ -3,121 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles - Literary Speaking</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/WPy5YDY.png">
+    <title>Articles | Literary Speaking</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-        :root{--font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--color-text:#222;--color-text-light:#555;--transition-speed:0.4s;--color-blue-light:#c3e5ff;--color-blue-dark:#0a1763;--color-beige:#fff0db;--color-beige-dark:#8b4102;--color-purple:#f2e7ff;--color-purple-dark:#4b0082;--color-green:#d1ffe6;--color-green-dark:#186d5e;--color-pink:#ffebf2;--color-pink-dark:#c71585;--color-yellow:#fffacd;--color-yellow-dark:#8B4513;--color-red:#ffdddd;--color-red-dark:#b22222;--color-teal:#e0ffff;--color-teal-dark:#008080;--color-footer-bg:#f7f7ff;--color-footer-text:#4a0e7e}
-        *,*:before,*:after{box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{margin:0;font-family:var(--font-family);background-color:#fff;color:var(--color-text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-        body.menu-open{overflow:hidden}
-        .container{max-width:1100px;margin:0 auto;padding:0 30px}
-        .section{padding:80px 0;text-align:center;background-color:var(--section-bg,white);color:var(--section-text,var(--color-text))}
-        .site-header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:background-color var(--transition-speed) ease,border-color var(--transition-speed) ease,box-shadow var(--transition-speed) ease}
-        .site-header .container{display:flex;justify-content:space-between;align-items:center;height:70px}
-        .site-header .logo{cursor:pointer}
-        .site-header .logo img{height:40px;width:auto;transition:filter var(--transition-speed) ease}
-        .logo .logo-scrolled{display:none}
-        .site-header.scrolled .logo .logo-unscrolled{display:none}
-        .site-header.scrolled .logo .logo-scrolled{display:block}
-        .site-header:not(.scrolled) .logo .logo-unscrolled{height:41px;transform:translate(0px,2px)}
-        .desktop-nav{display:flex;align-items:center}
-        .desktop-nav a{margin:0 10px;padding:5px 0;text-decoration:none;font-weight:500;font-size:.85rem;transition:color var(--transition-speed) ease, border-color var(--transition-speed) ease; cursor: pointer;}
-        .desktop-nav a.active-page-link{border:2px solid;padding:5px 15px;border-radius:5px}
-        .site-header:not(.scrolled) .desktop-nav a.active-page-link{border-color:#fff}
-        .site-header:not(.scrolled) .desktop-nav a.active-page-link:hover{color:#ddd;border-color:#ddd}
-        .site-header.scrolled .desktop-nav a.active-page-link{border-color:var(--color-text)}
-        .site-header.scrolled .desktop-nav a.active-page-link:hover{color:var(--color-text);border-color:var(--color-text)}
-        .lang-switcher{display:flex;border:1px solid;border-radius:100px;transition:border-color var(--transition-speed) ease;cursor:pointer;-webkit-tap-highlight-color:transparent}
-        .lang-switcher button{background:0 0;border:0;padding:5px 10px;font-family:var(--font-family);font-weight:700;font-size:.75rem;cursor:pointer;border-radius:100px;transition:all var(--transition-speed) ease;pointer-events:none}
-        .site-header:not(.scrolled){background-color:transparent;border-bottom-color:transparent}
-        .site-header:not(.scrolled) .desktop-nav a{color:#fff;text-shadow:1px 1px 2px rgba(0,0,0,.2)}
-        .site-header:not(.scrolled) .desktop-nav a:hover{color:#ddd}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher{border-color:rgba(255,255,255,.5)}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher button{color:#fff}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher button.active{background-color:#fff;color:var(--color-text)}
-        .site-header.scrolled{background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0f0f0}
-        .site-header.scrolled .desktop-nav a{color:var(--color-text-light);text-shadow:none}
-        .site-header.scrolled .desktop-nav a:hover{color:var(--color-text)}
-        .site-header.scrolled .desktop-nav .lang-switcher{border-color:rgba(0,0,0,.1)}
-        .site-header.scrolled .desktop-nav .lang-switcher button{color:var(--color-text-light)}
-        .site-header.scrolled .desktop-nav .lang-switcher button.active{background-color:var(--color-text);color:#fff}
-        .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:none}
-        .hero-banner{height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;position:relative;padding:0 20px;background-image:url(https://i.imgur.com/f9KmpRG.jpeg);background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover}
+        .hero-banner{height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;position:relative;padding:0 20px;background-image:url(https://i.imgur.com/WKLVGfz.jpeg);background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover}
         .hero-banner .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:2}
         .hero-banner .content{position:relative;z-index:3}
         .hero-banner h1{font-size:3.8rem;font-weight:900;margin:0;line-height:1.2}
-        .articles-layout{display:grid;grid-template-columns:3fr 1fr;gap:50px;align-items:flex-start}
-        .articles-main{text-align:left}
-        .article-post{margin-bottom:60px;border-bottom:1px solid #eee;padding-bottom:40px}
-        .article-post:last-child{margin-bottom:0;border-bottom:none;padding-bottom:0}
-        .article-title{font-size:2.2rem;font-weight:700;margin:0 0 10px}
-        .article-meta{font-size:.9rem;color:var(--color-text-light);margin-bottom:20px}
-        .article-meta a{color:var(--color-purple-dark);text-decoration:none;font-weight:700}
-        .article-meta a:hover{text-decoration:underline}
-        .article-image{width:100%;border-radius:12px;margin-bottom:15px}
-        .article-image-caption{font-size:0.8rem;color:var(--color-text-light);text-align:center;margin-bottom:20px;font-style:italic}
-        .article-content{line-height:1.8;white-space:pre-wrap}
-        .comments-section{margin-top:30px}
-        .comment{border-top:1px solid #eee;padding-top:20px;margin-top:20px}
-        .comment-author{font-weight:700}
-        .comment-date{font-size:.8rem;color:var(--color-text-light);margin-left:10px}
-        .comment-body{margin-top:5px}
-        .sidebar{position:sticky;top:100px}
-        .sidebar-widget{margin-bottom:40px;text-align:left}
-        .sidebar-widget-title{font-size:1.3rem;font-weight:700;margin-bottom:15px;border-bottom:2px solid var(--color-purple);padding-bottom:10px}
-        .sidebar-widget ul{list-style:none;padding:0;margin:0}
-        .sidebar-widget ul li{margin-bottom:10px}
-        .sidebar-widget ul li a{text-decoration:none;color:var(--color-text-light);font-weight:500;cursor:pointer}
-        .sidebar-widget ul li a:hover, .sidebar-widget ul li a.active-filter{color:var(--color-purple-dark)}
-        .site-footer{background-color:var(--color-footer-bg);padding:60px 0;text-align:center}
-        .site-footer img{height:80px;margin:0 auto 20px}
-        .site-footer p{margin:10px 0;color:var(--color-footer-text)}
-        .site-footer nav{margin-top:10px}
-        .site-footer nav a{margin:0 5px;color:var(--color-footer-text);text-decoration:underline;font-weight:500;cursor:pointer}
-        .site-footer nav a:not(:last-child):after{content:'|';text-decoration:none;margin-left:10px;color:var(--color-footer-text);font-weight:500}
-        .site-footer nav a:hover{color:var(--color-text)}
-        .scroll-animated{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
-        .scroll-animated.is-visible{opacity:1;transform:translateY(0)}
-        .article-post .article-content-wrapper{max-height:12em;overflow:hidden;position:relative}
-        .article-post .article-content-wrapper::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4em;background:linear-gradient(to bottom,transparent,white)}
-        .read-more{display:inline-block;margin-top:20px;font-weight:700;color:var(--color-purple-dark);text-decoration:none;cursor:pointer}
-        .read-more:hover{text-decoration:underline}
-        .back-to-articles-link{display:none;font-weight:700;color:var(--color-purple-dark);text-decoration:none;margin-bottom:30px;text-align:left;cursor:pointer}
-        .back-to-articles-link:hover{text-decoration:underline}
-        .article-post.is-hidden{display:none}
-        body.single-article-view .article-post:not(.active-article){display:none}
-        body.single-article-view .article-post.active-article .article-content-wrapper{max-height:none}
-        body.single-article-view .article-post.active-article .article-content-wrapper::after{display:none}
-        body.single-article-view .article-post.active-article .read-more{display:none}
-        body.single-article-view .back-to-articles-link{display:block}
-        @media (max-width:1150px){.desktop-nav{display:none}
-        .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:flex}
-        .site-header .container{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
-        .lang-switcher-mobile-wrapper{justify-self:start}
-        .lang-switcher-mobile-wrapper .lang-switcher{margin-left:0}
-        .site-header .logo{justify-self:center}
-        .mobile-nav{position:fixed;top:0;left:0;width:100%;height:100vh;background-color:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform var(--transition-speed) ease-in-out;padding-top:70px}
-        body.menu-open .mobile-nav{transform:translateY(0)}
-        .mobile-nav a{margin:15px 0;font-size:1.5rem;color:var(--color-text);text-shadow:none;text-decoration:none; cursor: pointer;}
-        .mobile-nav a.active-page-link{background-color:var(--color-purple);border-radius:10px;padding-left:15px;padding-right:15px}
-        .mobile-nav a:hover{color:var(--color-purple-dark)}
-        .menu-toggle{flex-direction:column;justify-content:space-between;width:30px;height:21px;background:0 0;border:0;cursor:pointer;padding:0;z-index:1001;justify-self:end}
-        .menu-toggle span{width:30px;height:3px;border-radius:10px;transition:all var(--transition-speed) ease-in-out}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher{border-color:rgba(255,255,255,.5)}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button{color:#fff}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button.active{background-color:#fff;color:var(--color-text)}
-        .site-header:not(.scrolled):not(.menu-active-state) .menu-toggle span{background-color:#fff}
-        .site-header.scrolled,.site-header.menu-active-state{background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0f0f0}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher{border-color:rgba(0,0,0,.1)}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button{color:var(--color-text-light)}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button.active{background-color:var(--color-text);color:#fff}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .menu-toggle span{background-color:var(--color-text)}
-        .menu-toggle.active span:nth-child(1){transform:translateY(9px) rotate(45deg)}
-        .menu-toggle.active span:nth-child(2){opacity:0;transform:translateX(-20px)}
-        .menu-toggle.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}}
-        @media (max-width:900px){.articles-layout{grid-template-columns:1fr}.sidebar{position:static;margin-top:60px}}
-        @media (max-width:768px){.section{padding:60px 0}.hero-banner{background-attachment:scroll}.hero-banner h1{font-size:2.2rem}.article-title{font-size:1.8rem}}
+        
+        .articles-layout {display:grid;grid-template-columns:3fr 1fr;gap:50px;align-items:flex-start;}
+        .article-grid {display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:30px;}
+        .article-card {background-color:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.08);transition:transform .3s ease, box-shadow .3s ease;display:flex;flex-direction:column;text-align:left;cursor:pointer;}
+        .article-card:hover {transform:translateY(-8px);box-shadow:0 12px 32px rgba(0,0,0,0.12);}
+        .article-card-image-wrapper {position:relative;width:100%;aspect-ratio:16/9;}
+        .article-card-image {width:100%;height:100%;object-fit:cover;}
+        .article-card-category {position:absolute;top:15px;left:15px;background-color:var(--color-green-dark);color:white;padding:5px 12px;border-radius:100px;font-size:0.8rem;font-weight:700;}
+        .article-card-content {padding:25px;flex-grow:1;display:flex;flex-direction:column;}
+        .article-card-meta {font-size:0.9rem;color:var(--color-text-light);margin-bottom:15px;display:flex;align-items:center;gap:15px;}
+        .article-card-meta svg {width:14px;height:14px;margin-right:5px;vertical-align:middle;}
+        .article-card-title {font-size:1.4rem;font-weight:700;margin:0 0 15px;line-height:1.3;color:var(--color-text);}
+        .article-card-excerpt {font-size:1rem;line-height:1.6;color:var(--color-text-light);flex-grow:1;}
+        .article-card-footer {display:flex;justify-content:space-between;align-items:center;padding:20px 25px;border-top:1px solid #eee;font-size:0.9rem;color:var(--color-text-light);}
+        .read-more-link {color:var(--color-purple-dark);text-decoration:none;font-weight:700;display:flex;align-items:center;gap:8px;}
+        .read-more-link:hover {text-decoration:underline;}
+        .read-more-link svg {width:16px;height:16px;transition:transform .3s ease;}
+        .read-more-link:hover svg {transform:translateX(4px);}
+        
+        .sidebar{position:sticky;top:100px;text-align:left;}
+        .sidebar-widget{margin-bottom:40px;}
+        .sidebar-widget-title{font-size:1.3rem;font-weight:700;margin-bottom:15px;border-bottom:2px solid var(--color-purple);padding-bottom:10px;}
+        .sidebar-widget ul{list-style:none;padding:0;margin:0;}
+        .sidebar-widget ul li{margin-bottom:12px;}
+        .sidebar-widget ul li a{text-decoration:none;color:var(--color-text-light);font-weight:500;cursor:pointer;font-size:1rem;}
+        .sidebar-widget ul li a:hover{color:var(--color-purple-dark);}
+        .sidebar-widget ul li a.active-filter{color:var(--color-purple-dark);font-weight:700;}
+
+        @media (max-width:900px){.articles-layout{grid-template-columns:1fr;}.sidebar{position:static;margin-top:60px;}}
+        @media (max-width:768px){.hero-banner{background-attachment:scroll;}.hero-banner h1{font-size:2.2rem;}.article-grid{grid-template-columns:1fr;}}
     </style>
 </head>
 <body data-current-page="articles">
@@ -133,189 +56,10 @@
 
         <section class="section">
             <div class="container">
-                <a class="back-to-articles-link lang-switch" data-en="< Back to all articles" data-es="< Volver a todos los artículos"></a>
                 <div class="articles-layout">
-                    <div class="articles-main">
-                        <article class="article-post scroll-animated" id="article-crisis-education" data-archive="2025-06" data-category="nonfiction">
-                            <h2 class="article-title lang-switch" data-en="Classrooms in Crisis: The War on Education" data-es="Aulas en Crisis: La Guerra contra la Educación"></h2>
-                            <p class="article-meta">
-                                6/28/2025 | <span class="lang-switch" data-en="By" data-es="Por"></span> <a href="#" class="nav-link" data-page-id="member" data-member-id="natalie-arenal000">Natalie Arenal</a> | <span class="lang-switch" data-en="Nonfiction Article" data-es="Artículo de No Ficción"></span>
-                            </p>
-                            <img src="https://i.imgur.com/A3y6F7g.png" alt="Palestinian students in a destroyed classroom" class="article-image">
-                            <p class="article-image-caption lang-switch" data-en="Palestinian students sit in a destroyed classroom." data-es="Estudiantes palestinos sentados en un aula destruida."></p>
-                            <div class="article-content-wrapper">
-                                <div class="article-content lang-switch" data-en="Over 95% of schools in Gaza have been destroyed or damaged due to bombings. The Israeli-Palestinian conflict has had a horrifying effect on the future education of the children of Gaza, stunting the futures of over 625,000 students. ​
-Education is a fundamental human right and invaluable to nurturing bright minds. But in times of war, education is often the last thing on anyone’s mind. Schools and educational facilities are often destroyed in times of conflict, leaving children with nowhere to learn or shelter themselves, even after a ceasefire. As of April 2025, 95.2% of schools in Gaza have sustained varying degrees of damage, and 88.5% require complete reconstruction or major rehabilitation. Families are often displaced when fleeing disaster, creating challenges in accessing education in foreign lands, and resources are often allocated to military power and rations due to the consequences of conflict, leaving schools with a lack of learning materials and a safe environment. 
-
-Many factors impact the education of innocent children, but the benefits of school are too crucial to ignore. Education is most important, especially in times of war. Children need stability and routine to help cope with the disaster around them. School gives traumatized children an escape, providing even a small trace of normalcy in times when their world falls apart around them. Going to school can also equip children with the skills necessary to rebuild their communities and progress towards healing their nation, providing students with empathy and critical thinking to prevent conflicts in the future.  UNICEF and partners have established 39 temporary learning spaces, serving over 12,400 students, to try and slightly mitigate the effects the war has inflicted. 
-
-War can set children back by years and increase the risk of exploitation, child labor, and other forms of abuse. About 58,000 six-year-olds were unable to start first grade, and 90,000 university students have no way of continuing their education in their homeland, as all universities and colleges have been damaged and destroyed. This stunting of education leaves the future of the nation in jeopardy, as cycles of poverty are more likely since there is a less-educated workforce and a hindered economy. 
-
-Palestinian teachers are establishing online platforms and tent schools in order to maintain some kind of education for children. An organization called UNRWA is providing psychosocial support and opportunities to learn for traumatized children in Gaza through distance learning initiatives. But truth be told, not enough is happening to help these children whose futures are endangered by the consequences of this conflict. 
-
-Education is a necessity for all, especially for those whose future is at risk. The future of a nation lies in the minds of the young, and there must be a responsibility to nurture those minds to guarantee growth and rehabilitation. When the world goes to war, education becomes a casualty no one mourns." data-es="Más del 95% de las escuelas en Gaza han sido destruidas o dañadas debido a los bombardeos. El conflicto israelí-palestino ha tenido un efecto horrible en la educación futura de los niños de Gaza, truncando el futuro de más de 625,000 estudiantes.
-La educación es un derecho humano fundamental e invaluable para nutrir mentes brillantes. Pero en tiempos de guerra, la educación suele ser lo último en lo que todos piensan. Las escuelas y las instalaciones educativas a menudo son destruidas en tiempos de conflicto, dejando a los niños sin un lugar donde aprender o refugiarse, incluso después de un alto el fuego. Hasta abril de 2025, el 95.2% de las escuelas en Gaza han sufrido daños de diversa índole, y el 88.5% requiere una reconstrucción completa o una rehabilitación importante. Las familias a menudo son desplazadas al huir del desastre, lo que crea desafíos para acceder a la educación en tierras extranjeras, y los recursos a menudo se asignan al poder militar y a las raciones debido a las consecuencias del conflicto, dejando a las escuelas sin materiales de aprendizaje y sin un entorno seguro.
-Muchos factores impactan la educación de niños inocentes, pero los beneficios de la escuela son demasiado cruciales para ser ignorados. La educación es de suma importancia, especialmente en tiempos de guerra. Los niños necesitan estabilidad y rutina para ayudarles a sobrellevar el desastre que los rodea. La escuela ofrece a los niños traumatizados un escape, proporcionando incluso un pequeño rastro de normalidad en momentos en que su mundo se desmorona. Ir a la escuela también puede equipar a los niños con las habilidades necesarias para reconstruir sus comunidades y avanzar hacia la sanación de su nación, proporcionando a los estudiantes empatía y pensamiento crítico para prevenir conflictos en el futuro. UNICEF y sus socios han establecido 39 espacios de aprendizaje temporales, que atienden a más de 12,400 estudiantes, para intentar mitigar ligeramente los efectos que la guerra ha infligido.
-La guerra puede retrasar a los niños por años y aumentar el riesgo de explotación, trabajo infantil y otras formas de abuso. Alrededor de 58,000 niños de seis años no pudieron comenzar el primer grado, y 90,000 estudiantes universitarios no tienen forma de continuar su educación en su tierra natal, ya que todas las universidades y colegios han sido dañados y destruidos. Este estancamiento de la educación deja el futuro de la nación en peligro, ya que los ciclos de pobreza son más probables debido a una fuerza laboral menos educada y una economía obstaculizada.
-Los maestros palestinos están estableciendo plataformas en línea y escuelas en tiendas de campaña para mantener algún tipo de educación para los niños. Una organización llamada UNRWA está proporcionando apoyo psicosocial y oportunidades de aprendizaje para niños traumatizados en Gaza a través de iniciativas de aprendizaje a distancia. Pero a decir verdad, no se está haciendo lo suficiente para ayudar a estos niños cuyos futuros están en peligro por las consecuencias de este conflicto.
-La educación es una necesidad para todos, especialmente para aquellos cuyo futuro está en riesgo. El futuro de una nación reside en las mentes de los jóvenes, y debe haber una responsabilidad de nutrir esas mentes para garantizar el crecimiento y la rehabilitación. Cuando el mundo va a la guerra, la educación se convierte en una víctima que nadie lamenta."></div>
-                            </div>
-                            <a class="read-more lang-switch" data-en="Read More" data-es="Leer Más"></a>
-                            <div class="comments-section">
-                                <strong><span class="lang-switch" data-en="1 Comment" data-es="1 Comentario"></span></strong>
-                            </div>
-                        </article>
-
-                        <article class="article-post scroll-animated" id="article-i-am-loved" data-archive="2023-07" data-category="narrative">
-                            <h2 class="article-title lang-switch" data-en="I Am Loved" data-es="Soy Amada"></h2>
-                            <p class="article-meta">
-                                7/18/2023 | <span class="lang-switch" data-en="By" data-es="Por"></span> <a href="#" class="nav-link" data-page-id="member" data-member-id="alejandra-perry000">Alejandra Perry</a> | <span class="lang-switch" data-en="Narrative Essay (Fiction)" data-es="Ensayo Narrativo (Ficción)"></span>
-                            </p>
-                            <img src="https://i.imgur.com/vF7yn7E.png" alt="Sad girl by a tree" class="article-image">
-                             <p class="article-image-caption lang-switch" data-en="Image obtained from https://wallpaperset.com/sad-girl-wallpapers" data-es="Imagen obtenida de https://wallpaperset.com/sad-girl-wallpapers"></p>
-                            <div class="article-content-wrapper">
-                                <div class="article-content lang-switch" data-en="As the wind seized the registration papers that hung loosely from my bag, there seemed to be no possibility of salvaging them as they fell into the pools of surrender. The rain, like my heartbeat, pounded fervently as I walked beside Mama. She sheltered me in whatever way she could, but if it were not the wind and rain, it was the reality that mocked us.
-
-It must be common for a student to be rejected from a private school –multiple, in fact – and to be cast from numerous charter schools. They didn’t guarantee an education for all children – but public schools do – which made me wonder. Why was I denied from every public elementary school in the area? What authority did the ladies at those front desks have? Teachers, principals – what power did they have to ostracize me? Question after question occurred to me as I held Mama’s hand. It grew warm and red, and soon, she held me so tightly that I let out a squeal.
-
-“I’m sorry, dear!” She said in her usually anxious tone.
-I yanked my hand out of hers. “Why haven’t I started school yet? I’m already seven. I saw kids in there who still wear diapers – diapers!” I bickered in frustration.
-“The schools have run out of space. They cannot admit any more children.”
-That couldn’t be true! I pointed back at the school we came from – a colorful skyscraper compared to the gray sky.
-Still at it with my childish persistence, I told her, “That’s a big school! I’m sure they could fit me in” – she ignored my pointing, only to continue walking forward.
-
-Defeated, sagging shoulders, tired eyes…
-
-“Well, the schools are running out of teachers,” she said.
-“But I have seen so many teachers with their classes. I’m sure I could be put into one of them.”
-“The enrollment deadline has already passed. We will have to wait until next year,” said Mama with a puffy, flushed face and tears forming – resembling the raindrops that fell upon us.
-“But we’ve been visiting schools since last year. Why not just –”
-
-“ENOUGH! They do not want you.”
-
-My face reddened, tears rushed to my eyes – I was swallowed up in complete and utter devastation. Too overcome by shock, I recklessly ran into the busy street. Heedless of the urgency in Mama’s voice, I ran and ran until my lungs burned.
-Breathless, I found a park, approached its entrance, and sat alone at the edge of a cold, wet metal bench. It no longer rained, but the sky remained gloomy.
-I sat there motionless. Nobody noticed that I was there alone.
-I could not stop replaying the series of events that had just unfolded –
-
-False smiles at the front desk –
-Dirty looks from pedestrians – 
-Cars’ blaring –
-Mama’s yelling – 
-
-I did not know why I was being excluded from school. What wrong had I done?
-I could only be sure of one thing – I wasn’t wanted.
-
-After some time alone with my thoughts, an old lady sat at the opposite end of the bench. Silence passed, and she asked, “Sweetie, are you OK? Where are your parents?”
-I shrugged in response.
-
-As usual, my emotions shifted drastically, and my focus diverged in every direction. For years, Mama took me from one clinic to another – one doctor to another – but no one could determine a conclusive diagnosis. “She shows signs of moderate autism, but another evaluation shows the contrary,” some would explain.
-Others prescribed drugs like candy. “We’ll try a stimulant,” one said, while another said, “We’ll try a depressant.” Nothing ever worked.
-Although no one could give us a conclusion, it was clear that I wasn’t like the other kids.
-Whatever it was, it appeared in every area of my life, especially (and most problematically) the classroom. I’ve been interviewed by numerous teachers and counselors – always ending with annoyed glares because of my inability to understand and execute most directions. I even overheard a counselor tell Mama, “We wouldn’t know what to do with a condition like hers. She’d be a nuisance in any classroom.”
-Nobody knew what to do with me…not even Mama.  
-
-The lady at my side broke me away from my thoughts, saying, “Are you sure, honey? Is there anything I could do?”
-Keeping my eyes faced down, I answered, “Nobody wants me. All the schools rejected me.”
-She responded with a gentle smile, “Oh sweetheart, don’t you pay no attention to that. Clearly, it’s their loss. Don’t worry, you'll find where you belong.”
-
-Where I belong? I pondered about what she could have meant.
-
-Immediately, I thought of Mama. At times, she may have yelled, she may have gotten upset, and she may have felt overwhelmed, but I never doubted that she cared for me. She believed in me. She struggled with me and for me…she loved me. She loved me!
-Belonging is how I feel with Mama.
-Belonging is how I feel when I look inside – inside the vastness of who I am – inside my flaws and within my worth.
-
-“Alexis!” Panting after all her running and sobbing from the scare I put her through, Mama held me tightly.
-In her arms, I realized her love – and deeper within me, I realized my worth. Nowhere else could I feel acceptance as I had felt in Mama’s embrace, in the lady’s kind words, and in my own reflective thoughts. I carried every day within me belonging, acceptance, and love.                                                                                 
-I am loved." data-es="Mientras el viento se apoderaba de los papeles de inscripción que colgaban sueltos de mi bolso, parecía no haber posibilidad de salvarlos mientras caían en los charcos de la rendición. La lluvia, como los latidos de mi corazón, golpeaba fervientemente mientras caminaba junto a Mamá. Ella me protegía de cualquier manera que podía, pero si no era el viento y la lluvia, era la realidad la que se burlaba de nosotros.
-
-Debe ser común que un estudiante sea rechazado de una escuela privada –de varias, de hecho– y que sea expulsado de numerosas escuelas chárter. No garantizaban una educación para todos los niños –pero las escuelas públicas sí– lo que me hizo preguntarme. ¿Por qué me negaron la entrada en todas las escuelas primarias públicas de la zona? ¿Qué autoridad tenían las señoras de esas recepciones? Maestros, directores, ¿qué poder tenían para marginarme? Pregunta tras pregunta se me ocurría mientras sostenía la mano de Mamá. Se puso caliente y roja, y pronto, me sostuvo con tanta fuerza que solté un chillido.
-
-“¡Lo siento, querida!” Dijo con su tono usualmente ansioso.
-Le arranqué la mano. “¿Por qué no he empezado la escuela todavía? Ya tengo siete años. ¡Vi niños allí que todavía usan pañales, pañales!” protesté con frustración.
-“Las escuelas se han quedado sin espacio. No pueden admitir a más niños.”
-¡Eso no podía ser verdad! Señalé hacia la escuela de la que veníamos, un rascacielos colorido en comparación con el cielo gris.
-Aún con mi persistencia infantil, le dije: “¡Esa es una escuela grande! Estoy segura de que podrían encontrarme un lugar” – ignoró mi señalamiento, solo para seguir caminando hacia adelante.
-
-Derrotada, hombros caídos, ojos cansados…
-
-“Bueno, las escuelas se están quedando sin maestros”, dijo.
-“Pero he visto a tantos maestros con sus clases. Estoy segura de que podría unirme a una de ellas.”
-“El plazo de inscripción ya pasó. Tendremos que esperar hasta el próximo año”, dijo Mamá con la cara hinchada, sonrojada y con lágrimas formándose, parecidas a las gotas de lluvia que caían sobre nosotros.
-“Pero hemos estado visitando escuelas desde el año pasado. ¿Por qué no simplemente…?”
-
-“¡BASTA! No te quieren.”
-
-Mi cara se enrojeció, las lágrimas brotaron de mis ojos, me sentí completamente devastada. Demasiado abrumada por la conmoción, corrí imprudentemente hacia la calle concurrida. Sin hacer caso de la urgencia en la voz de Mamá, corrí y corrí hasta que mis pulmones ardieron.
-Sin aliento, encontré un parque, me acerqué a su entrada y me senté sola en el borde de un banco de metal frío y húmedo. Ya no llovía, pero el cielo permanecía sombrío.
-Me senté allí inmóvil. Nadie se dio cuenta de que estaba sola.
-No podía dejar de repasar la serie de eventos que acababan de ocurrir:
-
-Sonrisas falsas en la recepción –
-Miradas sucias de los peatones –
-El estruendo de los coches –
-Los gritos de Mamá –
-
-No sabía por qué me excluían de la escuela. ¿Qué había hecho mal?
-Solo podía estar segura de una cosa: no era deseada.
-
-Después de un tiempo a solas con mis pensamientos, una anciana se sentó en el extremo opuesto del banco. Pasó un silencio, y preguntó: “Cariño, ¿estás bien? ¿Dónde están tus padres?”
-Me encogí de hombros en respuesta.
-
-Como de costumbre, mis emociones cambiaron drásticamente y mi atención se desvió en todas direcciones. Durante años, Mamá me llevó de una clínica a otra, de un médico a otro, pero nadie pudo determinar un diagnóstico concluyente. “Muestra signos de autismo moderado, pero otra evaluación muestra lo contrario”, explicarían algunos.
-Otros recetaban medicamentos como si fueran caramelos. “Probaremos un estimulante”, dijo uno, mientras que otro dijo: “Probaremos un depresor”. Nada funcionó nunca.
-Aunque nadie pudo darnos una conclusión, estaba claro que no era como los otros niños.
-Fuera lo que fuera, aparecía en todas las áreas de mi vida, especialmente (y lo más problemático) en el aula. He sido entrevistada por numerosos maestros y consejeros, siempre terminando con miradas molestas debido a mi incapacidad para entender y ejecutar la mayoría de las instrucciones. Incluso escuché a un consejero decirle a Mamá: “No sabríamos qué hacer con una condición como la suya. Sería una molestia en cualquier clase.”
-Nadie sabía qué hacer conmigo… ni siquiera Mamá.
-
-La señora a mi lado me sacó de mis pensamientos, diciendo: “¿Estás segura, cariño? ¿Hay algo que pueda hacer?”
-Manteniendo la vista baja, respondí: “Nadie me quiere. Todas las escuelas me rechazaron.”
-Ella respondió con una sonrisa amable: “Oh, cariño, no le prestes atención a eso. Claramente, es su pérdida. No te preocupes, encontrarás tu lugar.”
-
-¿Mi lugar? Reflexioné sobre lo que podría haber querido decir.
-
-Inmediatamente, pensé en Mamá. A veces, puede que haya gritado, puede que se haya enojado y puede que se haya sentido abrumada, but nunca dudé de que se preocupaba por mí. Ella creía en mí. Luchó conmigo y por mí… me amaba. ¡Me amaba!
-Pertenecer es cómo me siento con Mamá.
-Pertenecer es cómo me siento cuando miro dentro de mí, dentro de la inmensidad de quién soy, dentro de mis defectos y dentro de mi valor.
-
-“¡Alexis!” Jadeando después de toda su carrera y sollozando por el susto que le di, Mamá me abrazó con fuerza.
-En sus brazos, me di cuenta de su amor, y más adentro de mí, me di cuenta de mi propio valor. En ningún otro lugar podría sentir la aceptación como la había sentido en el abrazo de Mamá, en las amables palabras de la señora y en mis propios pensamientos reflexivos. Llevaba cada día dentro de mí la pertenencia, la aceptación y el amor.
-Soy amada."></div>
-                            </div>
-                            <a class="read-more lang-switch" data-en="Read More" data-es="Leer Más"></a>
-                            <div class="comments-section">
-                                <strong><span class="lang-switch" data-en="1 Comment" data-es="1 Comentario"></span></strong>
-                                <div class="comment">
-                                    <span class="comment-author">Natalie Ruth Arenal</span>
-                                    <span class="comment-date">7/9/2025 08:50:05 pm</span>
-                                    <p class="comment-body lang-switch" data-en="This is beautiful." data-es="Esto es hermoso."></p>
-                                </div>
-                            </div>
-                        </article>
+                    <div class="article-grid" id="article-grid-container">
                     </div>
-                    <aside class="sidebar scroll-animated">
-                        <div class="sidebar-widget">
-                            <h3 class="sidebar-widget-title lang-switch" data-en="Authors" data-es="Autores"></h3>
-                            <ul>
-                                <li><a class="nav-link" data-page-id="member" data-member-id="natalie-arenal000">Natalie Arenal</a></li>
-                                <li><a class="nav-link" data-page-id="member" data-member-id="alejandra-perry000">Alejandra Perry</a></li>
-                            </ul>
-                        </div>
-                        <div class="sidebar-widget" id="archives-widget">
-                            <h3 class="sidebar-widget-title lang-switch" data-en="Archives" data-es="Archivos"></h3>
-                            <ul>
-                                <li><a data-filter-type="archive" data-filter-value="2025-06">June 2025</a></li>
-                                <li><a data-filter-type="archive" data-filter-value="2023-07">July 2023</a></li>
-                            </ul>
-                        </div>
-                        <div class="sidebar-widget" id="categories-widget">
-                            <h3 class="sidebar-widget-title lang-switch" data-en="Categories" data-es="Categorías"></h3>
-                            <ul>
-                                <li><a class="lang-switch active-filter" data-en="All" data-es="Todo" data-filter-type="category" data-filter-value="all"></a></li>
-                                <li><a class="lang-switch" data-en="Narrative" data-es="Narrativa" data-filter-type="category" data-filter-value="narrative"></a></li>
-                                <li><a class="lang-switch" data-en="Nonfiction Article" data-es="Artículo de No Ficción" data-filter-type="category" data-filter-value="nonfiction"></a></li>
-                            </ul>
-                        </div>
+                    <aside class="sidebar scroll-animated" id="sidebar-container">
                     </aside>
                 </div>
             </div>
@@ -324,142 +68,37 @@ Soy amada."></div>
 
     <footer class="site-footer"></footer>
 
-    <script>
-        const siteRouter = {
-            pages: {
-                "home": "index.html",
-                "support": "support.html",
-                "get-involved": "get-involved.html",
-                "receive-tutoring": "receive-tutoring.html",
-                "the-team": "team.html",
-                "news": "news.html",
-                "articles": "articles.html",
-                "lessons": "lessons.html",
-                "report-time": "report-time.html",
-                "about": "about.html",
-                "contact": "contact.html",
-                "member": "members.html"
-            },
-            members: {
-                "alejandra-perry000": {
-                    name: "Alejandra Perry",
-                    portrait: "https://i.imgur.com/kSx0mKf.png",
-                    secondaryImage: "https://i.imgur.com/HYqSjLz.jpeg",
-                    bio_en: "Hello Everyone!\n\nMy name is Alejandra Perry, and I coordinate tutoring at Paul W. Bell Middle School and Miami Coral Park High School. My experience tutoring started in middle school with helping family and friends. As I got to know my students better, I realized that many had the willingness and ability to excel but lacked support systems to do so. Many came from other countries not knowing English, and many more came from low-income backgrounds. To mitigate the impact these disadvantages would have on them in school, I began to organize school-wide tutoring my Freshman year. At first, I focused on English language skills, but I soon realized that helping students learning English (ELL) extended beyond that. With other tutors involved, we began to offer any academic subject students need assistance with, as well as FAST test and SAT preparation. I am proud to say that I personally helped an ELL student rise from level 2 to level 4 on the FAST exam after a year of tutoring. Between the dedicated tutors I work with to my perseverant students, tutoring is a passion I plan to continue after high school. I hope you can join us and help impact other's lives one lesson at a time :)\n\nSincerely,\nAlejandra \nLiterary Speaking\nTutoring & Mentorship",
-                    bio_es: "¡Hola a todos!\n\nMi nombre es Alejandra Perry, y coordino la tutoría en la Escuela Intermedia Paul W. Bell y en la Escuela Secundaria Miami Coral Park. Mi experiencia como tutora comenzó en la escuela intermedia ayudando a familiares y amigos. A medida que conocía mejor a mis estudiantes, me di cuenta de que muchos tenían la voluntad y la capacidad de sobresalir, pero carecían de los sistemas de apoyo para hacerlo. Muchos venían de otros países sin saber inglés, y muchos más provenían de entornos de bajos ingresos. Para mitigar el impacto que estas desventajas tendrían en ellos en la escuela, comencé a organizar tutorías a nivel escolar en mi primer año de secundaria. Al principio, me centré en las habilidades del idioma inglés, pero pronto me di cuenta de que ayudar a los estudiantes que aprenden inglés (ELL) iba más allá. Con la participación de otros tutores, comenzamos a ofrecer cualquier materia académica en la que los estudiantes necesitaran ayuda, así como preparación para los exámenes FAST y SAT. Me enorgullece decir que personalmente ayudé a un estudiante de ELL a pasar del nivel 2 al nivel 4 en el examen FAST después de un año de tutoría. Entre los tutores dedicados con los que trabajo y mis estudiantes perseverantes, la tutoría es una pasión que planeo continuar después de la secundaria. ¡Espero que puedan unirse a nosotros y ayudar a impactar la vida de otros, una lección a la vez! :)\n\nSinceramente,\nAlejandra \nTutoría y Mentoría de Literary Speaking",
-                    facts_en: ["Founder & Director"],
-                    facts_es: ["Fundadora y Directora"],
-                    color: "#d396ff"
-                },
-                "natalie-arenal000": {
-                    name: "Natalie Arenal",
-                    portrait: "https://i.imgur.com/SMlS7uy.jpeg",
-                    secondaryImage: "https://i.imgur.com/5kfx3uV.png",
-                    bio_en: "Hello, I'm Natalie! I am interested in improving my literary skills and helping students improve their own academic skills. I am inspired by Literary Speaking Tutoring because I want to make an impact and see what it's like to be in a mentorship position. I started out as a tutor teaching literary analysis, but now I'm continuing as a writer. I've always liked the idea of being a mentor, and this would be my chance to positively impact others.",
-                    bio_es: "¡Hola, soy Natalie! Estoy interesada en mejorar mis habilidades literarias y en ayudar a los estudiantes a mejorar sus propias habilidades académicas. Me inspira la Tutoría de Literary Speaking porque quiero tener un impacto y ver cómo es estar en una posición de mentoría. Empecé como tutora enseñando análisis literario, pero ahora continúo como escritora. Siempre me ha gustado la idea de ser mentora, y esta sería mi oportunidad de impactar positivamente a los demás.",
-                    facts_en: ["Junior", "Tutors at Miami Coral Park Senior High School", "Writing since June 2025", "Writes educational content (articles and lessons)", "Aspiring Nurse"],
-                    facts_es: ["Estudiante de tercer año", "Tutora en Miami Coral Park Senior High School", "Escribiendo desde junio de 2025", "Escribe contenido educativo (artículos y lecciones)", "Aspirante a Enfermera"],
-                    color: "#f2e7ff"
-                }
-            },
-            navigateTo(pageId, memberId = null) {
-                let url = this.pages[pageId];
-                if (url) {
-                    if (pageId === 'member' && memberId) {
-                        url += `?id=${memberId}`;
-                    }
-                    window.location.href = url;
-                } else {
-                    window.location.href = this.pages['home'];
-                }
-            }
+    <script src="router.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0qVihpuLI0cF0PZ32o8tFBLfTgjlqB6A",
+            authDomain: "literary-speaking.firebaseapp.com",
+            projectId: "literary-speaking",
+            storageBucket: "literary-speaking.appspot.com",
+            messagingSenderId: "699059463612",
+            appId: "1:699059463612:web:ecb2e784d627c6b93937b9",
+            measurementId: "G-0L1V3XXGGR"
         };
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const headerContainer = document.getElementById('header');
-            const footerContainer = document.querySelector('.site-footer');
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-            const headerHTML = `
-                <div class="container">
-                    <div class="lang-switcher-mobile-wrapper"><div class="lang-switcher"><button id="lang-en-btn-mobile">EN</button><button id="lang-es-btn-mobile">ES</button></div></div>
-                    <a href="#" data-page-id="home" class="logo nav-link"><img src="https://i.imgur.com/vyE0G43.png" alt="Literary Speaking Logo" class="logo-unscrolled"><img src="https://i.imgur.com/UnpZvgZ.png" alt="Literary Speaking Logo" class="logo-scrolled"></a>
-                    <nav class="desktop-nav">
-                        <a href="#" data-page-id="support" class="lang-switch nav-link" data-en="Support Us" data-es="Apóyanos"></a>
-                        <a href="#" data-page-id="get-involved" class="lang-switch nav-link" data-en="Get Involved" data-es="Involúcrate"></a>
-                        <a href="#" data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-                        <a href="#" data-page-id="the-team" class="lang-switch nav-link" data-en="The Team" data-es="El Equipo"></a>
-                        <a href="#" data-page-id="news" class="lang-switch nav-link" data-en="News" data-es="Noticias"></a>
-                        <a href="#" data-page-id="articles" class="lang-switch nav-link" data-en="Articles" data-es="Artículos"></a>
-                        <a href="#" data-page-id="lessons" class="lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
-                        <a href="#" data-page-id="report-time" class="lang-switch nav-link" data-en="Report Time" data-es="Reportar Horas"></a>
-                        <div class="lang-switcher"><button id="lang-en-btn">EN</button><button id="lang-es-btn">ES</button></div>
-                    </nav>
-                    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-                </div>
-                <nav class="mobile-nav">
-                    <a href="#" data-page-id="support" class="lang-switch nav-link" data-en="Support Us" data-es="Apóyanos"></a>
-                    <a href="#" data-page-id="get-involved" class="lang-switch nav-link" data-en="Get Involved" data-es="Involúcrate"></a>
-                    <a href="#" data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-                    <a href="#" data-page-id="the-team" class="lang-switch nav-link" data-en="The Team" data-es="El Equipo"></a>
-                    <a href="#" data-page-id="news" class="lang-switch nav-link" data-en="News" data-es="Noticias"></a>
-                    <a href="#" data-page-id="articles" class="lang-switch nav-link" data-en="Articles" data-es="Artículos"></a>
-                    <a href="#" data-page-id="lessons" class="lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
-                    <a href="#" data-page-id="report-time" class="lang-switch nav-link" data-en="Report Time" data-es="Reportar Horas"></a>
-                </nav>
-            `;
-            headerContainer.innerHTML = headerHTML;
-
-            const footerHTML = `
-                <div class="container">
-                    <img src="https://i.imgur.com/vyE0G43.png" alt="Literary Speaking Footer Logo" class="scroll-animated">
-                    <p class="lang-switch scroll-animated" data-en="Copyright © 2025 Literary Speaking Tutoring" data-es="Copyright © 2025 Tutoría de Literary Speaking"></p>
-                    <nav class="scroll-animated">
-                        <a href="#" data-page-id="about" class="lang-switch nav-link" data-en="About" data-es="Sobre Nosotros"></a>
-                        <a href="#" data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-                        <a href="#" data-page-id="get-involved" class="lang-switch nav-link" data-en="Become a Tutor" data-es="Conviértete en Tutor"></a>
-                        <a href="#" data-page-id="contact" class="lang-switch nav-link" data-en="Contact" data-es="Contacto"></a>
-                    </nav>
-                </div>
-            `;
-            footerContainer.innerHTML = footerHTML;
+        document.addEventListener('DOMContentLoaded', async () => {
+            await siteRouter.loadMembers();
             
-            const header = document.getElementById('header');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const body = document.body;
-            const langSwitches = document.querySelectorAll('.lang-switch');
-            const langEnBtn = document.getElementById('lang-en-btn');
-            const langEsBtn = document.getElementById('lang-es-btn');
-            const langEnBtnMobile = document.getElementById('lang-en-btn-mobile');
-            const langEsBtnMobile = document.getElementById('lang-es-btn-mobile');
-            const backToArticlesLink = document.querySelector('.back-to-articles-link');
-            const allArticles = document.querySelectorAll('.article-post');
-            const filterLinks = document.querySelectorAll('#archives-widget a, #categories-widget a');
+            const articlesQuery = query(collection(db, "articles"), orderBy("date", "desc"));
+            const querySnapshot = await getDocs(articlesQuery);
+            const articles = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(article => article.isPublished === true);
 
-            const handleScroll = () => header.classList.toggle('scrolled', window.pageYOffset > 50);
-            window.addEventListener('scroll', handleScroll);
-            handleScroll();
-
-            const closeMenu = () => {
-                body.classList.remove('menu-open');
-                menuToggle.classList.remove('active');
-                header.classList.remove('menu-active-state');
-            };
-
-            menuToggle.addEventListener('click', () => {
-                const isOpen = body.classList.toggle('menu-open');
-                menuToggle.classList.toggle('active', isOpen);
-                header.classList.toggle('menu-active-state', isOpen);
-            });
+            const gridContainer = document.getElementById('article-grid-container');
+            const sidebarContainer = document.getElementById('sidebar-container');
             
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const pageId = link.dataset.pageId;
-                    const memberId = link.dataset.memberId;
-                    siteRouter.navigateTo(pageId, memberId);
-                    closeMenu();
-                });
-            });
+            let currentFilters = { author: 'all', archive: 'all', category: 'all' };
+
+            if (!gridContainer || !articles || !sidebarContainer) return;
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -469,99 +108,148 @@ Soy amada."></div>
                     }
                 });
             }, { threshold: 0.1 });
-
-            document.querySelectorAll('.scroll-animated').forEach(el => {
-                if ('IntersectionObserver' in window) {
-                    observer.observe(el);
-                } else {
-                    el.classList.add('is-visible');
-                }
-            });
-
-            const setLanguage = (lang) => {
-                langSwitches.forEach(el => {
-                    if (el.dataset[lang]) {
-                        el.innerHTML = el.dataset[lang];
-                    }
-                });
-                localStorage.setItem('language', lang);
-                const isEn = lang === 'en';
-                langEnBtn?.classList.toggle('active', isEn);
-                langEsBtn?.classList.toggle('active', !isEn);
-                langEnBtnMobile?.classList.toggle('active', isEn);
-                langEsBtnMobile?.classList.toggle('active', !isEn);
-                document.documentElement.lang = lang;
-            };
-
-            const toggleLanguage = () => {
-                const currentLang = localStorage.getItem('language') || 'en';
-                setLanguage(currentLang === 'en' ? 'es' : 'en');
-            };
-
-            document.querySelectorAll('.desktop-nav .lang-switcher, .lang-switcher-mobile-wrapper .lang-switcher').forEach(el => el.addEventListener('click', toggleLanguage));
-
-            const currentPage = document.body.dataset.currentPage;
-            if (currentPage) {
-                document.querySelectorAll(`.nav-link[data-page-id="${currentPage}"]`).forEach(link => {
-                    link.classList.add('active-page-link');
-                });
-            }
-
-            const resetView = () => {
-                body.classList.remove('single-article-view');
-                allArticles.forEach(article => {
-                    article.classList.remove('active-article', 'is-hidden');
-                });
-                filterLinks.forEach(link => link.classList.remove('active-filter'));
-                document.querySelector('[data-filter-value="all"]')?.classList.add('active-filter');
-            };
             
-            document.querySelectorAll('.read-more').forEach(link => {
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const article = link.closest('.article-post');
-                    if (article) {
-                        body.classList.add('single-article-view');
-                        allArticles.forEach(a => a.classList.add('is-hidden'));
-                        article.classList.remove('is-hidden');
-                        article.classList.add('active-article');
-                        const headerHeight = header ? header.offsetHeight : 70;
-                        window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+            const getUniqueSidebarData = (lang) => {
+                const authors = new Map();
+                const archives = new Map();
+                const categories = new Map();
+
+                articles.forEach(article => {
+                    if (!authors.has(article.author_id)) {
+                        const author = siteRouter.members[article.author_id];
+                        if (author) authors.set(article.author_id, author.name);
+                    }
+                    
+                    const categoryKey = article.category_en;
+                    if (!categories.has(categoryKey)) {
+                        categories.set(categoryKey, { en: article.category_en, es: article.category_es });
+                    }
+                    
+                    const date = new Date(article.date);
+                    const yearMonth = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                    if (!archives.has(yearMonth)) {
+                        let monthName = date.toLocaleDateString(lang.startsWith('es') ? 'es-ES' : 'en-US', { month: 'long', year: 'numeric' });
+                        if (lang.startsWith('es')) {
+                            monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+                        }
+                        archives.set(yearMonth, monthName);
                     }
                 });
-            });
+                return { authors, archives, categories };
+            };
 
-            if (backToArticlesLink) {
-                backToArticlesLink.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    resetView();
-                    const articlesSection = document.querySelector('.articles-layout');
-                    const headerHeight = header ? header.offsetHeight : 70;
-                    const sectionTop = articlesSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    window.scrollTo({ top: sectionTop, behavior: 'smooth' });
-                });
-            }
+            const populateSidebar = (lang) => {
+                const { authors, archives, categories } = getUniqueSidebarData(lang);
+                sidebarContainer.innerHTML = `
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-widget-title lang-switch" data-en="Authors" data-es="Autores">Authors</h3>
+                        <ul id="authors-list"></ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-widget-title lang-switch" data-en="Archives" data-es="Archivos">Archives</h3>
+                        <ul id="archives-list"></ul>
+                    </div>
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-widget-title lang-switch" data-en="Categories" data-es="Categorías">Categories</h3>
+                        <ul id="categories-list"></ul>
+                    </div>
+                `;
 
-            filterLinks.forEach(link => {
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const filterType = link.dataset.filterType;
-                    const filterValue = link.dataset.filterValue;
-
-                    body.classList.remove('single-article-view');
-                    document.querySelector('.article-post.active-article')?.classList.remove('active-article');
-
-                    filterLinks.forEach(l => l.classList.remove('active-filter'));
-                    link.classList.add('active-filter');
-
-                    allArticles.forEach(article => {
-                        const matches = filterValue === 'all' || article.dataset[filterType] === filterValue;
-                        article.classList.toggle('is-hidden', !matches);
+                const createList = (listId, data, type, nameField) => {
+                    const list = document.getElementById(listId);
+                    list.innerHTML = `<li><a href="#" data-filter-type="${type}" data-filter-value="all">${lang === 'es' ? 'Todo' : 'All'}</a></li>`;
+                    data.forEach((value, key) => {
+                        list.innerHTML += `<li><a href="#" data-filter-type="${type}" data-filter-value="${key}">${nameField ? value[nameField] : value}</a></li>`;
                     });
-                });
-            });
+                };
+                
+                createList('authors-list', authors, 'author');
+                createList('archives-list', archives, 'archive');
+                createList('categories-list', categories, 'category', lang);
 
-            setLanguage(localStorage.getItem('language') || 'en');
+                sidebarContainer.querySelectorAll('a[data-filter-type]').forEach(link => {
+                    link.addEventListener('click', handleFilterClick);
+                });
+                updateActiveFilters();
+            };
+
+            const updateActiveFilters = () => {
+                sidebarContainer.querySelectorAll('a').forEach(l => l.classList.remove('active-filter'));
+                document.querySelector(`#authors-list a[data-filter-value="${currentFilters.author}"]`)?.classList.add('active-filter');
+                document.querySelector(`#archives-list a[data-filter-value="${currentFilters.archive}"]`)?.classList.add('active-filter');
+                document.querySelector(`#categories-list a[data-filter-value="${currentFilters.category}"]`)?.classList.add('active-filter');
+            };
+
+            const populateGrid = (lang) => {
+                gridContainer.innerHTML = '';
+                articles.forEach(article => {
+                    const author = siteRouter.members[article.author_id];
+                    const authorName = author ? author.name : 'Anonymous';
+                    const articleDate = new Date(article.date);
+                    const displayDate = articleDate.toLocaleDateString(lang.startsWith('es') ? 'es-ES' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    const archiveKey = `${articleDate.getFullYear()}-${String(articleDate.getMonth() + 1).padStart(2, '0')}`;
+
+                    const card = document.createElement('div');
+                    card.className = 'article-card scroll-animated';
+                    card.dataset.pageId = 'article-single'; 
+                    card.dataset.articleId = article.id;
+                    card.dataset.author = article.author_id;
+                    card.dataset.archive = archiveKey;
+                    card.dataset.category = article.category_en;
+                    
+                    const authorMatch = currentFilters.author === 'all' || card.dataset.author === currentFilters.author;
+                    const archiveMatch = currentFilters.archive === 'all' || card.dataset.archive === currentFilters.archive;
+                    const categoryMatch = currentFilters.category === 'all' || card.dataset.category === currentFilters.category;
+                    
+                    if (authorMatch && archiveMatch && categoryMatch) {
+                        card.innerHTML = `
+                            <div class="article-card-image-wrapper">
+                                <img src="${article.thumbnail_url || 'https://i.imgur.com/3Yj6bA1.png'}" alt="" class="article-card-image">
+                                <div class="article-card-category">${article[`category_${lang}`]}</div>
+                            </div>
+                            <div class="article-card-content">
+                                <div class="article-card-meta">
+                                    <span><svg fill="currentColor" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></svg>${authorName}</span>
+                                    <span><svg fill="currentColor" viewBox="0 0 16 16"><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/></svg>${displayDate}</span>
+                                </div>
+                                <h3 class="article-card-title">${article[`title_${lang}`]}</h3>
+                                <p class="article-card-excerpt">${article[`excerpt_${lang}`]}</p>
+                            </div>
+                            <div class="article-card-footer">
+                                <span>${article[`read_time_${lang}`]}</span>
+                                <span class="read-more-link">${lang === 'es' ? 'Leer Más' : 'Read More'}<svg fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/></svg></span>
+                            </div>
+                        `;
+                        gridContainer.appendChild(card);
+                        observer.observe(card);
+                        card.addEventListener('click', () => siteRouter.navigateTo('article-single', article.id));
+                    }
+                });
+            };
+
+            const handleFilterClick = (event) => {
+                event.preventDefault();
+                const link = event.currentTarget;
+                const filterType = link.dataset.filterType;
+                const filterValue = link.dataset.filterValue;
+
+                currentFilters[filterType] = filterValue;
+                updateActiveFilters();
+                populateGrid(document.documentElement.lang);
+            };
+
+            const initialLang = localStorage.getItem('language') || 'en';
+            populateSidebar(initialLang);
+            populateGrid(initialLang);
+
+            const langObserver = new MutationObserver(() => {
+                const lang = document.documentElement.lang;
+                populateSidebar(lang);
+                populateGrid(lang);
+            });
+            langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+            
+            document.querySelectorAll('main .scroll-animated').forEach(el => observer.observe(el));
         });
     </script>
 </body>
