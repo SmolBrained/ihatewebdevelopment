@@ -15,7 +15,8 @@ const siteRouter = {
         "lessons": "/lessons",
         "lesson-single": "/lesson-single",
         "course-unit": "/course-unit",
-        "member": "/members"
+        "member": "/members",
+        "report-time": "/report-time"
     },
     members: {},
     async loadMembers() {
@@ -63,13 +64,13 @@ const siteRouter = {
         }
     },
     applyLanguage(lang) {
+        document.documentElement.lang = lang;
         document.querySelectorAll('[data-en], [data-es]').forEach(el => {
             const text = el.dataset[lang];
             if (text !== undefined) {
                  el.innerHTML = text;
             }
         });
-        document.documentElement.lang = lang;
         const isEn = lang === 'en';
         document.querySelectorAll('#lang-en-btn, #lang-en-btn-mobile').forEach(btn => btn.classList.toggle('active', isEn));
         document.querySelectorAll('#lang-es-btn, #lang-es-btn-mobile').forEach(btn => btn.classList.toggle('active', !isEn));
