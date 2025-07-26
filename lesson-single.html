@@ -230,8 +230,7 @@
                 (course.modules || []).forEach((module, moduleIndex) => {
                     contentHTML += `<div class="module-title">${module[`title_${lang}`]}</div>`;
                     let unitsHTML = (module.units || []).map((unit, unitIndex) => {
-                        const params = `subjectId=${subject.id}&courseIndex=${courseIndex}&moduleIndex=${moduleIndex}&unitIndex=${unitIndex}&fromPanel=modules`;
-                        return `<li class="unit-item" data-params="${params}">${unit[`title_${lang}`]}</li>`;
+                        return `<li class="unit-item" data-subject-id="${subject.id}" data-course-index="${courseIndex}" data-module-index="${moduleIndex}" data-unit-index="${unitIndex}">${unit[`title_${lang}`]}</li>`;
                     }).join('');
                     contentHTML += `<ul class="unit-list">${unitsHTML}</ul>`;
                 });
@@ -242,7 +241,9 @@
 
             container.querySelectorAll('.unit-item').forEach(item => {
                 item.addEventListener('click', () => {
-                    siteRouter.navigateTo('course-unit', item.dataset.params);
+                    const { subjectId, courseIndex, moduleIndex, unitIndex } = item.dataset;
+                    const params = `subjectId=${subjectId}&courseIndex=${courseIndex}&moduleIndex=${moduleIndex}&unitIndex=${unitIndex}&fromPanel=modules`;
+                    siteRouter.navigateTo('course-unit', params);
                 });
             });
 
