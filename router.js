@@ -1,25 +1,25 @@
 const siteRouter = {
     pages: {
-        "home": "./index.html",
-        "about": "about.html",
-        "news": "news.html",
-        "news-single": "news-single.html",
-        "the-team": "team.html",
-        "contact": "contact.html",
-        "receive-tutoring": "receive-tutoring.html",
-        "become-a-tutor": "become-a-tutor.html",
-        "become-a-volunteer": "become-a-volunteer.html",
-        "support": "support.html",
-        "articles": "articles.html",
-        "article-single": "article-single.html",
-        "lessons": "lessons.html",
-        "lesson-single": "lesson-single.html",
-        "course-unit": "course-unit.html",
-        "member": "members.html"
+        "home": "/",
+        "about": "/about",
+        "news": "/news",
+        "news-single": "/news-single",
+        "the-team": "/team",
+        "contact": "/contact",
+        "receive-tutoring": "/receive-tutoring",
+        "become-a-tutor": "/become-a-tutor",
+        "become-a-volunteer": "/become-a-volunteer",
+        "support": "/support",
+        "articles": "/articles",
+        "article-single": "/article-single",
+        "lessons": "/lessons",
+        "lesson-single": "/lesson-single",
+        "course-unit": "/course-unit",
+        "member": "/members"
     },
     members: {},
     async loadMembers() {
-        if (Object.keys(this.members).length > 0) return; // Only fetch once
+        if (Object.keys(this.members).length > 0) return;
 
         const { getFirestore, collection, getDocs, query } = await import("https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js");
         const { initializeApp, getApps } = await import("https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js");
@@ -40,7 +40,6 @@ const siteRouter = {
         const db = getFirestore();
 
         try {
-            // CORRECTED QUERY: Removed orderBy("order") to fetch ALL members
             const membersQuery = query(collection(db, "members"));
             const querySnapshot = await getDocs(membersQuery);
             const membersMap = {};
@@ -64,13 +63,13 @@ const siteRouter = {
         }
     },
     applyLanguage(lang) {
+        document.documentElement.lang = lang;
         document.querySelectorAll('[data-en], [data-es]').forEach(el => {
             const text = el.dataset[lang];
             if (text !== undefined) {
                  el.innerHTML = text;
             }
         });
-        document.documentElement.lang = lang;
         const isEn = lang === 'en';
         document.querySelectorAll('#lang-en-btn, #lang-en-btn-mobile').forEach(btn => btn.classList.toggle('active', isEn));
         document.querySelectorAll('#lang-es-btn, #lang-es-btn-mobile').forEach(btn => btn.classList.toggle('active', !isEn));
@@ -227,17 +226,14 @@ const siteRouter = {
         });
 
         const setLanguage = (lang) => {
-            this.applyLanguage(lang);
-            localStorage.setItem('language', lang);
-            document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+            if (document.documentElement.lang !== lang) {
+                localStorage.setItem('language', lang);
+                this.applyLanguage(lang);
+            }
         };
 
-        const toggleLanguage = () => {
-            const currentLang = localStorage.getItem('language') || 'en';
-            setLanguage(currentLang === 'en' ? 'es' : 'en');
-        };
-
-        document.querySelectorAll('.lang-switcher').forEach(el => el.addEventListener('click', toggleLanguage));
+        document.querySelectorAll('#lang-en-btn, #lang-en-btn-mobile').forEach(btn => btn.addEventListener('click', () => setLanguage('en')));
+        document.querySelectorAll('#lang-es-btn, #lang-es-btn-mobile').forEach(btn => btn.addEventListener('click', () => setLanguage('es')));
 
         const pageGroups = {
             'about': 'get-to-know-us', 'the-team': 'get-to-know-us', 'news': 'get-to-know-us', 'contact': 'get-to-know-us',
