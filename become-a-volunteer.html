@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/WPy5YDY.png">
+    <title>Become a Volunteer | Literary Speaking</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-banner{height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;position:relative;padding:0 20px;background-image:url(https://i.imgur.com/MraB4du.jpeg);background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover}
+        .hero-banner .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:2}
+        .hero-banner .content{position:relative;z-index:3}
+        .hero-banner h1{font-size:3.8rem;font-weight:900;margin:0;line-height:1.2}
+        .opportunity-section{padding:50px 0; border-bottom: 1px solid #eee;}
+        .opportunity-section:last-child{border-bottom: none;}
+        .opportunity-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:40px;align-items:flex-start; margin-top: 30px;}
+        .opportunity-card{background-color:#fff;border-radius:12px;overflow:hidden;text-align:left;}
+        .opportunity-card img{width:100%;height:auto;aspect-ratio: 16/9; object-fit: cover;}
+        .opportunity-content{padding:25px}
+        .opportunity-content h3{font-size:1.5rem;font-weight:700;margin:0 0 15px}
+        .opportunity-content ul{list-style:none;padding:0;margin:0 0 20px;line-height:1.8}
+        .opportunity-content ul li{padding-left:25px;position:relative}
+        .opportunity-content ul li::before{content:'\2713';color:var(--color-green-dark);position:absolute;left:0;font-weight:bold}
+        .opportunity-section .section-title{margin-bottom: 20px;}
+        @media (max-width:768px){
+        .hero-banner{background-attachment:scroll}
+        .hero-banner h1{font-size:2.2rem}
+        .opportunity-grid{grid-template-columns: 1fr;}
+        }
+    </style>
+</head>
+<body data-current-page="become-a-volunteer">
+    <header class="site-header" id="header"></header>
+
+    <main>
+        <section class="hero-banner">
+            <div class="overlay"></div>
+            <div class="content scroll-animated">
+                <h1 class="lang-switch" data-en="Become a Volunteer" data-es="Conviértete en Voluntario"></h1>
+            </div>
+        </section>
+
+        <div style="--section-bg: #f0fff0;">
+            <section class="section opportunity-section">
+                <div class="container">
+                    <h2 class="section-title lang-switch" data-en="Writing Opportunities" data-es="Oportunidades de Escritura"></h2>
+                    <div class="opportunity-grid">
+                        <div class="opportunity-card scroll-animated">
+                            <img src="https://i.imgur.com/ZHgSKfh.jpeg" alt="Article Writing">
+                            <div class="opportunity-content">
+                                <h3 class="lang-switch" data-en="Article Writing" data-es="Redacción de Artículos"></h3>
+                                <ul>
+                                    <li class="lang-switch" data-en="Completely remote; Produce articles addressing community and world issues such as education, poverty, and equity in various writing styles such as editorials, op-eds, and stories." data-es="Completamente remoto; Producir artículos que aborden problemas comunitarios y mundiales como la educación, la pobreza y la equidad en varios estilos de escritura como editoriales, artículos de opinión e historias."></li>
+                                    <li class="lang-switch" data-en="Preferably in high school or college." data-es="Preferiblemente en la escuela secundaria o la universidad."></li>
+                                    <li class="lang-switch" data-en="Receive community service hours for work produced." data-es="Recibir horas de servicio comunitario por el trabajo producido."></li>
+                                </ul>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSddcdUP44aqpvQ54EfkcywA-A_NmCV0_3rwTBtKSWir4D6SuA/viewform?usp=header" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                            </div>
+                        </div>
+                        <div class="opportunity-card scroll-animated">
+                            <img src="https://i.imgur.com/hO9NTus.jpeg" alt="Lesson Writing">
+                            <div class="opportunity-content">
+                                <h3 class="lang-switch" data-en="Lesson Writing" data-es="Redacción de Lecciones"></h3>
+                                <ul>
+                                    <li class="lang-switch" data-en="Completely remote; Produce self-guided lessons for a large range of topics, such as learning English, science, and SAT prep." data-es="Completamente remoto; Producir lecciones autoguiadas para una amplia gama de temas, como aprender inglés, ciencias y preparación para el SAT."></li>
+                                    <li class="lang-switch" data-en="Preferably in high school or college." data-es="Preferiblemente en la escuela secundaria o la universidad."></li>
+                                    <li class="lang-switch" data-en="Receive community service hours for work produced." data-es="Recibir horas de servicio comunitario por el trabajo producido."></li>
+                                </ul>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeXsyBPLOxAwoSLQW6XF2P_gqYckZm2eyL2L0RdwXSkHJ5b2w/viewform" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div style="--section-bg: #fff0f5;">
+            <section class="section opportunity-section">
+                <div class="container">
+                    <h2 class="section-title lang-switch" data-en="Outreach" data-es="Alcance"></h2>
+                    <div class="opportunity-grid">
+                        <div class="opportunity-card scroll-animated">
+                            <img src="https://i.imgur.com/tMfsXmo.jpeg" alt="College and Essay Advising">
+                            <div class="opportunity-content">
+                                <h3 class="lang-switch" data-en="College and Essay Advising" data-es="Asesoramiento Universitario y de Ensayos"></h3>
+                                <ul>
+                                    <li class="lang-switch" data-en="Completely remote; Provide guidance and mentorship regarding the college application process, including applying to scholarships and financial aid." data-es="Completamente remoto; Proporcionar orientación y mentoría sobre el proceso de solicitud de ingreso a la universidad, incluida la solicitud de becas y ayuda financiera."></li>
+                                    <li class="lang-switch" data-en="Provide assistance with editing essays and resumes." data-es="Proporcionar asistencia con la edición de ensayos y currículums."></li>
+                                    <li class="lang-switch" data-en="Preferably in college or has experience with college/career advising." data-es="Preferiblemente en la universidad o con experiencia en asesoramiento universitario/profesional."></li>
+                                    <li class="lang-switch" data-en="Receive community service hours for time spent assisting." data-es="Recibir horas de servicio comunitario por el tiempo dedicado a la asistencia."></li>
+                                </ul>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9-9xuOBY0E0K2JbRA1y1zz4oHHjBLGcS-Hl9J8WkCrdP-LA/viewform?usp=header" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                            </div>
+                        </div>
+                        <div class="opportunity-card scroll-animated">
+                            <img src="https://i.imgur.com/MraB4du.jpeg" alt="Marketing and Fundraising">
+                            <div class="opportunity-content">
+                                <h3 class="lang-switch" data-en="Marketing and Fundraising" data-es="Marketing y Recaudación de Fondos"></h3>
+                                <ul>
+                                    <li class="lang-switch" data-en="Completely remote; Create social media content and develop marketing strategies to increase program exposure." data-es="Completamente remoto; Crear contenido para redes sociales y desarrollar estrategias de marketing para aumentar la exposición del programa."></li>
+                                    <li class="lang-switch" data-en="Secure grants, donations, and partnerships to fundraise for program." data-es="Asegurar subvenciones, donaciones y asociaciones para recaudar fondos para el programa."></li>
+                                    <li class="lang-switch" data-en="Preferably in high school or college or has has experience with marketing, fundraising, and/or community relations." data-es="Preferiblemente en la escuela secundaria o la universidad o con experiencia en marketing, recaudación de fondos y/o relaciones comunitarias."></li>
+                                    <li class="lang-switch" data-en="Receive community service hours for work and outcomes produced." data-es="Recibir horas de servicio comunitario por el trabajo y los resultados producidos."></li>
+                                </ul>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd9zdFQUk-NHb6ArnlnvW8gRnpXYpQt58fynlPQth82IqL3aQ/viewform" target="_blank" class="btn btn-small btn-rounded lang-switch" data-en="Sign Up" data-es="Inscríbete"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer"></footer>
+
+    <script src="router.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('main .scroll-animated').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
