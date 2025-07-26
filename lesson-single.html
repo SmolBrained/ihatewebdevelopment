@@ -297,11 +297,7 @@
             if (panelId === 'discussions') initDisqus(subjectId);
         };
         
-        const finalizePageSetup = (subjectId) => {
-            if (window.MathJax) {
-                window.MathJax.typesetPromise();
-            }
-
+        const setupEventListeners = (subjectId) => {
             document.querySelectorAll('.lesson-nav-link').forEach(link => {
                 link.addEventListener('click', e => {
                     e.preventDefault();
@@ -312,21 +308,23 @@
             document.body.addEventListener('click', e => {
                 const selectedAnswer = e.target.closest('.mcq-answer');
                 if (!selectedAnswer) return;
+
                 const system = selectedAnswer.closest('.mcq-system');
                 if (!system || system.classList.contains('answered')) return;
+
                 const isCorrect = selectedAnswer.dataset.correct === 'true';
+
                 if (isCorrect) {
                     selectedAnswer.classList.add('correct');
                     system.classList.add('answered');
                     const expl = system.querySelector('.mcq-explanation');
-                    if (expl && expl.innerHTML.trim() !== '') {
+                    if (expl && expl.textContent.trim() !== '') {
                         expl.classList.add('visible');
                     }
                 } else {
                     selectedAnswer.classList.add('incorrect');
-                    selectedAnswer.style.pointerEvents = 'none';
                 }
-            }, { once: true });
+            });
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
@@ -353,9 +351,12 @@
                 populateModules(subject, lang);
                 populateResources(subject, lang);
                 if (window.siteRouter) siteRouter.applyLanguage(lang);
-                finalizePageSetup(subjectId);
+                if (window.MathJax) {
+                    window.MathJax.typesetPromise();
+                }
             };
 
+            setupEventListeners(subjectId);
             updateUIForLanguage(localStorage.getItem('language') || 'en');
             switchPanel(panelToShow, subjectId);
             
