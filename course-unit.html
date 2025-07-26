@@ -231,6 +231,15 @@
                 <div class="unit-body">${contentBlocksHTML}</div>
             `;
             
+            document.querySelectorAll('.nav-link[data-page-id="lesson-single"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = e.currentTarget;
+                    const url = `${siteRouter.pages['lesson-single']}?id=${target.dataset.id}&panel=${target.dataset.panel}`;
+                    window.location.href = url;
+                });
+            });
+            
             siteRouter.applyLanguage(lang);
             if (window.MathJax) {
                 window.MathJax.typesetPromise();
