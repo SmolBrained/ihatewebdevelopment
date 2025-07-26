@@ -61,9 +61,9 @@
         .course-header.collapsed + .course-content-wrapper .course-content { border-top: none; }
         .module-title { background-color: #fff; padding: 15px 20px; font-weight: 700; color: #333; border-top: 1px solid #eee; text-align: left; }
         .unit-list { list-style: none; padding: 0; margin: 0; }
-        .unit-item a { display: flex; align-items: center; padding: 12px 20px 12px 45px; text-decoration: none; color: var(--color-primary-dark); border-top: 1px solid #eee; }
-        .unit-item a::before { content: '📄'; font-family: sans-serif; margin-right: 12px; font-size: 1.2rem; }
-        .unit-item a:hover { background-color: #f5f0fa; }
+        .unit-item { display: flex; align-items: center; padding: 12px 20px 12px 45px; color: var(--color-primary-dark); border-top: 1px solid #eee; cursor: pointer; }
+        .unit-item::before { content: '📄'; font-family: sans-serif; margin-right: 12px; font-size: 1.2rem; }
+        .unit-item:hover { background-color: #f5f0fa; }
         .mcq-system{width:100%;max-width:700px;margin:30px auto;}
         .mcq-question,.mcq-answer,.mcq-explanation{background:var(--color-surface);border:1.5px solid var(--color-text,#222);border-radius:16px;padding:25px;margin-bottom:15px;text-align:center;font-size:1.1rem;font-weight:500;}
         .mcq-answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
@@ -229,15 +229,22 @@
                 let contentHTML = '';
                 (course.modules || []).forEach((module, moduleIndex) => {
                     contentHTML += `<div class="module-title">${module[`title_${lang}`]}</div>`;
-                    let unitsHTML = (module.units || []).map((unit, unitIndex) =>
-                        `<li class="unit-item"><a href="course-unit.html?subjectId=${subject.id}&courseIndex=${courseIndex}&moduleIndex=${moduleIndex}&unitIndex=${unitIndex}&fromPanel=modules">${unit[`title_${lang}`]}</a></li>`
-                    ).join('');
+                    let unitsHTML = (module.units || []).map((unit, unitIndex) => {
+                        const params = `subjectId=${subject.id}&courseIndex=${courseIndex}&moduleIndex=${moduleIndex}&unitIndex=${unitIndex}&fromPanel=modules`;
+                        return `<li class="unit-item" data-params="${params}">${unit[`title_${lang}`]}</li>`;
+                    }).join('');
                     contentHTML += `<ul class="unit-list">${unitsHTML}</ul>`;
                 });
                 courseItem.innerHTML = `<div class="course-header">${course[`title_${lang}`]}</div><div class="course-content-wrapper"><div class="course-content">${contentHTML}</div></div>`;
                 courseListContainer.appendChild(courseItem);
             });
             container.appendChild(courseListContainer);
+
+            container.querySelectorAll('.unit-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    siteRouter.navigateTo('course-unit', item.dataset.params);
+                });
+            });
 
             const allCourseHeaders = container.querySelectorAll('.course-header');
             let areAllCollapsed;
