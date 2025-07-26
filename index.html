@@ -245,7 +245,7 @@
                         }
                         
                     } catch (error) {
-                        console.error("Error signing in with email link:", error);
+                        console.error("Error signing in with email link:", error.code, error.message);
                         alert('There was an error verifying your email. The link may be invalid or expired.');
                     } finally {
                         if (window.history && window.history.replaceState) {
@@ -273,7 +273,7 @@
                         });
                         contactForm.style.display = 'none';
                         confirmationMessage.classList.remove('hidden');
-                    } catch (error) {
+                    } catch (error).
                         console.error("Error adding document: ", error);
                         alert('There was an error sending your message. Please try again.');
                     }
@@ -294,8 +294,8 @@
                         newsletterForm.style.display = 'none';
                         newsletterConfirmation.classList.remove('hidden');
                     } catch (error) {
-                        console.error("Error sending subscription link: ", error);
-                        alert('There was an error with your subscription. Please try again.');
+                        console.error("Error sending subscription link:", error.code, error.message);
+                        alert('There was an error with your subscription. Please check the browser console for more details.');
                     }
                 });
             }
