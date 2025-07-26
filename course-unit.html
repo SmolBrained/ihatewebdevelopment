@@ -63,10 +63,42 @@
         .mcq-system.answered .mcq-answer.incorrect:hover{background:var(--color-danger,#dc3545);border-color:var(--color-danger,#dc3545);}
         .mcq-explanation{display:none;margin-top:15px;text-align:left;border-color:var(--color-border,#dee2e6);}
         .mcq-explanation.visible{display:block;}
-        @media (max-width:768px){ .unit-title { font-size: 2rem; } .lesson-layout { flex-direction: column; } .lesson-sidebar { width: 100%; } .lesson-sidebar-nav { position: static; } }
+
+        @media (max-width: 768px) {
+            .unit-title { font-size: 2rem; }
+            .lesson-layout { flex-direction: column; }
+            .lesson-sidebar { width: 100%; }
+            .lesson-sidebar-nav {
+                position: static;
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 30px;
+            }
+            .lesson-sidebar-nav .back-link {
+                display: block;
+                flex-basis: 100%;
+                text-align: center;
+                padding: 12px 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                background-color: #f8f9fa;
+            }
+            .lesson-sidebar-nav a.lesson-nav-link {
+                flex-grow: 1;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                padding: 10px;
+                text-align: center;
+            }
+            .lesson-sidebar-nav a.lesson-nav-link.active {
+                border-bottom-color: #333;
+                border-left-color: transparent;
+            }
+        }
     </style>
 </head>
-<body data-current-page="lessons">
+<body data-current-page="course-unit">
     <header class="site-header" id="header"></header>
     <main>
         <section class="section">
