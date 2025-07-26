@@ -40,7 +40,6 @@ const siteRouter = {
         const db = getFirestore();
 
         try {
-            // CORRECTED QUERY: Removed orderBy("order") to fetch ALL members
             const membersQuery = query(collection(db, "members"));
             const querySnapshot = await getDocs(membersQuery);
             const membersMap = {};
@@ -182,7 +181,13 @@ const siteRouter = {
         const body = document.body;
         
         const path = window.location.pathname;
-        const isSinglePage = path.endsWith('article-single.html') || path.endsWith('news-single.html') || path.endsWith('members.html') || path.endsWith('lesson-single.html') || path.endsWith('course-unit.html');
+        const normalizedPath = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+        
+        const isSinglePage = normalizedPath.endsWith('/article-single') ||
+                             normalizedPath.endsWith('/news-single') ||
+                             normalizedPath.endsWith('/members') ||
+                             normalizedPath.endsWith('/lesson-single') ||
+                             normalizedPath.endsWith('/course-unit');
 
         if (isSinglePage) {
             header?.classList.add('scrolled');
