@@ -87,7 +87,7 @@
                         <div class="lesson-card-content"><h3 class="lesson-card-title">${lesson[`title_${lang}`]}</h3></div>
                     `;
                     card.addEventListener('click', () => {
-                        siteRouter.navigateTo('lesson-single', `id=${lesson.id}`);
+                        siteRouter.navigateTo('lesson-single', lesson.id);
                     });
                     gridContainer.appendChild(card);
                     observer.observe(card);
