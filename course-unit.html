@@ -74,18 +74,23 @@
                 flex-wrap: wrap;
                 margin-bottom: 30px;
             }
+            .lesson-sidebar-nav li:first-child {
+                flex-basis: 100%;
+                margin-bottom: 10px;
+            }
             .lesson-sidebar-nav .back-link {
                 display: block;
-                flex-basis: 100%;
                 text-align: center;
                 padding: 12px 10px;
-                margin-bottom: 10px;
                 border: 1px solid #ddd;
                 border-radius: 5px;
                 background-color: #f8f9fa;
             }
-            .lesson-sidebar-nav a.lesson-nav-link {
+            .lesson-sidebar-nav li:not(:first-child) {
                 flex-grow: 1;
+            }
+            .lesson-sidebar-nav a.lesson-nav-link {
+                display: block;
                 border-left: none;
                 border-bottom: 3px solid transparent;
                 padding: 10px;
