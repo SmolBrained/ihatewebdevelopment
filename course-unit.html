@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/WPy5YDY.png">
+    <title>Course Unit | Literary Speaking</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+    <style>
+        .page-header-container { padding-bottom: 15px; border-bottom: 1px solid #ddd; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .page-header-actions button { background-color: #f8f9fa; border: 1px solid #ccc; border-radius: 5px; padding: 8px 15px; font-weight: 700; cursor: pointer; }
+        .lesson-layout { display: flex; gap: 40px; }
+        .lesson-sidebar { width: 220px; flex-shrink: 0; }
+        .lesson-sidebar-nav { list-style: none; padding: 0; margin: 0; position: sticky; top: 120px; }
+        .lesson-sidebar-nav .back-link { display: block; padding: 10px 0; font-weight: 700; color: var(--color-primary); text-decoration: none; margin-bottom: 15px; text-align: left; }
+        .lesson-sidebar-nav a.lesson-nav-link { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 700; border-left: 3px solid transparent; text-align: left; }
+        .lesson-sidebar-nav a.lesson-nav-link.active { border-left-color: #333; }
+        .lesson-main-content { flex-grow: 1; }
+        .content-body { line-height: 1.8; font-size: 1.1rem; text-align: left; }
+        .content-body img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
+        .content-body figure { margin: 20px 0; }
+        .content-body figcaption { font-size: 0.9rem; color: #6c757d; text-align: center; margin-top: 5px; }
+        .breadcrumbs { padding: 15px 0; font-size: 0.9rem; color: var(--color-text-muted); }
+        .breadcrumbs a { color: var(--color-purple-dark); text-decoration: none; }
+        .breadcrumbs a:hover { text-decoration: underline; }
+        .breadcrumbs span { margin: 0 8px; }
+        .unit-header { text-align: left; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+        .unit-title { font-size: 2.8rem; font-weight: 900; margin: 0; line-height: 1.2; }
+        .unit-body { text-align: left; line-height: 2; font-size: 1.1rem; }
+        .unit-body p { margin: 0 0 1.5em; }
+        .unit-body figure { margin: 30px 0; }
+        .unit-body img { width: 100%; max-width: 800px; border-radius: 16px; margin: 0 auto; display: block; }
+        .unit-body figcaption { font-size: 0.9rem; color: var(--color-text-light); text-align: center; margin-top: 10px; font-style: italic; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 16px; margin: 30px 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .pdf-embed details { border: 1px solid #ccc; border-radius: 8px; margin: 20px 0; }
+        .pdf-embed summary { padding: 15px; font-weight: 700; cursor: pointer; background-color: #f8f9fa; }
+        .pdf-embed embed { width: 100%; height: 500px; }
+        .mcq-system{width:100%;max-width:700px;margin:30px auto;}
+        .mcq-question,.mcq-answer,.mcq-explanation{background:var(--color-surface);border:1.5px solid var(--color-text,#222);border-radius:16px;padding:25px;margin-bottom:15px;text-align:center;font-size:1.1rem;font-weight:500;}
+        .mcq-answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
+        .mcq-answer{margin:0;cursor:pointer;transition:all .3s;}
+        .mcq-answer:hover{border-color:var(--color-primary,#4b0082);background:#f8f9fa;}
+        .mcq-answer.correct,.mcq-answer.incorrect{color:#fff;cursor:default;}
+        .mcq-answer.correct{background:#28a745;border-color:#28a745;}
+        .mcq-answer.incorrect{background:var(--color-danger,#dc3545);border-color:var(--color-danger,#dc3545);}
+        .mcq-system.answered .mcq-answer:not(.correct){cursor:not-allowed;opacity:.6;}
+        .mcq-system.answered .mcq-answer:not(.correct):hover{background:var(--color-surface,#fff);border-color:var(--color-text,#222);}
+        .mcq-system.answered .mcq-answer.incorrect:hover{background:var(--color-danger,#dc3545);border-color:var(--color-danger,#dc3545);}
+        .mcq-explanation{display:none;margin-top:15px;text-align:left;border-color:var(--color-border,#dee2e6);}
+        .mcq-explanation.visible{display:block;}
+        @media (max-width:768px){ .unit-title { font-size: 2rem; } .lesson-layout { flex-direction: column; } .lesson-sidebar { width: 100%; } .lesson-sidebar-nav { position: static; } }
+    </style>
+</head>
+<body data-current-page="lessons">
+    <header class="site-header" id="header"></header>
+    <main>
+        <section class="section">
+            <div class="container page-specific-content">
+                <div class="lesson-layout">
+                    <aside class="lesson-sidebar">
+                        <ul id="lesson-sidebar-nav" class="lesson-sidebar-nav">
+                        </ul>
+                    </aside>
+                    <div id="unit-content-wrapper" class="lesson-main-content">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer"></footer>
+    <script src="router.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0qVihpuLI0cF0PZ32o8tFBLfTgjlqB6A",
+            authDomain: "literary-speaking.firebaseapp.com",
+            projectId: "literary-speaking",
+            storageBucket: "literary-speaking.appspot.com",
+            messagingSenderId: "699059463612",
+            appId: "1:699059463612:web:ecb2e784d627c6b93937b9",
+            measurementId: "G-0L1V3XXGGR"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const getYouTubeID = (url) => {
+            const regex = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regex);
+            return (match && match[2].length === 11) ? match[2] : url;
+        };
+
+        const renderContentBlocks = (blocks, lang) => {
+            if (!blocks || blocks.length === 0) return '<p>No content available.</p>';
+            let contentHTML = '';
+            blocks.forEach(block => {
+                const caption = block[`caption_${lang}`] || '';
+                const title = block[`title_${lang}`] || '';
+                switch (block.type) {
+                    case 'text':
+                        contentHTML += block[`content_${lang}`] || '';
+                        break;
+                    case 'image':
+                        contentHTML += `<figure><img src="${block.url}" alt="${caption}"><figcaption>${caption}</figcaption></figure>`;
+                        break;
+                    case 'video':
+                        const videoId = getYouTubeID(block.videoId || '');
+                        contentHTML += `<figure><div class="video-container"><iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>${caption}</figcaption></figure>`;
+                        break;
+                    case 'pdf':
+                         contentHTML += `<div class="pdf-embed"><details><summary>${title}</summary><embed src="${block.url}" type="application/pdf"></details></div>`;
+                        break;
+                    case 'mcq':
+                        const answersHTML = (block.answers || []).map(answer =>
+                            `<div class="mcq-answer" data-correct="${answer.correct || false}">${answer[`text_${lang}`]}</div>`
+                        ).join('');
+                        contentHTML += `
+                            <div class="mcq-system">
+                                <div class="mcq-question">${block[`question_${lang}`] || 'No question provided.'}</div>
+                                <div class="mcq-answers">${answersHTML}</div>
+                                ${block[`explanation_${lang}`] ? `<div class="mcq-explanation"><strong>Explanation:</strong> ${block[`explanation_${lang}`]}</div>` : ''}
+                            </div>
+                        `;
+                        break;
+                }
+            });
+            return contentHTML;
+        };
+
+        const finalizePageSetup = () => {
+            if (window.MathJax) {
+                window.MathJax.typesetPromise();
+            }
+            document.body.addEventListener('click', e => {
+                const selectedAnswer = e.target.closest('.mcq-answer');
+                if (!selectedAnswer) return;
+                const system = selectedAnswer.closest('.mcq-system');
+                if (!system || system.classList.contains('answered')) return;
+                const isCorrect = selectedAnswer.dataset.correct === 'true';
+                if (isCorrect) {
+                    selectedAnswer.classList.add('correct');
+                    system.classList.add('answered');
+                    const expl = system.querySelector('.mcq-explanation');
+                    if (expl && expl.innerHTML.trim() !== '') {
+                        expl.classList.add('visible');
+                    }
+                } else {
+                    selectedAnswer.classList.add('incorrect');
+                    selectedAnswer.style.pointerEvents = 'none';
+                }
+            }, { once: true });
+        };
+
+        const renderUnit = (subject, course, module, unit, lang, fromPanel) => {
+            const contentWrapper = document.getElementById('unit-content-wrapper');
+            const sidebarNav = document.getElementById('lesson-sidebar-nav');
+            if (!contentWrapper || !sidebarNav || !unit) return;
+            document.title = `${unit[`title_${lang}`]} | Literary Speaking`;
+            sidebarNav.innerHTML = `
+                <li><a class="back-link" href="lesson-single.html?id=${subject.id}&panel=${fromPanel}"><span class="lang-switch" data-en="← Back to Modules" data-es="← Volver a Módulos"></span></a></li>
+                <li><a href="lesson-single.html?id=${subject.id}&panel=home" class="lesson-nav-link lang-switch" data-en="Home" data-es="Inicio"></a></li>
+                <li><a href="lesson-single.html?id=${subject.id}&panel=modules" class="lesson-nav-link active lang-switch" data-en="Modules" data-es="Módulos"></a></li>
+                <li><a href="lesson-single.html?id=${subject.id}&panel=discussions" class="lesson-nav-link lang-switch" data-en="Discussions" data-es="Discusiones"></a></li>
+                <li><a href="lesson-single.html?id=${subject.id}&panel=resources" class="lesson-nav-link lang-switch" data-en="More Resources" data-es="Más Recursos"></a></li>
+            `;
+            
+            const contentBlocksHTML = renderContentBlocks(unit.contentBlocks, lang);
+            contentWrapper.innerHTML = `
+                <div class="breadcrumbs">
+                    <a href="lesson-single.html?id=${subject.id}&panel=modules">${subject[`title_${lang}`]}</a>
+                    <span>></span>
+                    <span>${course[`title_${lang}`]}</span>
+                    <span>></span>
+                    <span>${module[`title_${lang}`]}</span>
+                </div>
+                <div class="unit-header">
+                    <h1 class="unit-title">${unit[`title_${lang}`]}</h1>
+                </div>
+                <div class="unit-body">${contentBlocksHTML}</div>
+            `;
+            
+            siteRouter.applyLanguage(lang);
+            finalizePageSetup();
+        };
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const subjectId = urlParams.get('subjectId');
+            const courseIndex = parseInt(urlParams.get('courseIndex'), 10);
+            const moduleIndex = parseInt(urlParams.get('moduleIndex'), 10);
+            const unitIndex = parseInt(urlParams.get('unitIndex'), 10);
+            const fromPanel = urlParams.get('fromPanel') || 'modules';
+
+            if (!subjectId || isNaN(courseIndex) || isNaN(moduleIndex) || isNaN(unitIndex)) {
+                return siteRouter.navigateTo('lessons');
+            }
+
+            const docRef = doc(db, "lessons", subjectId);
+            const docSnap = await getDoc(docRef);
+
+            if (!docSnap.exists()) {
+                return siteRouter.navigateTo('lessons');
+            }
+
+            const subject = { id: docSnap.id, ...docSnap.data() };
+            const course = subject.courses?.[courseIndex];
+            const module = course?.modules?.[moduleIndex];
+            const unit = module?.units?.[unitIndex];
+
+            if (!unit) {
+                console.error("Could not find the specified unit with the provided indices.");
+                return siteRouter.navigateTo('lessons');
+            }
+
+            const initialLang = localStorage.getItem('language') || 'en';
+            renderUnit(subject, course, module, unit, initialLang, fromPanel);
+
+            document.addEventListener('languageChanged', (e) => {
+                renderUnit(subject, course, module, unit, e.detail.lang, fromPanel);
+            });
+        });
+    </script>
+</body>
+</html>
