@@ -181,10 +181,9 @@ const siteRouter = {
         const menuToggle = document.querySelector('.menu-toggle');
         const body = document.body;
         
-        const path = window.location.pathname;
-        const normalizedPath = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
-        
-        const isSinglePage = ['/article-single', '/news-single', '/members', '/lesson-single', '/course-unit'].some(page => normalizedPath.endsWith(page));
+        const currentPage = body.dataset.currentPage;
+        const singlePages = ['article-single', 'news-single', 'members', 'lesson-single', 'course-unit'];
+        const isSinglePage = singlePages.includes(currentPage);
 
         if (isSinglePage) {
             header?.classList.add('scrolled');
@@ -247,7 +246,6 @@ const siteRouter = {
             'articles': 'resources', 'lessons': 'resources', 'report-time': 'resources', 'lesson-single': 'resources', 'course-unit': 'resources'
         };
         
-        const currentPage = document.body.dataset.currentPage;
         if (currentPage) {
             document.querySelectorAll(`.nav-link[data-page-id="${currentPage}"]`).forEach(link => link.classList.add('active-page-link'));
             const currentGroup = pageGroups[currentPage];
