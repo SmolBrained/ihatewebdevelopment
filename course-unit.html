@@ -179,28 +179,27 @@
             return contentHTML;
         };
 
-        const finalizePageSetup = () => {
-            if (window.MathJax) {
-                window.MathJax.typesetPromise();
-            }
+        const setupMCQListeners = () => {
             document.body.addEventListener('click', e => {
                 const selectedAnswer = e.target.closest('.mcq-answer');
                 if (!selectedAnswer) return;
+
                 const system = selectedAnswer.closest('.mcq-system');
                 if (!system || system.classList.contains('answered')) return;
+
                 const isCorrect = selectedAnswer.dataset.correct === 'true';
+
                 if (isCorrect) {
                     selectedAnswer.classList.add('correct');
                     system.classList.add('answered');
                     const expl = system.querySelector('.mcq-explanation');
-                    if (expl && expl.innerHTML.trim() !== '') {
+                    if (expl && expl.textContent.trim() !== '') {
                         expl.classList.add('visible');
                     }
                 } else {
                     selectedAnswer.classList.add('incorrect');
-                    selectedAnswer.style.pointerEvents = 'none';
                 }
-            }, { once: true });
+            });
         };
 
         const renderUnit = (subject, course, module, unit, lang, fromPanel) => {
@@ -232,7 +231,9 @@
             `;
             
             siteRouter.applyLanguage(lang);
-            finalizePageSetup();
+            if (window.MathJax) {
+                window.MathJax.typesetPromise();
+            }
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
@@ -263,7 +264,8 @@
                 console.error("Could not find the specified unit with the provided indices.");
                 return siteRouter.navigateTo('lessons');
             }
-
+            
+            setupMCQListeners();
             const initialLang = localStorage.getItem('language') || 'en';
             renderUnit(subject, course, module, unit, initialLang, fromPanel);
 
