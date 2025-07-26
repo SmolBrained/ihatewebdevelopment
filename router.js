@@ -55,7 +55,7 @@ const siteRouter = {
     navigateTo(pageId, params = null) {
         let url = this.pages[pageId];
         if (url) {
-            if ((pageId === 'member' || pageId === 'article-single' || pageId === 'news-single' || pageId === 'lesson-single') && params) {
+            if ((pageId === 'member' || pageId === 'article-single' || pageId === 'news-single' || pageId === 'lesson-single' || pageId === 'course-unit') && params) {
                 url += `?id=${params}`;
             }
             window.location.href = url;
@@ -184,11 +184,7 @@ const siteRouter = {
         const path = window.location.pathname;
         const normalizedPath = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
         
-        const isSinglePage = normalizedPath.endsWith('/article-single') ||
-                             normalizedPath.endsWith('/news-single') ||
-                             normalizedPath.endsWith('/members') ||
-                             normalizedPath.endsWith('/lesson-single') ||
-                             normalizedPath.endsWith('/course-unit');
+        const isSinglePage = ['/article-single', '/news-single', '/members', '/lesson-single', '/course-unit'].some(page => normalizedPath.endsWith(page));
 
         if (isSinglePage) {
             header?.classList.add('scrolled');
@@ -248,7 +244,7 @@ const siteRouter = {
         const pageGroups = {
             'about': 'get-to-know-us', 'the-team': 'get-to-know-us', 'news': 'get-to-know-us', 'contact': 'get-to-know-us',
             'receive-tutoring': 'get-involved', 'become-a-tutor': 'get-involved', 'become-a-volunteer': 'get-involved', 'support': 'get-involved',
-            'articles': 'resources', 'lessons': 'resources', 'report-time': 'resources'
+            'articles': 'resources', 'lessons': 'resources', 'report-time': 'resources', 'lesson-single': 'resources', 'course-unit': 'resources'
         };
         
         const currentPage = document.body.dataset.currentPage;
