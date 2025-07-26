@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/WPy5YDY.png">
+    <title>News | Literary Speaking</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .news-article-container { max-width: 750px; margin: 0 auto; }
+        .news-hero {padding: 60px 0 30px; text-align:left;}
+        .news-title-full {font-size:3rem;font-weight:900;margin:0 0 20px;line-height:1.2;}
+        .news-meta-full {font-size:1rem;color:var(--color-text-light); border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 15px 0;}
+        .news-meta-full a {color:var(--color-purple-dark);text-decoration:none;font-weight:700;}
+        .news-meta-full a:hover {text-decoration:underline;}
+        .news-body {text-align:left;line-height:2;font-size:1.1rem; padding-top: 30px;}
+        .news-body p {margin: 0 0 1.5em;}
+        .news-body figure {margin: 30px 0; }
+        .news-body img {width:100%;max-width:800px;border-radius:16px; margin: 0 auto; display: block;}
+        .news-body figcaption {font-size:0.9rem;color:var(--color-text-light);text-align:center;margin-top: 10px;font-style:italic;}
+        .back-link {display:inline-block; margin-bottom: 20px; font-weight: 700; color: var(--color-purple-dark); text-decoration: none;}
+        .back-link:hover {text-decoration: underline;}
+        @media (max-width:768px){.news-title-full{font-size:2.2rem;}}
+    </style>
+</head>
+<body data-current-page="news">
+    <header class="site-header" id="header"></header>
+    <main>
+        <section class="section">
+            <div class="container">
+                <a class="back-link nav-link" data-page-id="news">← <span class="lang-switch" data-en="Back to all news" data-es="Volver a todas las noticias"></span></a>
+                <div class="news-article-container page-specific-content">
+                    <article>
+                        <div class="news-hero">
+                            <h1 id="news-title" class="news-title-full"></h1>
+                            <div id="news-meta" class="news-meta-full"></div>
+                        </div>
+                        <div id="news-content" class="news-body"></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer"></footer>
+    <script src="router.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0qVihpuLI0cF0PZ32o8tFBLfTgjlqB6A",
+            authDomain: "literary-speaking.firebaseapp.com",
+            projectId: "literary-speaking",
+            storageBucket: "literary-speaking.appspot.com",
+            messagingSenderId: "699059463612",
+            appId: "1:699059463612:web:ecb2e784d627c6b93937b9",
+            measurementId: "G-0L1V3XXGGR"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const updateNewsText = (item, lang) => {
+            if (!item) return;
+            document.title = `${item[`title_${lang}`]} - Literary Speaking`;
+            document.getElementById('news-title').textContent = item[`title_${lang}`];
+            const author = siteRouter.members[item.author_id] || { name: 'Anonymous' };
+            const itemDate = new Date(item.date).toLocaleDateString(lang.startsWith('es') ? 'es-ES' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('news-meta').innerHTML = `
+                <span class="lang-switch" data-en="By" data-es="Por">By</span> <a href="#" class="nav-link" data-page-id="member" data-member-id="${item.author_id}">${author.name}</a>
+                <span style="margin: 0 10px;">|</span>
+                <span>${itemDate}</span>
+                <span style="margin: 0 10px;">|</span>
+                <span>${item[`read_time_${lang}`]}</span>
+            `;
+            const contentContainer = document.getElementById('news-content');
+            contentContainer.innerHTML = '';
+            if (item.contentBlocks && Array.isArray(item.contentBlocks)) {
+                item.contentBlocks.forEach(block => {
+                    if (block.type === 'text') {
+                        contentContainer.innerHTML += block[`content_${lang}`] || '';
+                    } else if (block.type === 'image') {
+                        contentContainer.innerHTML += `
+                            <figure>
+                                <img src="${block.url}" alt="${block[`caption_${lang}`] || ''}">
+                                <figcaption>${block[`caption_${lang}`] || ''}</figcaption>
+                            </figure>
+                        `;
+                    }
+                });
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            await siteRouter.loadMembers();
+            const urlParams = new URLSearchParams(window.location.search);
+            const newsId = urlParams.get('id');
+            if (!newsId) return siteRouter.navigateTo('news');
+
+            const docRef = doc(db, "news", newsId);
+            const docSnap = await getDoc(docRef);
+            if (!docSnap.exists()) return siteRouter.navigateTo('news');
+            
+            const newsItem = docSnap.data();
+            
+            updateNewsText(newsItem, localStorage.getItem('language') || 'en');
+
+            document.addEventListener('languageChanged', (e) => {
+                updateNewsText(newsItem, e.detail.lang);
+            });
+        });
+    </script>
+</body>
+</html>
