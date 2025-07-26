@@ -87,7 +87,7 @@
     })();
     </script>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
         import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -99,14 +99,25 @@
             appId: "1:699059463612:web:ecb2e784d627c6b93937b9",
             measurementId: "G-0L1V3XXGGR"
         };
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
+        
+        if (!getApps().length) {
+            initializeApp(firebaseConfig);
+        }
+        const db = getFirestore();
 
         document.addEventListener('DOMContentLoaded', async () => {
-            await siteRouter.loadMembers();
-            const newsQuery = query(collection(db, "news"), orderBy("date", "desc"));
-            const querySnapshot = await getDocs(newsQuery);
-            const allNewsItems = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(item => item.isPublished === true);
+            let allNewsItems = [];
+            
+            try {
+                await siteRouter.loadMembers();
+                const newsQuery = query(collection(db, "news"), orderBy("date", "desc"));
+                const querySnapshot = await getDocs(newsQuery);
+                allNewsItems = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(item => item.isPublished === true);
+            } catch (error) {
+                console.error("Failed to load news items:", error);
+                const mainColumn = document.getElementById('main-column');
+                if(mainColumn) mainColumn.innerHTML = `<p>Could not load news. Please try again later.</p>`;
+            }
             
             const featuredItems = allNewsItems.filter(item => item.isFeatured);
             const sidebarItems = allNewsItems.filter(item => !item.isFeatured);
@@ -116,65 +127,78 @@
 
             const populateColumns = (lang) => {
                 if (!mainColumn || !sidebarGrid) return;
+
+                const mainFragment = document.createDocumentFragment();
+                const sidebarFragment = document.createDocumentFragment();
+
                 mainColumn.innerHTML = '';
                 sidebarGrid.innerHTML = '';
 
                 if (allNewsItems.length === 0) {
-                    mainColumn.innerHTML = `<p class="lang-switch" data-en="No news items yet. Check back soon!" data-es="Aún no hay noticias. ¡Vuelve pronto!"></p>`;
-                    siteRouter.applyLanguage(lang);
-                    return;
+                    const noNewsEl = document.createElement('p');
+                    noNewsEl.className = 'lang-switch';
+                    noNewsEl.dataset.en = "No news items yet. Check back soon!";
+                    noNewsEl.dataset.es = "Aún no hay noticias. ¡Vuelve pronto!";
+                    noNewsEl.textContent = lang === 'es' ? noNewsEl.dataset.es : noNewsEl.dataset.en;
+                    mainFragment.appendChild(noNewsEl);
+                } else {
+                    featuredItems.forEach(item => {
+                        const link = document.createElement('a');
+                        link.className = 'news-item';
+                        link.href = `news-single.html?id=${item.id}`;
+                        link.innerHTML = `
+                            <div class="news-item-content">
+                                <h3 class="news-item-title">${item[`title_${lang}`] || item.title_en}</h3>
+                                <p class="news-item-excerpt">${item[`excerpt_${lang}`] || item.excerpt_en}</p>
+                                <p class="news-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
+                            </div>
+                            <img src="${item.thumbnail_url || 'https://i.imgur.com/3Yj6bA1.png'}" alt="" class="news-item-image">
+                        `;
+                        mainFragment.appendChild(link);
+                    });
+
+                    sidebarItems.forEach(item => {
+                        const author = siteRouter.members[item.author_id] || { name: 'Anonymous' };
+                        const link = document.createElement('a');
+                        link.className = 'sidebar-item';
+                        link.href = `news-single.html?id=${item.id}`;
+                        link.innerHTML = `
+                            <p class="sidebar-item-author">${author.name}</p>
+                            <h4 class="sidebar-item-title">${item[`title_${lang}`] || item.title_en}</h4>
+                            <p class="sidebar-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
+                        `;
+                        sidebarFragment.appendChild(link);
+                    });
                 }
-
-                featuredItems.forEach(item => {
-                    const link = document.createElement('a');
-                    link.className = 'news-item';
-                    link.href = `news-single.html?id=${item.id}`;
-                    link.innerHTML = `
-                        <div class="news-item-content">
-                            <h3 class="news-item-title">${item[`title_${lang}`]}</h3>
-                            <p class="news-item-excerpt">${item[`excerpt_${lang}`]}</p>
-                            <p class="news-item-meta">${item[`read_time_${lang}`]}</p>
-                        </div>
-                        <img src="${item.thumbnail_url || 'https://i.imgur.com/3Yj6bA1.png'}" alt="" class="news-item-image">
-                    `;
-                    mainColumn.appendChild(link);
-                });
-
-                sidebarItems.forEach(item => {
-                    const author = siteRouter.members[item.author_id] || { name: 'Anonymous' };
-                    const link = document.createElement('a');
-                    link.className = 'sidebar-item';
-                    link.href = `news-single.html?id=${item.id}`;
-                    link.innerHTML = `
-                        <p class="sidebar-item-author">${author.name}</p>
-                        <h4 class="sidebar-item-title">${item[`title_${lang}`]}</h4>
-                        <p class="sidebar-item-meta">${item[`read_time_${lang}`]}</p>
-                    `;
-                    sidebarGrid.appendChild(link);
-                });
+                
+                mainColumn.appendChild(mainFragment);
+                sidebarGrid.appendChild(sidebarFragment);
             };
 
             const initialLang = localStorage.getItem('language') || 'en';
             populateColumns(initialLang);
-            siteRouter.applyLanguage(initialLang);
 
-            const langObserver = new MutationObserver(() => {
-                populateColumns(document.documentElement.lang);
-                siteRouter.applyLanguage(document.documentElement.lang);
+            const langObserver = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+                        populateColumns(document.documentElement.lang);
+                    }
+                }
             });
-            langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
-            const observer = new IntersectionObserver((entries) => {
+            langObserver.observe(document.documentElement, { attributes: true });
+
+            const animationObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
+                        animationObserver.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.1 });
 
             document.querySelectorAll('main .scroll-animated').forEach(el => {
-                observer.observe(el);
+                animationObserver.observe(el);
             });
         });
     </script>
