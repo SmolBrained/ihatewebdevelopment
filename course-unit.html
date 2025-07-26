@@ -208,36 +208,18 @@
             if (!contentWrapper || !sidebarNav || !unit) return;
             document.title = `${unit[`title_${lang}`]} | Literary Speaking`;
             
-            const backLink = document.createElement('a');
-            backLink.className = 'back-link nav-link';
-            backLink.dataset.pageId = 'lesson-single';
-            backLink.innerHTML = `<span class="lang-switch" data-en="← Back to Modules" data-es="← Volver a Módulos"></span>`;
-            
-            const sidebarList = document.createElement('ul');
-            sidebarList.className = 'lesson-sidebar-nav';
-            sidebarList.innerHTML = `
-                <li></li>
-                <li><a href="#" class="lesson-nav-link nav-link" data-page-id="lesson-single" data-panel="home"><span class="lang-switch" data-en="Home" data-es="Inicio"></span></a></li>
-                <li><a href="#" class="lesson-nav-link nav-link active" data-page-id="lesson-single" data-panel="modules"><span class="lang-switch" data-en="Modules" data-es="Módulos"></span></a></li>
-                <li><a href="#" class="lesson-nav-link nav-link" data-page-id="lesson-single" data-panel="discussions"><span class="lang-switch" data-en="Discussions" data-es="Discusiones"></span></a></li>
-                <li><a href="#" class="lesson-nav-link nav-link" data-page-id="lesson-single" data-panel="resources"><span class="lang-switch" data-en="More Resources" data-es="Más Recursos"></span></a></li>
+            sidebarNav.innerHTML = `
+                <li><a class="back-link nav-link" data-page-id="lesson-single" data-id="${subject.id}" data-panel="${fromPanel}"><span class="lang-switch" data-en="← Back to Modules" data-es="← Volver a Módulos"></span></a></li>
+                <li><a class="lesson-nav-link nav-link" data-page-id="lesson-single" data-id="${subject.id}" data-panel="home"><span class="lang-switch" data-en="Home" data-es="Inicio"></span></a></li>
+                <li><a class="lesson-nav-link nav-link active" data-page-id="lesson-single" data-id="${subject.id}" data-panel="modules"><span class="lang-switch" data-en="Modules" data-es="Módulos"></span></a></li>
+                <li><a class="lesson-nav-link nav-link" data-page-id="lesson-single" data-id="${subject.id}" data-panel="discussions"><span class="lang-switch" data-en="Discussions" data-es="Discusiones"></span></a></li>
+                <li><a class="lesson-nav-link nav-link" data-page-id="lesson-single" data-id="${subject.id}" data-panel="resources"><span class="lang-switch" data-en="More Resources" data-es="Más Recursos"></span></a></li>
             `;
-            sidebarList.querySelector('li:first-child').appendChild(backLink);
-            sidebarNav.innerHTML = '';
-            sidebarNav.appendChild(sidebarList);
-
-            sidebarNav.querySelectorAll('.nav-link[data-page-id="lesson-single"]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const params = `id=${subject.id}&panel=${link.dataset.panel}`;
-                    siteRouter.navigateTo('lesson-single', params);
-                });
-            });
             
             const contentBlocksHTML = renderContentBlocks(unit.contentBlocks, lang);
             contentWrapper.innerHTML = `
                 <div class="breadcrumbs">
-                    <a href="#" class="nav-link" data-page-id="lesson-single" data-id="${subject.id}" data-panel="modules">${subject[`title_${lang}`]}</a>
+                    <a class="nav-link" data-page-id="lesson-single" data-id="${subject.id}" data-panel="modules">${subject[`title_${lang}`]}</a>
                     <span>></span>
                     <span>${course[`title_${lang}`]}</span>
                     <span>></span>
@@ -248,12 +230,6 @@
                 </div>
                 <div class="unit-body">${contentBlocksHTML}</div>
             `;
-            
-            contentWrapper.querySelector('.breadcrumbs a').addEventListener('click', (e) => {
-                e.preventDefault();
-                const params = `id=${e.target.dataset.id}&panel=${e.target.dataset.panel}`;
-                siteRouter.navigateTo('lesson-single', params);
-            });
             
             siteRouter.applyLanguage(lang);
             if (window.MathJax) {
