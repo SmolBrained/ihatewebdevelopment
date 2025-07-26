@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://i.imgur.com/WPy5YDY.png">
-    <title>Course Unit | Literary Speaking</title>
+    <title>Lesson | Literary Speaking</title>
     <link rel="stylesheet" href="style.css">
     <script>
         window.MathJax = {
@@ -30,26 +30,40 @@
         .lesson-sidebar-nav a.lesson-nav-link { display: block; padding: 10px 15px; text-decoration: none; color: #333; font-weight: 700; border-left: 3px solid transparent; text-align: left; }
         .lesson-sidebar-nav a.lesson-nav-link.active { border-left-color: #333; }
         .lesson-main-content { flex-grow: 1; }
+        .lesson-panel { display: none; }
+        .lesson-panel.active { display: block; }
         .content-body { line-height: 1.8; font-size: 1.1rem; text-align: left; }
         .content-body img { max-width: 100%; border-radius: 8px; margin: 20px 0; }
         .content-body figure { margin: 20px 0; }
         .content-body figcaption { font-size: 0.9rem; color: #6c757d; text-align: center; margin-top: 5px; }
-        .breadcrumbs { padding: 15px 0; font-size: 0.9rem; color: var(--color-text-muted); }
-        .breadcrumbs a { color: var(--color-purple-dark); text-decoration: none; }
-        .breadcrumbs a:hover { text-decoration: underline; }
-        .breadcrumbs span { margin: 0 8px; }
-        .unit-header { text-align: left; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
-        .unit-title { font-size: 2.8rem; font-weight: 900; margin: 0; line-height: 1.2; }
-        .unit-body { text-align: left; line-height: 2; font-size: 1.1rem; }
-        .unit-body p { margin: 0 0 1.5em; }
-        .unit-body figure { margin: 30px 0; }
-        .unit-body img { width: 100%; max-width: 800px; border-radius: 16px; margin: 0 auto; display: block; }
-        .unit-body figcaption { font-size: 0.9rem; color: var(--color-text-light); text-align: center; margin-top: 10px; font-style: italic; }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 16px; margin: 30px 0; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .pdf-embed details { border: 1px solid #ccc; border-radius: 8px; margin: 20px 0; }
         .pdf-embed summary { padding: 15px; font-weight: 700; cursor: pointer; background-color: #f8f9fa; }
         .pdf-embed embed { width: 100%; height: 500px; }
+        .course-list { list-style: none; padding: 0; margin: 0; }
+        .course-item { border-radius: 5px; overflow: hidden; margin-bottom: 15px; border: 1px solid #ccc; }
+        .course-header { background-color: #f8f9fa; padding: 15px; font-weight: 700; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; color: #333; }
+        .course-header::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 9px solid #333;
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+        .course-header:not(.collapsed)::before { transform: rotate(90deg); }
+        .course-content-wrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .course-header:not(.collapsed) + .course-content-wrapper { grid-template-rows: 1fr; }
+        .course-content { overflow: hidden; background-color: #fff; border-top: 1px solid #ccc; }
+        .course-header.collapsed + .course-content-wrapper .course-content { border-top: none; }
+        .module-title { background-color: #fff; padding: 15px 20px; font-weight: 700; color: #333; border-top: 1px solid #eee; text-align: left; }
+        .unit-list { list-style: none; padding: 0; margin: 0; }
+        .unit-item a { display: flex; align-items: center; padding: 12px 20px 12px 45px; text-decoration: none; color: var(--color-primary-dark); border-top: 1px solid #eee; }
+        .unit-item a::before { content: '📄'; font-family: sans-serif; margin-right: 12px; font-size: 1.2rem; }
+        .unit-item a:hover { background-color: #f5f0fa; }
         .mcq-system{width:100%;max-width:700px;margin:30px auto;}
         .mcq-question,.mcq-answer,.mcq-explanation{background:var(--color-surface);border:1.5px solid var(--color-text,#222);border-radius:16px;padding:25px;margin-bottom:15px;text-align:center;font-size:1.1rem;font-weight:500;}
         .mcq-answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
@@ -65,7 +79,6 @@
         .mcq-explanation.visible{display:block;}
 
         @media (max-width: 768px) {
-            .unit-title { font-size: 2rem; }
             .lesson-layout { flex-direction: column; }
             .lesson-sidebar { width: 100%; }
             .lesson-sidebar-nav {
@@ -78,14 +91,13 @@
                 flex-basis: 100%;
                 margin-bottom: 10px;
             }
-            .lesson-sidebar-nav li:first-child .back-link {
+            .lesson-sidebar-nav .back-link {
                 display: block;
                 text-align: center;
                 padding: 12px 10px;
                 border: 1px solid #ddd;
                 border-radius: 5px;
                 background-color: #f8f9fa;
-                margin-bottom: 0;
             }
             .lesson-sidebar-nav li:not(:first-child) {
                 flex-grow: 1;
@@ -104,17 +116,29 @@
         }
     </style>
 </head>
-<body data-current-page="course-unit">
+<body data-current-page="lesson-single">
     <header class="site-header" id="header"></header>
     <main>
         <section class="section">
             <div class="container page-specific-content">
+                <div class="page-header-container">
+                    <h1 id="subject-title-main" style="font-size: 1.8rem; font-weight: 900; margin: 0;"></h1>
+                </div>
                 <div class="lesson-layout">
                     <aside class="lesson-sidebar">
-                        <ul id="lesson-sidebar-nav" class="lesson-sidebar-nav">
+                        <ul class="lesson-sidebar-nav">
+                            <li><a class="back-link" href="lessons.html"><span class="lang-switch" data-en="← Back to all lessons" data-es="← Volver a todas las lecciones"></span></a></li>
+                            <li><a href="#" class="lesson-nav-link active lang-switch" data-panel="home" data-en="Home" data-es="Inicio"></a></li>
+                            <li><a href="#" class="lesson-nav-link lang-switch" data-panel="modules" data-en="Modules" data-es="Módulos"></a></li>
+                            <li><a href="#" class="lesson-nav-link lang-switch" data-panel="discussions" data-en="Discussions" data-es="Discusiones"></a></li>
+                            <li><a href="#" class="lesson-nav-link lang-switch" data-panel="resources" data-en="More Resources" data-es="Más Recursos"></a></li>
                         </ul>
                     </aside>
-                    <div id="unit-content-wrapper" class="lesson-main-content">
+                    <div class="lesson-main-content">
+                        <div id="home-panel" class="lesson-panel active"></div>
+                        <div id="modules-panel" class="lesson-panel"></div>
+                        <div id="discussions-panel" class="lesson-panel"><div id="disqus_thread"></div></div>
+                        <div id="resources-panel" class="lesson-panel"></div>
                     </div>
                 </div>
             </div>
@@ -125,15 +149,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-        const firebaseConfig = {
-            apiKey: "AIzaSyD0qVihpuLI0cF0PZ32o8tFBLfTgjlqB6A",
-            authDomain: "literary-speaking.firebaseapp.com",
-            projectId: "literary-speaking",
-            storageBucket: "literary-speaking.appspot.com",
-            messagingSenderId: "699059463612",
-            appId: "1:699059463612:web:ecb2e784d627c6b93937b9",
-            measurementId: "G-0L1V3XXGGR"
-        };
+        const firebaseConfig = { apiKey: "AIzaSyD0qVihpuLI0cF0PZ32o8tFBLfTgjlqB6A", authDomain: "literary-speaking.firebaseapp.com", projectId: "literary-speaking", storageBucket: "literary-speaking.appspot.com", messagingSenderId: "699059463612", appId: "1:699059463612:web:ecb2e784d627c6b93937b9", measurementId: "G-0L1V3XXGGR" };
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
@@ -180,10 +196,119 @@
             return contentHTML;
         };
 
-        const finalizePageSetup = () => {
+        const populateHome = (subject, lang) => {
+            const container = document.getElementById('home-panel');
+            container.innerHTML = `<div class="content-body">${renderContentBlocks(subject.contentBlocks, lang)}</div>`;
+        };
+
+        const populateModules = (subject, lang) => {
+            const container = document.getElementById('modules-panel');
+            container.innerHTML = '';
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'page-header-container';
+            headerDiv.style.cssText = "border-bottom: none; padding-bottom: 0; margin-bottom: 20px; align-items: flex-start;";
+            headerDiv.innerHTML = `
+                <h2 style="font-weight: 900;" class="lang-switch" data-en="Modules" data-es="Módulos"></h2>
+                <div class="page-header-actions">
+                    <button id="collapse-all-btn"></button>
+                </div>
+            `;
+            container.appendChild(headerDiv);
+            const collapseBtn = headerDiv.querySelector('#collapse-all-btn');
+            const actionsContainer = headerDiv.querySelector('.page-header-actions');
+            if (!subject.courses || subject.courses.length === 0) {
+                container.innerHTML += `<p><span class="lang-switch" data-en="No modules are available for this subject yet." data-es="Aún no hay módulos disponibles para esta materia."></span></p>`;
+                actionsContainer.style.display = 'none';
+                return;
+            }
+            actionsContainer.style.display = 'block';
+            const courseListContainer = document.createElement('div');
+            (subject.courses || []).forEach((course, courseIndex) => {
+                const courseItem = document.createElement('div');
+                courseItem.className = 'course-item';
+                let contentHTML = '';
+                (course.modules || []).forEach((module, moduleIndex) => {
+                    contentHTML += `<div class="module-title">${module[`title_${lang}`]}</div>`;
+                    let unitsHTML = (module.units || []).map((unit, unitIndex) =>
+                        `<li class="unit-item"><a href="course-unit.html?subjectId=${subject.id}&courseIndex=${courseIndex}&moduleIndex=${moduleIndex}&unitIndex=${unitIndex}&fromPanel=modules">${unit[`title_${lang}`]}</a></li>`
+                    ).join('');
+                    contentHTML += `<ul class="unit-list">${unitsHTML}</ul>`;
+                });
+                courseItem.innerHTML = `<div class="course-header">${course[`title_${lang}`]}</div><div class="course-content-wrapper"><div class="course-content">${contentHTML}</div></div>`;
+                courseListContainer.appendChild(courseItem);
+            });
+            container.appendChild(courseListContainer);
+
+            const allCourseHeaders = container.querySelectorAll('.course-header');
+            let areAllCollapsed;
+
+            const updateButtonText = () => {
+                const currentLang = localStorage.getItem('language') || 'en';
+                collapseBtn.textContent = areAllCollapsed ? (currentLang === 'es' ? 'Expandir Todo' : 'Expand All') : (currentLang === 'es' ? 'Contraer Todo' : 'Collapse All');
+            };
+
+            const checkCollapseState = () => {
+                const collapsedCount = container.querySelectorAll('.course-header.collapsed').length;
+                areAllCollapsed = collapsedCount === allCourseHeaders.length;
+                updateButtonText();
+            };
+
+            allCourseHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    header.classList.toggle('collapsed');
+                    checkCollapseState();
+                });
+            });
+
+            collapseBtn.addEventListener('click', () => {
+                const shouldCollapse = !areAllCollapsed;
+                allCourseHeaders.forEach(header => {
+                    header.classList.toggle('collapsed', shouldCollapse);
+                });
+                checkCollapseState();
+            });
+
+            checkCollapseState(); 
+        };
+
+        const populateResources = (subject, lang) => {
+            const container = document.getElementById('resources-panel');
+            container.innerHTML = `<div class="content-body">${renderContentBlocks(subject.resourcesBlocks, lang)}</div>`;
+        };
+
+        const initDisqus = (subjectId) => {
+            const container = document.getElementById('discussions-panel');
+            container.innerHTML = '<div id="disqus_thread"></div>';
+            if (window.DISQUS) {
+                window.DISQUS.reset({ reload: true, config: function () { this.page.url = window.location.href; this.page.identifier = subjectId; } });
+            } else {
+                window.disqus_config = function () { this.page.url = window.location.href; this.page.identifier = subjectId; };
+                const d = document, s = d.createElement('script');
+                s.src = 'https://literary-speaking.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            }
+        };
+
+        const switchPanel = (panelId, subjectId) => {
+            document.querySelectorAll('.lesson-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(`${panelId}-panel`).classList.add('active');
+            document.querySelectorAll('.lesson-nav-link').forEach(l => l.classList.toggle('active', l.dataset.panel === panelId));
+            if (panelId === 'discussions') initDisqus(subjectId);
+        };
+        
+        const finalizePageSetup = (subjectId) => {
             if (window.MathJax) {
                 window.MathJax.typesetPromise();
             }
+
+            document.querySelectorAll('.lesson-nav-link').forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    switchPanel(e.target.dataset.panel, subjectId);
+                });
+            });
+
             document.body.addEventListener('click', e => {
                 const selectedAnswer = e.target.closest('.mcq-answer');
                 if (!selectedAnswer) return;
@@ -204,73 +329,37 @@
             }, { once: true });
         };
 
-        const renderUnit = (subject, course, module, unit, lang, fromPanel) => {
-            const contentWrapper = document.getElementById('unit-content-wrapper');
-            const sidebarNav = document.getElementById('lesson-sidebar-nav');
-            if (!contentWrapper || !sidebarNav || !unit) return;
-            document.title = `${unit[`title_${lang}`]} | Literary Speaking`;
-            sidebarNav.innerHTML = `
-                <li><a class="back-link" href="lesson-single.html?id=${subject.id}&panel=${fromPanel}"><span class="lang-switch" data-en="← Back to Modules" data-es="← Volver a Módulos"></span></a></li>
-                <li><a href="lesson-single.html?id=${subject.id}&panel=home" class="lesson-nav-link lang-switch" data-en="Home" data-es="Inicio"></a></li>
-                <li><a href="lesson-single.html?id=${subject.id}&panel=modules" class="lesson-nav-link active lang-switch" data-en="Modules" data-es="Módulos"></a></li>
-                <li><a href="lesson-single.html?id=${subject.id}&panel=discussions" class="lesson-nav-link lang-switch" data-en="Discussions" data-es="Discusiones"></a></li>
-                <li><a href="lesson-single.html?id=${subject.id}&panel=resources" class="lesson-nav-link lang-switch" data-en="More Resources" data-es="Más Recursos"></a></li>
-            `;
-            
-            const contentBlocksHTML = renderContentBlocks(unit.contentBlocks, lang);
-            contentWrapper.innerHTML = `
-                <div class="breadcrumbs">
-                    <a href="lesson-single.html?id=${subject.id}&panel=modules">${subject[`title_${lang}`]}</a>
-                    <span>></span>
-                    <span>${course[`title_${lang}`]}</span>
-                    <span>></span>
-                    <span>${module[`title_${lang}`]}</span>
-                </div>
-                <div class="unit-header">
-                    <h1 class="unit-title">${unit[`title_${lang}`]}</h1>
-                </div>
-                <div class="unit-body">${contentBlocksHTML}</div>
-            `;
-            
-            siteRouter.applyLanguage(lang);
-            finalizePageSetup();
-        };
-
         document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const subjectId = urlParams.get('subjectId');
-            const courseIndex = parseInt(urlParams.get('courseIndex'), 10);
-            const moduleIndex = parseInt(urlParams.get('moduleIndex'), 10);
-            const unitIndex = parseInt(urlParams.get('unitIndex'), 10);
-            const fromPanel = urlParams.get('fromPanel') || 'modules';
+            const subjectId = urlParams.get('id');
+            const panelToShow = urlParams.get('panel') || 'home';
 
-            if (!subjectId || isNaN(courseIndex) || isNaN(moduleIndex) || isNaN(unitIndex)) {
-                return siteRouter.navigateTo('lessons');
+            if (!subjectId) {
+                if (window.siteRouter) window.siteRouter.navigateTo('lessons');
+                return;
             }
-
             const docRef = doc(db, "lessons", subjectId);
             const docSnap = await getDoc(docRef);
-
             if (!docSnap.exists()) {
-                return siteRouter.navigateTo('lessons');
+                if (window.siteRouter) window.siteRouter.navigateTo('lessons');
+                return;
             }
-
             const subject = { id: docSnap.id, ...docSnap.data() };
-            const course = subject.courses?.[courseIndex];
-            const module = course?.modules?.[moduleIndex];
-            const unit = module?.units?.[unitIndex];
+            
+            const updateUIForLanguage = (lang) => {
+                document.title = `${subject[`title_${lang}`]} | Literary Speaking`;
+                document.getElementById('subject-title-main').textContent = subject[`title_${lang}`];
+                populateHome(subject, lang);
+                populateModules(subject, lang);
+                populateResources(subject, lang);
+                if (window.siteRouter) siteRouter.applyLanguage(lang);
+                finalizePageSetup(subjectId);
+            };
 
-            if (!unit) {
-                console.error("Could not find the specified unit with the provided indices.");
-                return siteRouter.navigateTo('lessons');
-            }
-
-            const initialLang = localStorage.getItem('language') || 'en';
-            renderUnit(subject, course, module, unit, initialLang, fromPanel);
-
-            document.addEventListener('languageChanged', (e) => {
-                renderUnit(subject, course, module, unit, e.detail.lang, fromPanel);
-            });
+            updateUIForLanguage(localStorage.getItem('language') || 'en');
+            switchPanel(panelToShow, subjectId);
+            
+            document.addEventListener('languageChanged', e => updateUIForLanguage(e.detail.lang));
         });
     </script>
 </body>
