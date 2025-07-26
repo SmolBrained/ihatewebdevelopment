@@ -77,6 +77,31 @@
         .mcq-system.answered .mcq-answer.incorrect:hover{background:var(--color-danger,#dc3545);border-color:var(--color-danger,#dc3545);}
         .mcq-explanation{display:none;margin-top:15px;text-align:left;border-color:var(--color-border,#dee2e6);}
         .mcq-explanation.visible{display:block;}
+
+        @media (max-width: 768px) {
+            .lesson-layout { flex-direction: column; }
+            .lesson-sidebar { width: 100%; }
+            .lesson-sidebar-nav {
+                position: static;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 10px;
+                margin-bottom: 30px;
+            }
+            .lesson-sidebar-nav .back-link { display: none; }
+            .lesson-sidebar-nav a.lesson-nav-link {
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                padding: 10px;
+                text-align: center;
+            }
+            .lesson-sidebar-nav a.lesson-nav-link.active {
+                border-bottom-color: #333;
+                border-left-color: transparent;
+            }
+        }
     </style>
 </head>
 <body data-current-page="lesson-single">
