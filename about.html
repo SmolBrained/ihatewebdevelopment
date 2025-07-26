@@ -3,99 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Literary Speaking</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/WPy5YDY.png">
+    <title>About Us | Literary Speaking</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
-        :root{--font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--color-text:#222;--color-text-light:#555;--transition-speed:0.4s;--color-blue-light:#c3e5ff;--color-blue-dark:#0a1763;--color-beige:#fff0db;--color-beige-dark:#8b4102;--color-purple:#f2e7ff;--color-purple-dark:#4b0082;--color-green:#d1ffe6;--color-green-dark:#186d5e;--color-pink:#ffebf2;--color-pink-dark:#c71585;--color-yellow:#fffacd;--color-yellow-dark:#8B4513;--color-red:#ffdddd;--color-red-dark:#b22222;--color-teal:#e0ffff;--color-teal-dark:#008080;--color-footer-bg:#f7f7ff;--color-footer-text:#4a0e7e}
-        *,*:before,*:after{box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{margin:0;font-family:var(--font-family);background-color:#fff;color:var(--color-text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-        body.menu-open{overflow:hidden}
-        .container{max-width:1100px;margin:0 auto;padding:0 30px}
-        .section{padding:80px 0;text-align:center;background-color:var(--section-bg,white);color:var(--section-text,var(--color-text))}
-        .section-title{font-size:2.5rem;font-weight:900;margin:0 0 10px;line-height:1.2}
-        .section-subtitle{font-size:1.1rem;color:var(--color-text-light);max-width:700px;margin:0 auto 50px}
-        .site-header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:background-color var(--transition-speed) ease,border-color var(--transition-speed) ease,box-shadow var(--transition-speed) ease}
-        .site-header .container{display:flex;justify-content:space-between;align-items:center;height:70px}
-        .site-header .logo{cursor:pointer}
-        .site-header .logo img{height:40px;width:auto;transition:filter var(--transition-speed) ease}
-        .logo .logo-scrolled{display:none}
-        .site-header.scrolled .logo .logo-unscrolled{display:none}
-        .site-header.scrolled .logo .logo-scrolled{display:block}
-        .site-header:not(.scrolled) .logo .logo-unscrolled{height:41px;transform:translate(0px,2px)}
-        .desktop-nav{display:flex;align-items:center}
-        .desktop-nav a{margin:0 10px;padding:5px 0;text-decoration:none;font-weight:500;font-size:.85rem;transition:color var(--transition-speed) ease, border-color var(--transition-speed) ease; cursor: pointer;}
-        .desktop-nav a.active-page-link{border:2px solid;padding:5px 15px;border-radius:5px}
-        .site-header:not(.scrolled) .desktop-nav a.active-page-link{border-color:#fff}
-        .site-header:not(.scrolled) .desktop-nav a.active-page-link:hover{color:#ddd;border-color:#ddd}
-        .site-header.scrolled .desktop-nav a.active-page-link{border-color:var(--color-text)}
-        .site-header.scrolled .desktop-nav a.active-page-link:hover{color:var(--color-text);border-color:var(--color-text)}
-        .lang-switcher{display:flex;border:1px solid;border-radius:100px;transition:border-color var(--transition-speed) ease;cursor:pointer;-webkit-tap-highlight-color:transparent}
-        .lang-switcher button{background:0 0;border:0;padding:5px 10px;font-family:var(--font-family);font-weight:700;font-size:.75rem;cursor:pointer;border-radius:100px;transition:all var(--transition-speed) ease;pointer-events:none}
-        .site-header:not(.scrolled){background-color:transparent;border-bottom-color:transparent}
-        .site-header:not(.scrolled) .desktop-nav a{color:#fff;text-shadow:1px 1px 2px rgba(0,0,0,.2)}
-        .site-header:not(.scrolled) .desktop-nav a:hover{color:#ddd}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher{border-color:rgba(255,255,255,.5)}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher button{color:#fff}
-        .site-header:not(.scrolled) .desktop-nav .lang-switcher button.active{background-color:#fff;color:var(--color-text)}
-        .site-header.scrolled{background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0f0f0}
-        .site-header.scrolled .desktop-nav a{color:var(--color-text-light);text-shadow:none}
-        .site-header.scrolled .desktop-nav a:hover{color:var(--color-text)}
-        .site-header.scrolled .desktop-nav .lang-switcher{border-color:rgba(0,0,0,.1)}
-        .site-header.scrolled .desktop-nav .lang-switcher button{color:var(--color-text-light)}
-        .site-header.scrolled .desktop-nav .lang-switcher button.active{background-color:var(--color-text);color:#fff}
-        .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:none}
         .hero-banner{height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;position:relative;padding:0 20px;background-image:url(https://i.imgur.com/wC6Y04Q.jpeg);background-attachment:fixed;background-position:center;background-repeat:no-repeat;background-size:cover}
         .hero-banner .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:2}
         .hero-banner .content{position:relative;z-index:3}
         .hero-banner h1{font-size:3.8rem;font-weight:900;margin:0;line-height:1.2}
-        .about-info{max-width:800px;margin:0 auto;text-align:left;line-height:1.8}
-        .about-info h3{font-size:1.5rem;font-weight:700;margin-top:40px;margin-bottom:15px;text-align:center}
-        .about-info ul{list-style:disc;padding-left:25px;margin-bottom:20px}
-        .about-info ul li{margin-bottom:10px}
-        .about-info a{color:var(--color-purple-dark);font-weight:700;text-decoration:underline}
+        .about-info{max-width:800px;margin:0 auto;text-align:center;line-height:1.8}
+        .about-info h3{font-size:1.8rem;font-weight:700;margin-bottom:20px;}
         .team-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(125px, 1fr));gap:30px;justify-content:center;margin-top:50px}
         .team-member{display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer}
         .team-member .portrait{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;transition:transform .3s ease, box-shadow .3s ease;margin-bottom:15px}
         .team-member:hover .portrait{transform:scale(1.05);box-shadow:0 10px 20px rgba(0,0,0,0.1)}
         .team-member-name{font-size:1.1rem;font-weight:700;margin:0;width:100%}
-        .site-footer{background-color:var(--color-footer-bg);padding:60px 0;text-align:center}
-        .site-footer img{height:80px;margin:0 auto 20px}
-        .site-footer p{margin:10px 0;color:var(--color-footer-text)}
-        .site-footer nav{margin-top:10px}
-        .site-footer nav a{margin:0 5px;color:var(--color-footer-text);text-decoration:underline;font-weight:500;cursor:pointer}
-        .site-footer nav a:not(:last-child):after{content:'|';text-decoration:none;margin-left:10px;color:var(--color-footer-text);font-weight:500}
-        .site-footer nav a:hover{color:var(--color-text)}
-        .scroll-animated{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
-        .scroll-animated.is-visible{opacity:1;transform:translateY(0)}
-        @media (max-width:1150px){.desktop-nav{display:none}
-        .lang-switcher-mobile-wrapper,.menu-toggle,.mobile-nav{display:flex}
-        .site-header .container{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
-        .lang-switcher-mobile-wrapper{justify-self:start}
-        .lang-switcher-mobile-wrapper .lang-switcher{margin-left:0}
-        .site-header .logo{justify-self:center}
-        .mobile-nav{position:fixed;top:0;left:0;width:100%;height:100vh;background-color:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform var(--transition-speed) ease-in-out;padding-top:70px}
-        body.menu-open .mobile-nav{transform:translateY(0)}
-        .mobile-nav a{margin:15px 0;font-size:1.5rem;color:var(--color-text);text-shadow:none;text-decoration:none; cursor: pointer;}
-        .mobile-nav a.active-page-link{background-color:var(--color-purple);border-radius:10px;padding-left:15px;padding-right:15px}
-        .mobile-nav a:hover{color:var(--color-purple-dark)}
-        .menu-toggle{flex-direction:column;justify-content:space-between;width:30px;height:21px;background:0 0;border:0;cursor:pointer;padding:0;z-index:1001;justify-self:end}
-        .menu-toggle span{width:30px;height:3px;border-radius:10px;transition:all var(--transition-speed) ease-in-out}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher{border-color:rgba(255,255,255,.5)}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button{color:#fff}
-        .site-header:not(.scrolled):not(.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button.active{background-color:#fff;color:var(--color-text)}
-        .site-header:not(.scrolled):not(.menu-active-state) .menu-toggle span{background-color:#fff}
-        .site-header.scrolled,.site-header.menu-active-state{background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #f0f0f0}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher{border-color:rgba(0,0,0,.1)}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button{color:var(--color-text-light)}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .lang-switcher-mobile-wrapper .lang-switcher button.active{background-color:var(--color-text);color:#fff}
-        :is(.site-header.scrolled,.site-header.menu-active-state) .menu-toggle span{background-color:var(--color-text)}
-        .menu-toggle.active span:nth-child(1){transform:translateY(9px) rotate(45deg)}
-        .menu-toggle.active span:nth-child(2){opacity:0;transform:translateX(-20px)}
-        .menu-toggle.active span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}}
         @media (max-width:768px){
-        .section{padding:60px 0}
-        .section-title{font-size:2rem}
         .hero-banner{background-attachment:scroll}
         .hero-banner h1{font-size:2.2rem}
         .team-grid{gap:20px}
@@ -113,20 +36,19 @@
             </div>
         </section>
 
-        <section class="section" style="--section-bg: var(--color-blue-light);">
+        <section class="section" style="background-color: #E6E6FA;">
             <div class="container">
                 <div class="about-info scroll-animated">
-                    <h3 class="lang-switch" data-en="Did you know?" data-es="¿Sabías que?"></h3>
-                    <ul class="lang-switch" data-en='<li>English Language Learners (ELL) are less likely to enroll in Advanced Placement (AP) courses (<a href="https://www.urban.org/sites/default/files/2022-03/disparities-in-advanced-placement-course-enrollment-and-test-taking-national-and-state-level-perspectives.pdf" target="_blank">Urban Institute</a>).</li><li>ELL students are 40-50% less likely to take Algebra 1 in middle school, limiting advanced math options in high school (<a href="https://nces.ed.gov/nationsreportcard/" target="_blank">National Center for Education Evaluation</a>).</li>' data-es='<li>Los estudiantes aprendices de inglés (ELL) tienen menos probabilidades de inscribirse en cursos de Colocación Avanzada (AP) (<a href="https://www.urban.org/research/publication/missed-opportunities-advanced-course-taking-and-ell-students" target="_blank">Instituto Urbano</a>).</li><li>Los estudiantes ELL tienen entre un 40 y un 50% menos de probabilidades de tomar Álgebra 1 en la escuela intermedia, lo que limita las opciones de matemáticas avanzadas en la escuela secundaria (<a href="https://nces.ed.gov/nationsreportcard/" target="_blank">Centro Nacional de Evaluación Educativa</a>).</li>'></ul>
-                    <p class="lang-switch" data-en="Difference in language shouldn't be a barrier to success. This is why Literary Speaking aims to close this gap. A student-led initiative, Literary Speaking offers free tutoring to middle and high school students taught by student volunteers. We've helped with middle school and high school level English, Math, Science, and preparation for state and college entrance exams. So far, we've helped over 50 students with the dedicated work of our tutors." data-es="La diferencia en el idioma no debería ser una barrera para el éxito. Por eso, Literary Speaking tiene como objetivo cerrar esta brecha. Como una iniciativa dirigida por estudiantes, Literary Speaking ofrece tutoría gratuita a estudiantes de secundaria y preparatoria impartida por estudiantes voluntarios. Hemos ayudado con inglés, matemáticas y ciencias de nivel de secundaria y preparatoria, y con la preparación para exámenes estatales y de ingreso a la universidad. Hasta ahora, hemos ayudado a más de 50 estudiantes con el trabajo dedicado de nuestros tutores."></p>
+                    <h3 class="lang-switch" data-en="Our Mission" data-es="Nuestra Misión"></h3>
+                    <p class="lang-switch" data-en="Difference in language shouldn't be a barrier to success. This is why Literary Speaking aims to close this gap. A student-led initiative, Literary Speaking offers free tutoring to middle and high school students taught by student volunteers. We've helped with middle school and high school level English, Math, Science, and preparation for state and college entrance exams. So far, we've helped over 80 students with the dedicated work of our tutors." data-es="La diferencia en el idioma no debería ser una barrera para el éxito. Por eso, Literary Speaking tiene como objetivo cerrar esta brecha. Como una iniciativa dirigida por estudiantes, Literary Speaking ofrece tutoría gratuita a estudiantes de secundaria y preparatoria impartida por estudiantes voluntarios. Hemos ayudado con inglés, matemáticas y ciencias de nivel de secundaria y preparatoria, y con la preparación para exámenes estatales y de ingreso a la universidad. Hasta ahora, hemos ayudado a más de 80 estudiantes con el trabajo dedicado de nuestros tutores."></p>
                 </div>
             </div>
         </section>
 
         <section class="section">
             <div class="container">
-                <h2 class="section-title lang-switch" data-en="Meet Our Tutors" data-es="Conoce a Nuestros Tutores"></h2>
-                <p class="section-subtitle lang-switch" data-en="Click on each picture for each tutor's testimonial." data-es="Haz clic en cada foto para ver el testimonio de cada tutor."></p>
+                <h2 class="section-title lang-switch" data-en="Meet Our Members" data-es="Conoce a Nuestros Integrantes"></h2>
+                <p class="section-subtitle lang-switch" data-en="Click on each picture for each member's testimonial." data-es="Haz clic en cada foto para ver el testimonio de cada integrante."></p>
                 <div class="team-grid" id="tutor-grid">
                 </div>
             </div>
@@ -136,90 +58,28 @@
     <footer class="site-footer"></footer>
 
     <script src="router.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const headerContainer = document.getElementById('header');
-            const footerContainer = document.querySelector('.site-footer');
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-            const headerHTML = `
-                <div class="container">
-                    <div class="lang-switcher-mobile-wrapper"><div class="lang-switcher"><button id="lang-en-btn-mobile">EN</button><button id="lang-es-btn-mobile">ES</button></div></div>
-                    <a data-page-id="home" class="logo nav-link"><img src="https://i.imgur.com/vyE0G43.png" alt="Literary Speaking Logo" class="logo-unscrolled"><img src="https://i.imgur.com/UnpZvgZ.png" alt="Literary Speaking Logo" class="logo-scrolled"></a>
-                    <nav class="desktop-nav">
-                        <a data-page-id="support" class="lang-switch nav-link" data-en="Support Us" data-es="Apóyanos"></a>
-                        <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Get Involved" data-es="Involúcrate"></a>
-                        <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-                        <a data-page-id="the-team" class="lang-switch nav-link" data-en="The Team" data-es="El Equipo"></a>
-                        <a data-page-id="news" class="lang-switch nav-link" data-en="News" data-es="Noticias"></a>
-                        <a data-page-id="articles" class="lang-switch nav-link" data-en="Articles" data-es="Artículos"></a>
-                        <a data-page-id="lessons" class="lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
-                        <a data-page-id="report-time" class="lang-switch nav-link" data-en="Report Time" data-es="Reportar Horas"></a>
-                        <div class="lang-switcher"><button id="lang-en-btn">EN</button><button id="lang-es-btn">ES</button></div>
-                    </nav>
-                    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-                </div>
-                <nav class="mobile-nav">
-                    <a data-page-id="support" class="lang-switch nav-link" data-en="Support Us" data-es="Apóyanos"></a>
-                    <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Get Involved" data-es="Involúcrate"></a>
-                    <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-                    <a data-page-id="the-team" class="lang-switch nav-link" data-en="The Team" data-es="El Equipo"></a>
-                    <a data-page-id="news" class="lang-switch nav-link" data-en="News" data-es="Noticias"></a>
-                    <a data-page-id="articles" class="lang-switch nav-link" data-en="Articles" data-es="Artículos"></a>
-                    <a data-page-id="lessons" class="lang-switch nav-link" data-en="Lessons" data-es="Lecciones"></a>
-                    <a data-page-id="report-time" class="lang-switch nav-link" data-en="Report Time" data-es="Reportar Horas"></a>
-                </nav>
-            `;
-            headerContainer.innerHTML = headerHTML;
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0qVihpuLI0cF0PZ32o8tFBLfTgjlqB6A",
+            authDomain: "literary-speaking.firebaseapp.com",
+            projectId: "literary-speaking",
+            storageBucket: "literary-speaking.appspot.com",
+            messagingSenderId: "699059463612",
+            appId: "1:699059463612:web:ecb2e784d627c6b93937b9",
+            measurementId: "G-0L1V3XXGGR"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-            const footerHTML = `
-                <div class="container">
-                    <img src="https://i.imgur.com/vyE0G43.png" alt="Literary Speaking Footer Logo" class="scroll-animated">
-                    <p class="lang-switch scroll-animated" data-en="Copyright © 2025 Literary Speaking Tutoring" data-es="Copyright © 2025 Tutoría de Literary Speaking"></p>
-                    <nav class="scroll-animated">
-                        <a data-page-id="about" class="lang-switch nav-link" data-en="About" data-es="Sobre Nosotros"></a>
-                        <a data-page-id="receive-tutoring" class="lang-switch nav-link" data-en="Receive Tutoring" data-es="Recibir Tutoría"></a>
-                        <a data-page-id="get-involved" class="lang-switch nav-link" data-en="Become a Tutor" data-es="Conviértete en Tutor"></a>
-                        <a data-page-id="contact" class="lang-switch nav-link" data-en="Contact" data-es="Contacto"></a>
-                    </nav>
-                </div>
-            `;
-            footerContainer.innerHTML = footerHTML;
-
-            const header = document.getElementById('header');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const body = document.body;
-            const langSwitches = document.querySelectorAll('.lang-switch');
-            const langEnBtn = document.getElementById('lang-en-btn');
-            const langEsBtn = document.getElementById('lang-es-btn');
-            const langEnBtnMobile = document.getElementById('lang-en-btn-mobile');
-            const langEsBtnMobile = document.getElementById('lang-es-btn-mobile');
-
-            const handleScroll = () => header.classList.toggle('scrolled', window.pageYOffset > 50);
-            window.addEventListener('scroll', handleScroll);
-            handleScroll();
-
-            const closeMenu = () => {
-                body.classList.remove('menu-open');
-                menuToggle.classList.remove('active');
-                header.classList.remove('menu-active-state');
-            };
-
-            menuToggle.addEventListener('click', () => {
-                const isOpen = body.classList.toggle('menu-open');
-                menuToggle.classList.toggle('active', isOpen);
-                header.classList.toggle('menu-active-state', isOpen);
-            });
-
-            document.querySelectorAll('.mobile-nav a, .site-footer nav a, .nav-link').forEach(link => {
-                if (link.dataset.pageId) {
-                    link.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        const pageId = link.dataset.pageId;
-                        const memberId = link.dataset.memberId;
-                        siteRouter.navigateTo(pageId, memberId);
-                        closeMenu();
-                    });
-                }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const membersQuery = query(collection(db, "members"), orderBy("order", "asc"));
+            const querySnapshot = await getDocs(membersQuery);
+            const membersMap = {};
+            querySnapshot.forEach(doc => {
+                membersMap[doc.id] = doc.data();
             });
 
             const observer = new IntersectionObserver((entries) => {
@@ -231,43 +91,9 @@
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.scroll-animated').forEach(el => {
-                if ('IntersectionObserver' in window) {
-                    observer.observe(el);
-                } else {
-                    el.classList.add('is-visible');
-                }
-            });
-
-            const setLanguage = (lang) => {
-                langSwitches.forEach(el => {
-                    if (el.dataset[lang]) {
-                        if (el.tagName === 'UL') {
-                            el.innerHTML = el.dataset[lang];
-                        } else {
-                            el.textContent = el.dataset[lang];
-                        }
-                    }
-                });
-                localStorage.setItem('language', lang);
-                const isEn = lang === 'en';
-                langEnBtn?.classList.toggle('active', isEn);
-                langEsBtn?.classList.toggle('active', !isEn);
-                langEnBtnMobile?.classList.toggle('active', isEn);
-                langEsBtnMobile?.classList.toggle('active', !isEn);
-                document.documentElement.lang = lang;
-            };
-
-            const toggleLanguage = () => {
-                const currentLang = localStorage.getItem('language') || 'en';
-                setLanguage(currentLang === 'en' ? 'es' : 'en');
-            };
-
-            document.querySelectorAll('.desktop-nav .lang-switcher, .lang-switcher-mobile-wrapper .lang-switcher').forEach(el => el.addEventListener('click', toggleLanguage));
-
             const populateTutorGrid = () => {
                 const tutorGrid = document.getElementById('tutor-grid');
-                if (!tutorGrid || typeof siteRouter === 'undefined') return;
+                if (!tutorGrid) return;
                 
                 tutorGrid.innerHTML = '';
 
@@ -280,7 +106,7 @@
                 ];
 
                 memberIdsInOrder.forEach(memberId => {
-                    const member = siteRouter.members[memberId];
+                    const member = membersMap[memberId];
                     if (member) {
                         const memberEl = document.createElement('div');
                         memberEl.className = 'team-member scroll-animated';
@@ -300,23 +126,15 @@
                 });
 
                 document.querySelectorAll('#tutor-grid .scroll-animated').forEach(el => {
-                    if ('IntersectionObserver' in window) {
-                        observer.observe(el);
-                    } else {
-                        el.classList.add('is-visible');
-                    }
+                    observer.observe(el);
                 });
             };
-
-            const currentPage = document.body.dataset.currentPage;
-            if (currentPage) {
-                document.querySelectorAll(`.nav-link[data-page-id="${currentPage}"]`).forEach(link => {
-                    link.classList.add('active-page-link');
-                });
-            }
             
             populateTutorGrid();
-            setLanguage(localStorage.getItem('language') || 'en');
+            
+            document.querySelectorAll('.scroll-animated:not(.team-member)').forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
