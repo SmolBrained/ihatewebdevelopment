@@ -15,7 +15,7 @@
         .news-layout { display: grid; grid-template-columns: 2fr 1.2fr; gap: 40px; }
         .main-column, .sidebar-column { text-align: left; }
         .main-column { border-top: 1px solid #ddd; }
-        .news-item { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding: 30px 0; border-bottom: 1px solid #ddd; text-decoration: none; color: inherit; }
+        .news-item { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding: 30px 0; border-bottom: 1px solid #ddd; text-decoration: none; color: inherit; cursor: pointer;}
         .news-item:first-child { border-top: none; padding: 20px 0; }
         .news-item:last-child { padding-bottom: 0; }
         .news-item-title { font-size: 1.8rem; font-weight: 900; margin: 0 0 10px; line-height: 1.2; transition: color 0.3s ease; }
@@ -25,7 +25,7 @@
         .news-item-image { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px; }
 
         .sidebar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .sidebar-item { border: 1px solid #eee; padding: 15px; text-decoration: none; color: inherit; border-radius: 8px; transition: box-shadow 0.3s ease; }
+        .sidebar-item { border: 1px solid #eee; padding: 15px; text-decoration: none; color: inherit; border-radius: 8px; transition: box-shadow 0.3s ease; cursor: pointer;}
         .sidebar-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.07); }
         .sidebar-item-author { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); margin: 0 0 10px; }
         .sidebar-item-title { font-size: 1.1rem; font-weight: 900; margin: 0 0 10px; line-height: 1.3; }
@@ -128,65 +128,49 @@
             const populateColumns = (lang) => {
                 if (!mainColumn || !sidebarGrid) return;
 
-                const mainFragment = document.createDocumentFragment();
-                const sidebarFragment = document.createDocumentFragment();
-
                 mainColumn.innerHTML = '';
                 sidebarGrid.innerHTML = '';
 
                 if (allNewsItems.length === 0) {
-                    const noNewsEl = document.createElement('p');
-                    noNewsEl.className = 'lang-switch';
-                    noNewsEl.dataset.en = "No news items yet. Check back soon!";
-                    noNewsEl.dataset.es = "Aún no hay noticias. ¡Vuelve pronto!";
-                    noNewsEl.textContent = lang === 'es' ? noNewsEl.dataset.es : noNewsEl.dataset.en;
-                    mainFragment.appendChild(noNewsEl);
-                } else {
-                    featuredItems.forEach(item => {
-                        const link = document.createElement('a');
-                        link.className = 'news-item';
-                        link.href = `news-single.html?id=${item.id}`;
-                        link.innerHTML = `
-                            <div class="news-item-content">
-                                <h3 class="news-item-title">${item[`title_${lang}`] || item.title_en}</h3>
-                                <p class="news-item-excerpt">${item[`excerpt_${lang}`] || item.excerpt_en}</p>
-                                <p class="news-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
-                            </div>
-                            <img src="${item.thumbnail_url || 'https://i.imgur.com/3Yj6bA1.png'}" alt="" class="news-item-image">
-                        `;
-                        mainFragment.appendChild(link);
-                    });
-
-                    sidebarItems.forEach(item => {
-                        const author = siteRouter.members[item.author_id] || { name: 'Anonymous' };
-                        const link = document.createElement('a');
-                        link.className = 'sidebar-item';
-                        link.href = `news-single.html?id=${item.id}`;
-                        link.innerHTML = `
-                            <p class="sidebar-item-author">${author.name}</p>
-                            <h4 class="sidebar-item-title">${item[`title_${lang}`] || item.title_en}</h4>
-                            <p class="sidebar-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
-                        `;
-                        sidebarFragment.appendChild(link);
-                    });
+                    mainColumn.innerHTML = `<p class="lang-switch" data-en="No news items yet. Check back soon!" data-es="Aún no hay noticias. ¡Vuelve pronto!"></p>`;
+                    siteRouter.applyLanguage(lang);
+                    return;
                 }
                 
-                mainColumn.appendChild(mainFragment);
-                sidebarGrid.appendChild(sidebarFragment);
+                featuredItems.forEach(item => {
+                    const link = document.createElement('div');
+                    link.className = 'news-item';
+                    link.innerHTML = `
+                        <div class="news-item-content">
+                            <h3 class="news-item-title">${item[`title_${lang}`] || item.title_en}</h3>
+                            <p class="news-item-excerpt">${item[`excerpt_${lang}`] || item.excerpt_en}</p>
+                            <p class="news-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
+                        </div>
+                        <img src="${item.thumbnail_url || 'https://i.imgur.com/3Yj6bA1.png'}" alt="" class="news-item-image">
+                    `;
+                    link.addEventListener('click', () => siteRouter.navigateTo('news-single', `id=${item.id}`));
+                    mainColumn.appendChild(link);
+                });
+
+                sidebarItems.forEach(item => {
+                    const author = siteRouter.members[item.author_id] || { name: 'Anonymous' };
+                    const link = document.createElement('div');
+                    link.className = 'sidebar-item';
+                    link.innerHTML = `
+                        <p class="sidebar-item-author">${author.name}</p>
+                        <h4 class="sidebar-item-title">${item[`title_${lang}`] || item.title_en}</h4>
+                        <p class="sidebar-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
+                    `;
+                    link.addEventListener('click', () => siteRouter.navigateTo('news-single', `id=${item.id}`));
+                    sidebarGrid.appendChild(link);
+                });
             };
 
             const initialLang = localStorage.getItem('language') || 'en';
             populateColumns(initialLang);
 
-            const langObserver = new MutationObserver((mutations) => {
-                for (const mutation of mutations) {
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
-                        populateColumns(document.documentElement.lang);
-                    }
-                }
-            });
-
-            langObserver.observe(document.documentElement, { attributes: true });
+            const langObserver = new MutationObserver(() => populateColumns(document.documentElement.lang));
+            langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
             const animationObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
