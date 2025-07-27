@@ -53,18 +53,22 @@
         .nf-item--large-thumb .nf-item-title { font-size: 1.3rem; }
         .nf-item--large-thumb .nf-item-excerpt { font-size: 0.95rem; }
 
-        .nf-item--grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .nf-item--grid .nf-item { padding: 0; border-bottom: none; }
-        .nf-item--grid .nf-item:nth-child(1), .nf-item--grid .nf-item:nth-child(2) { padding-bottom: 18px; border-bottom: 1px solid #ddd; }
+        .nf-layout-container { padding: 18px 0; border-bottom: 1px solid #ddd; }
+        .nf-layout-container--grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .nf-layout-container--grid .nf-item { padding: 0; border-bottom: none; }
+        .nf-layout-container--grid .nf-item:nth-child(1), .nf-layout-container--grid .nf-item:nth-child(2) { padding-bottom: 18px; border-bottom: 1px solid #ddd; }
         
-        .nf-item--side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .nf-item--side-by-side .nf-item { padding: 0; border-bottom: none; }
-        .nf-item--side-by-side .nf-item-title { font-size: 1rem; }
+        .nf-layout-container--side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .nf-layout-container--side-by-side .nf-item { padding: 0; border-bottom: none; position: relative; }
+        .nf-layout-container--side-by-side .nf-item:first-child::after { content: ''; position: absolute; top: 0; bottom: 0; right: -12.5px; width: 1px; background-color: #ddd; }
+        .nf-layout-container--side-by-side .nf-item-title { font-size: 1rem; }
 
         .nf-item--thumb-right { display: flex; justify-content: space-between; align-items: flex-start; }
         .nf-item--thumb-right .nf-item-content { flex: 1; }
         .nf-item--thumb-right .nf-item-image { width: 100px; height: 100px; object-fit: cover; margin-left: 20px; flex-shrink: 0; }
         .nf-item--thumb-right .nf-item-title { font-size: 1rem; }
+        .nf-layout-container--thumb-right-trio .nf-item { padding: 0; }
+        .nf-layout-container--thumb-right-trio .nf-item:not(:last-child) { padding-bottom: 18px; border-bottom: 1px solid #ddd; margin-bottom: 18px; }
 
         .social-section{background-color:var(--color-pink); padding: 80px 0;}
         .social-box{background-color:#fff0f5;padding:50px;border-radius:16px;box-shadow:0 15px 30px rgba(0,0,0,0.1);color:var(--color-purple-dark)}
@@ -82,9 +86,11 @@
             .featured-item { grid-template-columns: 1fr; }
             .featured-item-image { grid-row: 1; margin-bottom: 20px; }
             .featured-item-title { font-size: 1.5rem; }
-            .nf-item--grid, .nf-item--side-by-side { grid-template-columns: 1fr; }
-            .nf-item--grid .nf-item { padding-bottom: 18px; border-bottom: 1px solid #ddd; }
-            .nf-item--grid .nf-item:last-child, .nf-item--grid .nf-item:nth-child(2) { border-bottom: none; }
+            .nf-layout-container--grid, .nf-layout-container--side-by-side { grid-template-columns: 1fr; }
+            .nf-layout-container--grid .nf-item { padding-bottom: 18px; border-bottom: 1px solid #ddd; }
+            .nf-layout-container--grid .nf-item:last-child, .nf-layout-container--grid .nf-item:nth-child(2) { border-bottom: none; }
+            .nf-layout-container--side-by-side .nf-item:first-child::after { display: none; }
+            .nf-layout-container--side-by-side .nf-item:first-child { padding-bottom: 18px; border-bottom: 1px solid #ddd; }
             .social-box{padding:30px}
         }
     </style>
@@ -237,18 +243,18 @@
                             if (notFeaturedItems.length - i >= 1) {
                                 notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i], lang, 'nf-item--large-thumb'));
                                 i++;
-                            }
+                            } else { i = notFeaturedItems.length; }
                             break;
                         case 'horizontal':
                              if (notFeaturedItems.length - i >= 1) {
                                 notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i], lang, 'nf-item--horizontal'));
                                 i++;
-                            }
+                            } else { i = notFeaturedItems.length; }
                             break;
                         case 'grid':
                             if (notFeaturedItems.length - i >= 4) {
                                 const container = document.createElement('div');
-                                container.className = 'nf-item nf-item--grid';
+                                container.className = 'nf-layout-container nf-layout-container--grid';
                                 for(let j = 0; j < 4; j++) {
                                     container.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--grid-item'));
                                 }
@@ -259,7 +265,7 @@
                         case 'side-by-side':
                              if (notFeaturedItems.length - i >= 2) {
                                 const container = document.createElement('div');
-                                container.className = 'nf-item nf-item--side-by-side';
+                                container.className = 'nf-layout-container nf-layout-container--side-by-side';
                                 for(let j = 0; j < 2; j++) {
                                     container.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--side-by-side-item'));
                                 }
@@ -270,12 +276,10 @@
                         case 'thumb-right-trio':
                             if (notFeaturedItems.length - i >= 3) {
                                 const container = document.createElement('div');
-                                container.className = 'nf-item'; 
+                                container.className = 'nf-layout-container nf-layout-container--thumb-right-trio';
                                 for(let j = 0; j < 3; j++) {
                                     container.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--thumb-right'));
-                                    if (j < 2) container.children[j].style.borderBottom = '1px solid #ddd';
                                 }
-                                container.style.borderBottom = 'none';
                                 notFeaturedColumn.appendChild(container);
                                 i += 3;
                             } else { i = notFeaturedItems.length; }
