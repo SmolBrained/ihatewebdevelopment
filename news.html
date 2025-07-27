@@ -132,8 +132,8 @@
                 sidebarGrid.innerHTML = '';
 
                 if (allNewsItems.length === 0) {
-                    mainColumn.innerHTML = `<p class="lang-switch" data-en="No news items yet. Check back soon!" data-es="Aún no hay noticias. ¡Vuelve pronto!"></p>`;
-                    siteRouter.applyLanguage(lang);
+                    const emptyMessage = lang === 'es' ? "Aún no hay noticias. ¡Vuelve pronto!" : "No news items yet. Check back soon!";
+                    mainColumn.innerHTML = `<p>${emptyMessage}</p>`;
                     return;
                 }
                 
@@ -169,8 +169,9 @@
             const initialLang = localStorage.getItem('language') || 'en';
             populateColumns(initialLang);
 
-            const langObserver = new MutationObserver(() => populateColumns(document.documentElement.lang));
-            langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+            document.addEventListener('languageChanged', (e) => {
+                populateColumns(e.detail.lang);
+            });
 
             const animationObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
