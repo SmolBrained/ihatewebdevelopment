@@ -21,34 +21,50 @@
         .hero-banner .content{position:relative;z-index:3}
         .hero-banner h1{font-size:3.8rem;font-weight:900;margin:0;line-height:1.2}
         
-        .news-container { text-align: left; }
-        .featured-section { padding-bottom: 30px; }
-        .section-divider { border: 0; border-top: 1px solid #000; margin: 0; }
+        .news-layout { display: flex; gap: 40px; position: relative; }
+        .featured-column { flex: 1.5; min-width: 0; }
+        .not-featured-column { flex: 1; min-width: 0; position: relative; padding-left: 40px; }
+        .not-featured-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 1px;
+            background-color: #ddd;
+        }
 
-        .featured-item { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding: 30px 0; border-bottom: 1px solid #ddd; text-decoration: none; color: inherit; cursor: pointer; }
-        .featured-item:first-child { padding-top: 20px; }
-        .featured-item-content .author { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); margin: 0 0 10px; }
-        .featured-item-content .title { font-size: 1.8rem; font-weight: 900; margin: 0 0 10px; line-height: 1.2; transition: color 0.3s ease; }
-        .featured-item:hover .title { color: var(--color-purple-dark); }
-        .featured-item-content .meta { font-size: 0.8rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; }
+        .featured-item { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding: 30px 0; border-bottom: 1px solid #ddd; text-decoration: none; color: inherit; cursor: pointer;}
+        .featured-item:first-child { border-top: 1px solid #ddd; }
+        .featured-item-title { font-size: 1.8rem; font-weight: 900; margin: 0 0 10px; line-height: 1.2; transition: color 0.3s ease; }
+        .featured-item:hover .featured-item-title { color: var(--color-purple-dark); }
+        .featured-item-excerpt { font-size: 1rem; line-height: 1.6; color: var(--color-text-light); margin: 0 0 10px; }
+        .featured-item-meta { font-size: 0.8rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; }
         .featured-item-image { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px; }
-        .featured-item.with-image .author, .featured-item.with-image .title, .featured-item.with-image .meta { grid-column: 1; }
-        .featured-item.no-image .featured-item-content { grid-column: 1 / -1; }
+
+        .nf-item { padding: 20px 0; border-bottom: 1px solid #ddd; text-decoration: none; color: inherit; cursor: pointer; text-align: left; }
+        .nf-item:hover .nf-item-title { color: var(--color-purple-dark); }
+        .nf-item-author { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); margin: 0 0 10px; }
+        .nf-item-title { font-size: 1.2rem; font-weight: 900; margin: 0 0 10px; line-height: 1.3; }
+        .nf-item-meta { font-size: 0.8rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; }
+        .nf-item-excerpt { font-size: 0.9rem; line-height: 1.6; color: var(--color-text-light); margin: 10px 0; }
+        .nf-item-image { width: 100%; display: block; margin-bottom: 15px; border-radius: 4px; }
         
-        .standard-news-grid { display: grid; grid-template-columns: 1fr 1fr; padding-top: 30px; }
-        .standard-news-item { padding: 0 25px 25px 0; text-decoration: none; color: inherit; cursor: pointer; }
-        .standard-news-item.horizontal { grid-column: 1 / -1; display: flex; gap: 25px; align-items: center; padding-right: 0; border-bottom: 1px solid #ddd; padding-bottom: 25px; margin-bottom: 25px; }
-        .standard-news-item.grid-item { border-bottom: 1px solid #ddd; }
-        .standard-news-item.grid-item:nth-child(2n) { padding-right: 0; }
-        .standard-news-item.grid-item:nth-child(2n+1) { border-right: 1px solid #ddd; }
+        .nf-item--large-thumb .nf-item-title { font-size: 1.5rem; }
+        .nf-item--large-thumb .nf-item-excerpt { font-size: 1rem; }
+
+        .nf-item--horizontal-duo { display: grid; grid-template-columns: 1fr; gap: 0; }
+        .nf-item--horizontal-duo .nf-item { padding: 20px 0; }
+        .nf-item--horizontal-duo .nf-item:first-child { border-bottom: 1px solid #ddd; }
+        .nf-item--horizontal-duo .nf-item:last-child { border-bottom: none; } /* No double border */
+
+        .nf-item--grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .nf-item--grid .nf-item { padding: 0; border-bottom: none; }
+        .nf-item--grid .nf-item:nth-child(1), .nf-item--grid .nf-item:nth-child(2) { padding-bottom: 20px; border-bottom: 1px solid #ddd; }
         
-        .standard-news-item .author { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); margin: 0 0 10px; }
-        .standard-news-item .title { font-size: 1.3rem; font-weight: 900; margin: 0 0 10px; line-height: 1.3; transition: color 0.3s ease; }
-        .standard-news-item:hover .title { color: var(--color-purple-dark); }
-        .standard-news-item .meta { font-size: 0.8rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; }
-        .standard-news-item.horizontal .image-container { flex-shrink: 0; width: 300px; }
-        .standard-news-item.horizontal .image-container img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 8px; }
-        .standard-news-item.horizontal .content { flex-grow: 1; }
+        .nf-item--side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .nf-item--side-by-side .nf-item { padding: 0; border-bottom: none; }
+        .nf-item--side-by-side .nf-item-title { font-size: 1rem; }
 
         .social-section{background-color:var(--color-pink); padding: 80px 0;}
         .social-box{background-color:#fff0f5;padding:50px;border-radius:16px;box-shadow:0 15px 30px rgba(0,0,0,0.1);color:var(--color-purple-dark)}
@@ -56,17 +72,19 @@
         .social-box .section-subtitle a{color:var(--color-purple-dark);font-weight:700}
 
         @media (max-width: 900px) { 
-            .featured-item { grid-template-columns: 1fr; }
-            .featured-item-image { grid-row: 1; margin-bottom: 20px; }
-            .standard-news-grid { grid-template-columns: 1fr; }
-            .standard-news-item.grid-item:nth-child(2n+1) { border-right: none; padding-right: 0; }
-            .standard-news-item.horizontal { flex-direction: column; align-items: flex-start; }
-            .standard-news-item.horizontal .image-container { width: 100%; margin-bottom: 15px; }
+            .news-layout { flex-direction: column; } 
+            .not-featured-column { padding-left: 0; }
+            .not-featured-column::before { display: none; }
         }
         @media (max-width: 768px) {
             .hero-banner{background-attachment:scroll;}
             .hero-banner h1{font-size:2.2rem;}
-            .featured-item .title { font-size: 1.5rem; }
+            .featured-item { grid-template-columns: 1fr; }
+            .featured-item-image { grid-row: 1; margin-bottom: 20px; }
+            .featured-item-title { font-size: 1.5rem; }
+            .nf-item--grid, .nf-item--side-by-side { grid-template-columns: 1fr; }
+            .nf-item--grid .nf-item { padding-bottom: 20px; border-bottom: 1px solid #ddd; }
+            .nf-item--grid .nf-item:last-child, .nf-item--grid .nf-item:nth-child(2) { border-bottom: none; }
             .social-box{padding:30px}
         }
     </style>
@@ -83,7 +101,10 @@
 
         <section class="section">
             <div class="container">
-                <div id="news-container" class="news-container"></div>
+                <div id="news-layout" class="news-layout">
+                    <div id="featured-column" class="featured-column"></div>
+                    <div id="not-featured-column" class="not-featured-column"></div>
+                </div>
             </div>
         </section>
         
@@ -125,6 +146,36 @@
         }
         const db = getFirestore();
 
+        const createNewsElement = (item, lang, template) => {
+            const author = siteRouter.members[item.author_id] || { name: 'Literary Speaking' };
+            const el = document.createElement('div');
+            el.className = `nf-item ${template}`;
+            
+            const titleHTML = `<h3 class="nf-item-title">${item[`title_${lang}`] || item.title_en}</h3>`;
+            const authorHTML = `<p class="nf-item-author">${author.name}</p>`;
+            const metaHTML = `<p class="nf-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>`;
+            const excerptHTML = `<p class="nf-item-excerpt">${item[`excerpt_${lang}`] || item.excerpt_en}</p>`;
+            const imageHTML = `<img src="${item.thumbnail_url || 'https://i.imgur.com/3Yj6bA1.png'}" alt="" class="nf-item-image">`;
+
+            switch (template) {
+                case 'nf-item--large-thumb':
+                    el.innerHTML = `${imageHTML}${authorHTML}${titleHTML}${excerptHTML}${metaHTML}`;
+                    break;
+                case 'nf-item--side-by-side-item':
+                    el.innerHTML = `${imageHTML}${authorHTML}${titleHTML}${metaHTML}`;
+                    break;
+                case 'nf-item--grid-item':
+                    el.innerHTML = `${authorHTML}${titleHTML}${metaHTML}`;
+                    break;
+                case 'nf-item--horizontal':
+                default:
+                    el.innerHTML = `${authorHTML}${titleHTML}${metaHTML}`;
+                    break;
+            }
+            el.addEventListener('click', () => siteRouter.navigateTo('news-single', item.id));
+            return el;
+        };
+
         document.addEventListener('DOMContentLoaded', async () => {
             let allNewsItems = [];
             
@@ -135,95 +186,110 @@
                 allNewsItems = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })).filter(item => item.isPublished === true);
             } catch (error) {
                 console.error("Failed to load news items:", error);
-                const newsContainer = document.getElementById('news-container');
-                if(newsContainer) newsContainer.innerHTML = `<p>Could not load news. Please try again later.</p>`;
+                const featuredColumn = document.getElementById('featured-column');
+                if(featuredColumn) featuredColumn.innerHTML = `<p>Could not load news. Please try again later.</p>`;
             }
             
             const featuredItems = allNewsItems.filter(item => item.isFeatured);
-            const nonFeaturedItems = allNewsItems.filter(item => !item.isFeatured);
+            const notFeaturedItems = allNewsItems.filter(item => !item.isFeatured);
 
-            const newsContainer = document.getElementById('news-container');
+            const featuredColumn = document.getElementById('featured-column');
+            const notFeaturedColumn = document.getElementById('not-featured-column');
 
-            const populateNews = (lang) => {
-                if (!newsContainer) return;
-                newsContainer.innerHTML = '';
+            const populateColumns = (lang) => {
+                if (!featuredColumn || !notFeaturedColumn) return;
+
+                featuredColumn.innerHTML = '';
+                notFeaturedColumn.innerHTML = '';
 
                 if (allNewsItems.length === 0) {
                     const emptyMessage = lang === 'es' ? "Aún no hay noticias. ¡Vuelve pronto!" : "No news items yet. Check back soon!";
-                    newsContainer.innerHTML = `<p>${emptyMessage}</p>`;
+                    featuredColumn.innerHTML = `<p>${emptyMessage}</p>`;
                     return;
                 }
-
-                let featuredHTML = '';
-                if (featuredItems.length > 0) {
-                    featuredHTML = '<div class="featured-section">';
-                    featuredItems.forEach(item => {
-                        const author = siteRouter.members[item.author_id] || { name: 'Anonymous' };
-                        const hasImage = item.thumbnail_url;
-                        featuredHTML += `
-                            <div class="featured-item ${hasImage ? 'with-image' : 'no-image'}" data-id="${item.id}">
-                                <div class="featured-item-content">
-                                    <p class="author">${author.name}</p>
-                                    <h3 class="title">${item[`title_${lang}`] || item.title_en}</h3>
-                                    <p class="meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
-                                </div>
-                                ${hasImage ? `<img src="${item.thumbnail_url}" alt="" class="featured-item-image">` : ''}
-                            </div>
-                        `;
-                    });
-                    featuredHTML += '</div>';
-                }
-
-                let nonFeaturedHTML = '';
-                if (nonFeaturedItems.length > 0) {
-                    nonFeaturedHTML = '<div class="standard-news-grid">';
-                    nonFeaturedItems.forEach((item, index) => {
-                        const author = siteRouter.members[item.author_id] || { name: 'Anonymous' };
-                        const patternIndex = index % 6;
-                        
-                        if (patternIndex < 2) { // Horizontal items
-                            const hasImage = item.thumbnail_url;
-                            nonFeaturedHTML += `
-                                <div class="standard-news-item horizontal" data-id="${item.id}">
-                                    ${hasImage ? `<div class="image-container"><img src="${item.thumbnail_url}" alt=""></div>` : ''}
-                                    <div class="content">
-                                        <p class="author">${author.name}</p>
-                                        <h4 class="title">${item[`title_${lang}`] || item.title_en}</h4>
-                                        <p class="meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
-                                    </div>
-                                </div>
-                            `;
-                        } else { // Grid items
-                            nonFeaturedHTML += `
-                                <div class="standard-news-item grid-item" data-id="${item.id}">
-                                    <p class="author">${author.name}</p>
-                                    <h4 class="title">${item[`title_${lang}`] || item.title_en}</h4>
-                                    <p class="meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
-                                </div>
-                            `;
-                        }
-                    });
-                    nonFeaturedHTML += '</div>';
-                }
                 
-                newsContainer.innerHTML = featuredHTML;
-                if (featuredItems.length > 0 && nonFeaturedItems.length > 0) {
-                    newsContainer.innerHTML += '<hr class="section-divider">';
-                }
-                newsContainer.innerHTML += nonFeaturedHTML;
-
-                newsContainer.querySelectorAll('[data-id]').forEach(element => {
-                    element.addEventListener('click', () => {
-                        siteRouter.navigateTo('news-single', element.dataset.id);
-                    });
+                featuredItems.forEach(item => {
+                    const link = document.createElement('div');
+                    link.className = 'featured-item';
+                    link.innerHTML = `
+                        <div class="featured-item-content">
+                            <h3 class="featured-item-title">${item[`title_${lang}`] || item.title_en}</h3>
+                            <p class="featured-item-excerpt">${item[`excerpt_${lang}`] || item.excerpt_en}</p>
+                            <p class="featured-item-meta">${item[`read_time_${lang}`] || item.read_time_en}</p>
+                        </div>
+                        <img src="${item.thumbnail_url || 'https://i.imgur.com/3Yj6bA1.png'}" alt="" class="featured-item-image">
+                    `;
+                    link.addEventListener('click', () => siteRouter.navigateTo('news-single', item.id));
+                    featuredColumn.appendChild(link);
                 });
+
+                const layoutPattern = ['large-thumb', 'horizontal-duo', 'grid', 'horizontal-duo', 'side-by-side'];
+                let patternIndex = 0;
+                let i = 0;
+                while (i < notFeaturedItems.length) {
+                    const patternType = layoutPattern[patternIndex % layoutPattern.length];
+                    
+                    switch (patternType) {
+                        case 'large-thumb':
+                            notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i], lang, 'nf-item--large-thumb'));
+                            i++;
+                            break;
+                        case 'horizontal-duo':
+                            if (notFeaturedItems.length - i >= 1) {
+                                const container = document.createElement('div');
+                                container.className = 'nf-item nf-item--horizontal-duo';
+                                container.appendChild(createNewsElement(notFeaturedItems[i], lang, 'nf-item--horizontal'));
+                                if (notFeaturedItems.length - i >= 2) {
+                                    container.appendChild(createNewsElement(notFeaturedItems[i + 1], lang, 'nf-item--horizontal'));
+                                    i += 2;
+                                } else {
+                                    i++;
+                                }
+                                notFeaturedColumn.appendChild(container);
+                            }
+                            break;
+                        case 'grid':
+                            if (notFeaturedItems.length - i >= 4) {
+                                const container = document.createElement('div');
+                                container.className = 'nf-item nf-item--grid';
+                                for(let j = 0; j < 4; j++) {
+                                    container.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--grid-item'));
+                                }
+                                notFeaturedColumn.appendChild(container);
+                                i += 4;
+                            } else { // Fallback for fewer than 4 items
+                                for (let j = 0; j < notFeaturedItems.length - i; j++) {
+                                    notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--horizontal'));
+                                }
+                                i = notFeaturedItems.length;
+                            }
+                            break;
+                        case 'side-by-side':
+                             if (notFeaturedItems.length - i >= 2) {
+                                const container = document.createElement('div');
+                                container.className = 'nf-item nf-item--side-by-side';
+                                for(let j = 0; j < 2; j++) {
+                                    container.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--side-by-side-item'));
+                                }
+                                notFeaturedColumn.appendChild(container);
+                                i += 2;
+                            } else { // Fallback for 1 item
+                                if (notFeaturedItems.length - i > 0) {
+                                   notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i], lang, 'nf-item--large-thumb'));
+                                   i++;
+                                }
+                            }
+                            break;
+                    }
+                    patternIndex++;
+                }
             };
 
             const initialLang = localStorage.getItem('language') || 'en';
-            populateNews(initialLang);
+            populateColumns(initialLang);
 
             document.addEventListener('languageChanged', (e) => {
-                populateNews(e.detail.lang);
+                populateColumns(e.detail.lang);
             });
 
             const animationObserver = new IntersectionObserver((entries) => {
