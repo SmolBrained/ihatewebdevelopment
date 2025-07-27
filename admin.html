@@ -23,9 +23,10 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
     <style>
-        :root{--font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--color-background:#f4f7fc;--color-surface:#fff;--color-primary:#4b0082;--color-primary-light:#f2e7ff;--color-text:#222;--color-text-muted:#6c757d;--color-border:#dee2e6;--color-danger:#dc3545;--shadow:0 4px 12px rgba(0,0,0,.08)}
+        :root{--font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--color-background:#f4f7fc;--color-surface:#fff;--color-primary:#4b0082;--color-primary-light:#f2e7ff;--color-text:#222;--color-text-muted:#6c757d;--color-border:#dee2e6;--color-danger:#dc3545;--shadow:0 4px 12px rgba(0,0,0,.08);--color-success:#28a745;--color-success-light:#d4edda}
+        body.dark-mode{--color-background:#121212;--color-surface:#1e1e1e;--color-text:#e0e0e0;--color-text-muted:#a0a0a0;--color-border:#333;--shadow:0 4px 12px rgba(0,0,0,.2);--color-success:#34c759;--color-success-light:#2c3b30}
         *,::before,::after{box-sizing:border-box}
-        body{font-family:var(--font-family);margin:0;background-color:var(--color-background);color:var(--color-text);-webkit-font-smoothing:antialiased}
+        body{font-family:var(--font-family);margin:0;background-color:var(--color-background);color:var(--color-text);-webkit-font-smoothing:antialiased;transition:background-color .3s,color .3s}
         .hidden{display:none!important}
         #login-container{display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
         .login-box{background-color:var(--color-surface);padding:40px;border-radius:12px;box-shadow:var(--shadow);width:100%;max-width:400px;text-align:center}
@@ -37,11 +38,14 @@
         .btn-danger{background-color:var(--color-danger);color:#fff}
         .btn-danger:hover{background-color:#c82333}
         .btn-secondary{background-color:#f8f9fa;color:var(--color-text);border-color:var(--color-border)}
+        body.dark-mode .btn-secondary{background-color:#333;color:var(--color-text);border-color:#444}
         .btn-secondary:hover{background-color:#e9ecef}
+        body.dark-mode .btn-secondary:hover{background-color:#444}
         .btn:disabled{opacity:.65;cursor:not-allowed}
         .form-group{margin-bottom:20px;text-align:left}
         label{display:block;margin-bottom:8px;font-weight:700;color:var(--color-text-muted);font-size:.9rem}
         input,textarea,select{width:100%;padding:12px;background-color:#f8f9fa;border:1px solid var(--color-border);color:var(--color-text);border-radius:8px;font-size:1rem;transition:border-color .3s,box-shadow .3s}
+        body.dark-mode input,body.dark-mode textarea,body.dark-mode select{background-color:#2c2c2c;border-color:#444;color:var(--color-text)}
         input[type="color"]{padding:5px;height:48px;}
         input:focus,textarea:focus,select:focus{outline:0;border-color:var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-light)}
         .error-message{color:var(--color-danger);text-align:center;margin-top:15px;font-weight:500}
@@ -49,6 +53,7 @@
         .checkbox-group input{width:auto}
         #admin-panel{display:flex;min-height:100vh}
         .sidebar{width:260px;display:flex;flex-direction:column;padding:20px;flex-shrink:0;transition:transform .3s ease-in-out;z-index:1000;background-color:rgba(255,255,255,0.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+        body.dark-mode .sidebar{background-color:rgba(30,30,30,0.85)}
         .sidebar .logo{height:40px;margin-bottom:30px;align-self:center}
         .sidebar-nav a{display:flex;align-items:center;gap:12px;padding:15px 20px;text-decoration:none;color:var(--color-text-muted);font-weight:700;border-radius:8px;margin-bottom:10px;transition:background-color .3s,color .3s;cursor:pointer}
         .sidebar-nav a.active,.sidebar-nav a:hover{background-color:var(--color-primary-light);color:var(--color-primary)}
@@ -66,17 +71,18 @@
         table{width:100%;border-collapse:collapse}
         th,td{padding:20px;border-bottom:1px solid var(--color-border);text-align:left}
         th{font-size:.9rem;text-transform:uppercase;color:var(--color-text-muted);background-color:#f8f9fa}
+        body.dark-mode th{background-color:#2a2a2a}
         td{vertical-align:middle}
         tr:last-child td{border-bottom:none}
         td a{color:var(--color-primary);font-weight:500;text-decoration:none}
         td a:hover{text-decoration:underline}
         td .actions{display:flex;gap:10px}
-        .order-actions{display:flex;flex-direction:column;gap:4px;justify-content:center;align-items:center}
-        .order-actions .move-item-btn{padding:5px 10px;font-size:1.2rem;line-height:1}
         .message-cell{white-space:pre-wrap}
         .toggle-switch{position:relative;display:inline-block;width:50px;height:28px}
         .toggle-switch input{opacity:0;width:0;height:0}
         .slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#ccc;transition:.4s cubic-bezier(.25,.8,.25,1);border-radius:28px}
+        body.dark-mode .slider{background-color:#555}
+        input:disabled + .slider {cursor: not-allowed;}
         .slider:before{position:absolute;content:"";height:20px;width:20px;left:4px;bottom:4px;background-color:#fff;transition:.4s cubic-bezier(.25,.8,.25,1);border-radius:50%}
         input:checked+.slider{background-color:var(--color-primary)}
         input:checked+.slider:before{transform:translateX(22px)}
@@ -89,29 +95,6 @@
         .modal-close{background:0 0;border:none;font-size:2rem;cursor:pointer;color:var(--color-text-muted)}
         .form-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:20px}
         .form-grid .full-width{grid-column:1 / -1}
-        .builder{border:1px solid var(--color-border);padding:15px;border-radius:8px;margin-top:20px}
-        .builder-block{margin-bottom:15px}
-        .builder-block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;cursor:pointer;padding:10px;border-radius:5px;gap:10px;flex-wrap:wrap}
-        .builder-block-header:hover{background-color:#f0f0f0}
-        .builder-block-header .toggle-arrow{width:10px;height:10px;border-style:solid;border-width:0 2px 2px 0;display:inline-block;padding:3px;transform:rotate(45deg);transition:transform .3s cubic-bezier(.68,-.55,.27,1.55);flex-shrink:0}
-        .collapsed > .builder-block-header .toggle-arrow{transform:rotate(-45deg)}
-        .builder-block-title{font-weight:700;margin:0}
-        .builder-block-actions button{font-size:.8rem;padding:5px 8px}
-        .nested-builder{padding-left:20px;border-left:2px solid var(--color-primary-light);margin-top:15px}
-        .course-block{background-color:#e9ecef;padding:15px;border-radius:8px}
-        .module-block{background-color:#f8f9fa;padding:15px;border-radius:8px;border:1px solid #dee2e6}
-        .unit-block{background-color:#fff;padding:15px;border-radius:8px;border:1px solid #e9ecef}
-        .collapsible-content{max-height:5000px;transition:max-height .5s cubic-bezier(0.4, 0, 0.2, 1);overflow:hidden}
-        .collapsed>.collapsible-content{max-height:0}
-        .rich-text-editor .toolbar{background-color:#f8f9fa;border:1px solid var(--color-border);border-bottom:none;padding:8px;border-radius:8px 8px 0 0; display:flex; flex-wrap:wrap; align-items: center; gap:4px;}
-        .rich-text-editor .toolbar button, .rich-text-editor .toolbar select{background:0 0;border:1px solid transparent;font-family:inherit;font-weight:700;height:32px;cursor:pointer;font-size:16px;line-height:1;vertical-align:middle;padding:0 8px;}
-        .rich-text-editor .toolbar button{width:32px;}
-        .rich-text-editor .toolbar button:hover, .rich-text-editor .toolbar select:hover{background-color:#e9ecef;border-color:#ccc;border-radius:4px}
-        .rich-text-editor [contenteditable=true]{border:1px solid var(--color-border);min-height:150px;padding:12px;border-radius:0 0 8px 8px;background-color:var(--color-surface); line-height: 1.6;}
-        .rich-text-editor [contenteditable=true]:focus{outline:0;border-color:var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-light)}
-        .mcq-answer-editor{display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:center;margin-bottom:10px}
-        .mcq-answer-editor input[type="radio"]{width:auto;flex-shrink:0;justify-self:center}
-        .mcq-answer-editor .btn{padding:5px 10px;line-height:1;font-size:.8rem;justify-self:center}
         .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:center;z-index:1060;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
         .modal-overlay.visible{opacity:1;visibility:visible}
         .modal-overlay .modal-content{background-color:var(--color-surface);padding:25px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.2);width:90%;max-width:500px}
@@ -120,103 +103,66 @@
         .modal-overlay .modal-content p{margin-top:0;margin-bottom:20px;color:var(--color-text-muted);line-height:1.6}
         .modal-overlay .modal-content input, .modal-overlay .modal-content textarea{width:100%;padding:10px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;margin-bottom:15px;box-sizing:border-box}
         .modal-overlay .modal-actions{display:flex;justify-content:flex-end;gap:10px}
-        #editor-modal-actions {flex-wrap: wrap;}
+        .mobile-header{display:none}
+        #mobile-menu-toggle{display:none}
+        #mobile-nav-overlay{display:none}
+        .section-wrapper{background-color:var(--color-surface);border-radius:12px;box-shadow:var(--shadow);padding:30px;margin-bottom:30px;transition:background-color .3s}
+        .section-wrapper h2{font-size:1.5rem;font-weight:700;margin-top:0;margin-bottom:25px;border-bottom:1px solid var(--color-border);padding-bottom:15px;transition:border-color .3s}
+        .permissions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+        .permission-item{padding:12px 15px;border-radius:8px;font-weight:500;display:flex;align-items:center;gap:10px}
+        .permission-item.active{background-color:var(--color-success-light);color:var(--color-success);border:1px solid var(--color-success)}
+        .permission-item.inactive{background-color:#f8f9fa;color:var(--color-text-muted);text-decoration:line-through;border:1px solid var(--color-border)}
+        body.dark-mode .permission-item.inactive{background-color:#2a2a2a}
+        .permission-item span{font-weight:700;font-size:1.2rem}
+        .setting-item{display:flex;justify-content:space-between;align-items:center}
+        .setting-item-label{font-size:1.1rem;font-weight:500}
+        .theme-switcher{position:relative}
+        .theme-switcher input{display:none}
+        .theme-switcher label{display:block;width:60px;height:32px;background-color:#2c3e50;border-radius:32px;cursor:pointer;position:relative;transition:background-color .3s}
+        .theme-switcher label::after{content:'';position:absolute;top:4px;left:4px;width:24px;height:24px;background-color:#fff;border-radius:50%;transition:transform .3s}
+        .theme-switcher input:checked+label{background-color:#f1c40f}
+        .theme-switcher input:checked+label::after{transform:translateX(28px)}
+        .theme-switcher svg{position:absolute;top:6px;width:20px;height:20px;transition:opacity .3s;pointer-events:none;opacity:1}
+        .theme-switcher .sun-svg{left:6px;stroke:#f1c40f}
+        .theme-switcher .moon-svg{right:6px;stroke:#2c3e50}
+        .builder{border:1px solid var(--color-border);padding:15px;border-radius:8px;margin-top:20px}
+        .builder-block{margin-bottom:15px}
+        .builder-block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;cursor:pointer;padding:10px;border-radius:5px;gap:10px;flex-wrap:wrap}
+        .builder-block-header:hover{background-color:#f0f0f0}
+        body.dark-mode .builder-block-header:hover{background-color:#2a2a2a}
+        .builder-block-header .toggle-arrow{width:10px;height:10px;border-style:solid;border-width:0 2px 2px 0;display:inline-block;padding:3px;transform:rotate(45deg);transition:transform .3s cubic-bezier(.68,-.55,.27,1.55);flex-shrink:0}
+        .collapsed > .builder-block-header .toggle-arrow{transform:rotate(-45deg)}
+        .builder-block-title{font-weight:700;margin:0}
+        .builder-block-actions button{font-size:.8rem;padding:5px 8px}
+        .nested-builder{padding-left:20px;border-left:2px solid var(--color-primary-light);margin-top:15px}
+        .course-block{background-color:#e9ecef;padding:15px;border-radius:8px}
+        body.dark-mode .course-block{background-color:#2c2c2c}
+        .module-block{background-color:#f8f9fa;padding:15px;border-radius:8px;border:1px solid #dee2e6}
+        body.dark-mode .module-block{background-color:#333;border-color:#444}
+        .unit-block{background-color:#fff;padding:15px;border-radius:8px;border:1px solid #e9ecef}
+        body.dark-mode .unit-block{background-color:#3a3a3a;border-color:#555}
+        .collapsible-content{max-height:5000px;transition:max-height .5s cubic-bezier(0.4, 0, 0.2, 1);overflow:hidden}
+        .collapsed>.collapsible-content{max-height:0}
+        .rich-text-editor .toolbar{background-color:#f8f9fa;border:1px solid var(--color-border);border-bottom:none;padding:8px;border-radius:8px 8px 0 0; display:flex; flex-wrap:wrap; align-items: center; gap:4px;}
+        body.dark-mode .rich-text-editor .toolbar{background-color:#2a2a2a;border-color:#444}
+        .rich-text-editor .toolbar button, .rich-text-editor .toolbar select{background:0 0;border:1px solid transparent;font-family:inherit;font-weight:700;height:32px;cursor:pointer;font-size:16px;line-height:1;vertical-align:middle;padding:0 8px;color:var(--color-text)}
+        .rich-text-editor .toolbar button{width:32px;}
+        .rich-text-editor .toolbar button:hover, .rich-text-editor .toolbar select:hover{background-color:#e9ecef;border-color:#ccc;border-radius:4px}
+        body.dark-mode .rich-text-editor .toolbar button:hover, body.dark-mode .rich-text-editor .toolbar select:hover{background-color:#444;border-color:#666}
+        .rich-text-editor [contenteditable=true]{border:1px solid var(--color-border);min-height:150px;padding:12px;border-radius:0 0 8px 8px;background-color:var(--color-surface); line-height: 1.6;}
+        .rich-text-editor [contenteditable=true]:focus{outline:0;border-color:var(--color-primary);box-shadow:0 0 0 3px var(--color-primary-light)}
+        .mcq-answer-editor{display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:center;margin-bottom:10px}
+        .mcq-answer-editor input[type="radio"]{width:auto;flex-shrink:0;justify-self:center}
+        .mcq-answer-editor .btn{padding:5px 10px;line-height:1;font-size:.8rem;justify-self:center}
         .notification-subsection { margin-bottom: 30px; }
         .notification-subsection h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; cursor: pointer; display: flex; align-items: center; gap: 10px; }
         .notification-subsection .toggle-arrow { transform: rotate(45deg); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-style: solid; border-width: 0 2px 2px 0; display: inline-block; padding: 4px; }
         .notification-subsection.collapsed .toggle-arrow { transform: rotate(-45deg); }
         .notification-subsection .collapsible-content { transition: max-height 0.35s ease-in-out; }
-        .mobile-header { display: none; }
-        #mobile-menu-toggle { display: none; }
-        #mobile-nav-overlay { display: none; }
         .modal-top-actions {display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
-
-        @media (max-width: 992px) {
-            #admin-panel { flex-direction: column; }
-            .sidebar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100%;
-                transform: translateX(-100%);
-                box-shadow: 0 0 20px rgba(0,0,0,.2);
-            }
-            .main-content { padding: 20px; padding-top: 80px; }
-            .mobile-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 15px 20px;
-                background-color: var(--color-surface);
-                box-shadow: var(--shadow);
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 1001;
-            }
-            #mobile-menu-toggle {
-                display: block;
-                background: none;
-                border: none;
-                cursor: pointer;
-                padding: 0;
-                width: 30px;
-                height: 21px;
-                position: relative;
-                z-index: 1002;
-            }
-            #mobile-menu-toggle .icon-bar {
-                display: block;
-                width: 25px;
-                height: 3px;
-                background-color: var(--color-text);
-                border-radius: 3px;
-                position: absolute;
-                left: 0;
-                transition: all .4s ease-in-out;
-            }
-            #mobile-menu-toggle .icon-bar:nth-child(1) { top: 0; }
-            #mobile-menu-toggle .icon-bar:nth-child(2) { top: 9px; }
-            #mobile-menu-toggle .icon-bar:nth-child(3) { top: 18px; }
-            #mobile-menu-toggle.active .icon-bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-            #mobile-menu-toggle.active .icon-bar:nth-child(2) { opacity: 0; }
-            #mobile-menu-toggle.active .icon-bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-            .mobile-header .logo { height: 30px; }
-            body.sidebar-open .sidebar { transform: translateX(0); }
-            body.sidebar-open #mobile-nav-overlay {
-                display: block;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0,0,0,0.5);
-                z-index: 998;
-            }
-            .page-title { font-size: 2rem; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-grid .full-width { grid-column: auto; }
-            .mcq-answer-editor { grid-template-columns: 1fr; gap: 8px; }
-        }
-        @media (max-width: 600px) {
-            .modal-top-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .modal-top-actions .btn {
-                width: 100%;
-                text-align: center;
-            }
-            .builder-block-header.has-form-groups {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 15px;
-            }
-            .builder-block-header.has-form-groups .form-group {
-                margin: 0;
-            }
-        }
+        @media (max-width:992px){#admin-panel{flex-direction:column}.sidebar{position:fixed;top:0;left:0;height:100%;transform:translateX(-100%);box-shadow:0 0 20px rgba(0,0,0,.2)}.main-content{padding:20px;padding-top:80px}.mobile-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;background-color:var(--color-surface);box-shadow:var(--shadow);position:fixed;top:0;left:0;right:0;z-index:1001}#mobile-menu-toggle{display:block;background:0 0;border:none;cursor:pointer;padding:0;width:30px;height:21px;position:relative;z-index:1002}#mobile-menu-toggle .icon-bar{display:block;width:25px;height:3px;background-color:var(--color-text);border-radius:3px;position:absolute;left:0;transition:all .4s ease-in-out}#mobile-menu-toggle .icon-bar:nth-child(1){top:0}#mobile-menu-toggle .icon-bar:nth-child(2){top:9px}#mobile-menu-toggle .icon-bar:nth-child(3){top:18px}#mobile-menu-toggle.active .icon-bar:nth-child(1){transform:translateY(9px) rotate(45deg)}#mobile-menu-toggle.active .icon-bar:nth-child(2){opacity:0}#mobile-menu-toggle.active .icon-bar:nth-child(3){transform:translateY(-9px) rotate(-45deg)}.mobile-header .logo{height:30px}body.sidebar-open .sidebar{transform:translateX(0)}body.sidebar-open #mobile-nav-overlay{display:block;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:998}.page-title{font-size:2rem}.form-grid{grid-template-columns:1fr}.form-grid .full-width{grid-column:auto}.mcq-answer-editor{grid-template-columns:1fr;gap:8px}}
+        @media (max-width:768px){.page-header{flex-direction:column;align-items:stretch}.page-header .btn{width:100%;text-align:center}.modal-actions{flex-direction:column-reverse}.modal-actions .btn{width:100%}.page-actions-footer{flex-direction:column-reverse}.page-actions-footer .btn{width:100%}}
+        @media (max-width: 600px) {.modal-top-actions {flex-direction: column;align-items: stretch;}.modal-top-actions .btn {width: 100%;text-align: center;}.builder-block-header.has-form-groups {flex-direction: column;align-items: stretch;gap: 15px;}.builder-block-header.has-form-groups .form-group {margin: 0;}}
     </style>
 </head>
 <body>
@@ -245,8 +191,14 @@
                 <a class="nav-item" data-section="newsletter">Newsletter</a>
                 <a class="nav-item" data-section="notifications">Notifications</a>
                 <a href="https://literary-speaking.disqus.com/admin/moderate/" target="_blank" class="nav-item">Moderate Comments</a>
+                <a class="nav-item" data-section="user-management">User Management</a>
             </nav>
-            <div class="sidebar-footer"><a id="logout-button" class="nav-item">Log Out</a></div>
+            <div class="sidebar-footer" style="display: flex; align-items: center; gap: 10px;">
+                <a id="logout-button" class="nav-item" style="flex-grow: 1;">Log Out</a>
+                <a id="settings-btn" style="cursor: pointer; padding: 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </a>
+            </div>
         </aside>
         <main class="main-content">
             <div class="mobile-header">
@@ -349,9 +301,7 @@
             <section id="newsletter-section">
                 <div class="page-header">
                     <h1 class="page-title" id="newsletter-page-title">Newsletter Subscribers</h1>
-                    <div>
-                        <button id="view-archived-subscribers-btn" class="btn btn-secondary">View Archived</button>
-                    </div>
+                    <button id="view-archived-subscribers-btn" class="btn btn-secondary">View Archived</button>
                 </div>
                 <div class="table-actions-bar">
                     <button id="archive-selected-subscribers-btn" class="btn btn-primary" disabled>Archive Selected</button>
@@ -379,7 +329,6 @@
                     <h1 class="page-title">Notifications</h1>
                     <a href="https://dashboard.onesignal.com/apps/d12debe4-4f24-4db4-bfa5-9f6ee5f38d48/push/new" target="_blank" class="btn btn-primary">Go to OneSignal</a>
                 </div>
-
                 <div class="notification-subsection" id="notification-articles">
                     <h2><span class="toggle-arrow"></span>Articles</h2>
                     <div class="table-wrapper collapsible-content">
@@ -391,7 +340,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="notification-subsection" id="notification-news">
                     <h2><span class="toggle-arrow"></span>News</h2>
                     <div class="table-wrapper collapsible-content">
@@ -404,7 +352,71 @@
                     </div>
                 </div>
             </section>
-
+            <section id="user-management-section">
+                <div class="page-header">
+                    <h1 class="page-title">User Management</h1>
+                    <button id="add-user-btn" class="btn btn-primary">Add New User</button>
+                </div>
+                <div class="table-wrapper">
+                    <div class="table-wrapper-inner">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th title="Can create and edit articles">Articles</th>
+                                    <th title="Can create and edit news">News</th>
+                                    <th title="Can create and edit lessons">Lessons</th>
+                                    <th title="Can manage newsletter subscribers">Newsletter</th>
+                                    <th title="Can publish/unpublish content and changes">Publish</th>
+                                    <th title="Can delete content">Delete</th>
+                                    <th title="Can manage other users and their permissions">Permissions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="page-actions-footer" data-section="user-management">
+                    <button id="cancel-permissions-btn" class="btn btn-secondary">Cancel Changes</button>
+                    <button id="save-permissions-btn" class="btn btn-primary">Save Permissions</button>
+                </div>
+            </section>
+            <section id="settings-section">
+                <div class="page-header">
+                    <h1 class="page-title">My Settings</h1>
+                </div>
+                <div class="section-wrapper">
+                    <h2>Account Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="setting-user-name" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="setting-user-email" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-wrapper">
+                    <h2>Appearance</h2>
+                    <div class="setting-item">
+                        <span class="setting-item-label">Theme</span>
+                        <div class="theme-switcher">
+                            <input type="checkbox" id="theme-toggle">
+                            <label for="theme-toggle">
+                                <svg class="sun-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                <svg class="moon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-wrapper">
+                    <h2>My Permissions</h2>
+                    <div id="my-permissions-grid" class="permissions-grid"></div>
+                </div>
+            </section>
         </main>
     </div>
     <div id="editor-modal" class="modal">
@@ -439,6 +451,31 @@
                         <button type="submit" class="btn btn-primary action-member hidden" name="saveAction" value="save">Save</button>
                     </div>
                 </fieldset>
+            </form>
+        </div>
+    </div>
+    <div id="add-user-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add New User</h2>
+                <button class="modal-close">×</button>
+            </div>
+            <form id="add-user-form">
+                <div class="form-group">
+                    <label for="new-user-name">Full Name</label>
+                    <input type="text" id="new-user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-user-email">Email Address</label>
+                    <input type="email" id="new-user-email" required>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-top: -10px;">
+                    Note: A user with this email must first be created in the Firebase Authentication console. This form only creates their profile and permissions within the dashboard.
+                </p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create User Profile</button>
+                </div>
             </form>
         </div>
     </div>
@@ -481,24 +518,47 @@
     <script type="module">
         import {initializeApp as a} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
         import {getAuth as b,signInWithEmailAndPassword as c,onAuthStateChanged as d,signOut as e} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-        import {getFirestore as f,collection as g,query as h,orderBy as i,doc as j,getDoc as k,setDoc as l,deleteDoc as m,onSnapshot as n,getDocs as o,where as bb,writeBatch as bc, updateDoc as bd} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+        import {getFirestore as f,collection as g,query as h,orderBy as i,doc as j,getDoc as k,setDoc as l,deleteDoc as m,onSnapshot as n,getDocs as o,where as bb,writeBatch as bc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
         const p={apiKey:"AIzaSyD0qVihpuLI0cF0PZ32o8tFBLfTgjlqB6A",authDomain:"literary-speaking.firebaseapp.com",projectId:"literary-speaking",storageBucket:"literary-speaking.appspot.com",messagingSenderId:"699059463612",appId:"1:699059463612:web:ecb2e784d627c6b93937b9",measurementId:"G-0L1V3XXGGR"},q=a(p),r=b(q),s=f(q),t=u=>document.querySelector(u),v=u=>document.querySelectorAll(u),w=t("#login-container"),x=t("#admin-panel"),y=t("#login-form"),z=t("#editor-modal"),A=t("#editor-form"),B=t("#editor-fields"),C=t("#content-builder-container"),D=t("#lesson-builder-container"),E=t("#editor-fieldset"),resourcesBuilderContainer=t("#resources-builder-container");
         let F={};let stagedChanges={};let originalStates={};
+        let currentUserPermissions={};let currentUserInfo={};
         let currentSorts = { articles: { field: 'date', direction: 'desc' }, news: { field: 'date', direction: 'desc' }, lessons: { field: 'title_en', direction: 'asc' }, members: { field: 'name', direction: 'asc' } };
-        const G=u=>{v(".main-content section").forEach(H=>H.classList.remove("active"));t(`#${u}-section`).classList.add("active");v(".sidebar-nav .nav-item[data-section]").forEach(H=>H.classList.toggle("active",H.dataset.section===u));if(u==='notifications'){loadNotifications()} if(u==='newsletter'){loadNewsletterSubscribers()}};
-        const I=(u,H)=>{u.classList.toggle("visible",H);E.disabled=!H};
-        const J=(u,H,K,L)=>{u.innerHTML=H.length?H.map(K).join(""):`<tr><td colspan="${u.previousElementSibling.rows[0].cells.length}">${L}</td></tr>`;H.forEach(M=>{originalStates[M.id]=M.data().isPublished===!0})};
-        const M=u=>{const H=u.data(),I=H.timestamp?H.timestamp.toDate().toLocaleString():"N/A";const messageCell=document.createElement('td');messageCell.className='message-cell';messageCell.textContent=H.message;return`<tr><td><input type="checkbox" class="message-checkbox" data-id="${u.id}"></td><td>${I}</td><td>${H.name}</td><td><a href="mailto:${H.email}">${H.email}</a></td>${messageCell.outerHTML}</tr>`};
-        const N=u=>{const H=u.data(),I=stagedChanges[u.id]?stagedChanges[u.id].isPublished:H.isPublished===!0;return`<tr><td><label class="toggle-switch"><input type="checkbox" class="publish-toggle" data-collection="articles" data-id="${u.id}" ${I?"checked":""}><span class="slider"></span></label></td><td>${H.title_en}</td><td>${H.author_id}</td><td>${H.date}</td><td class="actions"><button class="btn btn-secondary edit-btn" data-id="${u.id}" data-type="article">Edit</button><button class="btn btn-danger delete-btn" data-collection="articles" data-id="${u.id}">Delete</button></td></tr>`};
-        const O=u=>{const H=u.data(),I=stagedChanges[u.id]?stagedChanges[u.id].isPublished:H.isPublished===!0;return`<tr><td><label class="toggle-switch"><input type="checkbox" class="publish-toggle" data-collection="news" data-id="${u.id}" ${I?"checked":""}><span class="slider"></span></label></td><td>${H.title_en}</td><td>${H.author_id}</td><td>${H.date}</td><td>${H.isFeatured?"Yes":"No"}</td><td class="actions"><button class="btn btn-secondary edit-btn" data-id="${u.id}" data-type="news">Edit</button><button class="btn btn-danger delete-btn" data-collection="news" data-id="${u.id}">Delete</button></td></tr>`};
-        const P=u=>{const H=u.data(),I=stagedChanges[u.id]?stagedChanges[u.id].isPublished:H.isPublished===!0;return`<tr><td><label class="toggle-switch"><input type="checkbox" class="publish-toggle" data-collection="lessons" data-id="${u.id}" ${I?"checked":""}><span class="slider"></span></label></td><td>${H.title_en}</td><td class="actions"><button class="btn btn-secondary edit-btn" data-id="${u.id}" data-type="lesson">Edit</button><button class="btn btn-danger delete-btn" data-collection="lessons" data-id="${u.id}">Delete</button></td></tr>`};
-        const an=u=>{const H=u.data();return`<tr><td>${H.name}</td><td class="actions"><button class="btn btn-secondary edit-btn" data-id="${u.id}" data-type="member">Edit</button><button class="btn btn-danger delete-btn" data-collection="members" data-id="${u.id}">Delete</button></td></tr>`};
-        const newsletterRowRenderer=u=>{const H=u.data(),I=H.timestamp?H.timestamp.toDate().toLocaleString():"N/A";return`<tr><td><input type="checkbox" class="subscriber-checkbox" data-id="${u.id}"></td><td class="subscriber-email">${H.email}</td><td>${I}</td><td class="actions"><button class="btn btn-danger delete-btn" data-collection="newsletter_subscribers" data-id="${u.id}">Delete</button></td></tr>`};
+        const userCan=permission=>currentUserPermissions[permission]===true;
+        const updateUIAccess=()=>{
+            const canEditArticles=userCan('canEditArticles');
+            const canEditNews=userCan('canEditNews');
+            const canEditLessons=userCan('canEditLessons');
+            const canManageMembers=userCan('canManageMembers');
+            const canManageNewsletter=userCan('canManageNewsletter');
+            const canManageUsers=userCan('canManageUsers');
+            const canDelete=userCan('canDeleteContent');
+            const canPublish=userCan('canPublish');
+            t('.sidebar-nav .nav-item[data-section="articles"]').style.display=canEditArticles?'flex':'none';
+            t('.sidebar-nav .nav-item[data-section="news"]').style.display=canEditNews?'flex':'none';
+            t('.sidebar-nav .nav-item[data-section="lessons"]').style.display=canEditLessons?'flex':'none';
+            t('.sidebar-nav .nav-item[data-section="members"]').style.display=canManageMembers?'flex':'none';
+            t('.sidebar-nav .nav-item[data-section="newsletter"]').style.display=canManageNewsletter?'flex':'none';
+            t('.sidebar-nav .nav-item[data-section="user-management"]').style.display=canManageUsers?'flex':'none';
+            t('#articles-section .add-btn').style.display=canEditArticles?'inline-block':'none';
+            t('#news-section .add-btn').style.display=canEditNews?'inline-block':'none';
+            t('#lessons-section .add-btn').style.display=canEditLessons?'inline-block':'none';
+            t('#members-section .add-btn').style.display=canManageMembers?'inline-block':'none';
+            v('.delete-btn').forEach(btn=>{btn.disabled=!canDelete});
+            v('.publish-toggle').forEach(toggle=>{toggle.disabled=!canPublish});
+            const modalPublishBtn=t('#editor-modal .action-publish[value="publish"]');
+            if(modalPublishBtn){modalPublishBtn.disabled=!canPublish}
+            v('.save-changes-btn').forEach(btn=>{btn.disabled=!canPublish});
+            if(!canPublish){v('.page-actions-footer').forEach(footer=>footer.classList.add('hidden'))}
+        };
+        const G=u=>{v(".main-content section").forEach(H=>H.classList.remove("active"));t(`#${u}-section`).classList.add("active");v(".sidebar-nav .nav-item[data-section]").forEach(H=>H.classList.toggle("active",H.dataset.section===u));t('#settings-btn').classList.toggle('active',u==='settings');if(u==='notifications'){loadNotifications()}if(u==='newsletter'){loadNewsletterSubscribers()}if(u==='user-management'){loadUserManagement()}if(u==='settings'){loadSettings()}};
+        const I=(u,H)=>{u.classList.toggle("visible",H);u.closest('.modal')?u.closest('.modal').classList.toggle('visible',H):u.classList.toggle('visible',H)};
+        const J=(u,H,K,L)=>{u.innerHTML=H.length?H.map(K).join(""):`<tr><td colspan="${u.previousElementSibling.rows[0].cells.length}">${L}</td></tr>`;H.forEach(M=>{originalStates[M.id]=M.data().isPublished===!0});updateUIAccess()};
+        d(r,async u=>{w.classList.toggle("hidden",!!u);x.classList.toggle("hidden",!u);if(u){const userDocRef=j(s,"users",u.uid);const userDocSnap=await k(userDocRef);if(userDocSnap.exists()){currentUserInfo={uid:u.uid,email:u.email,...userDocSnap.data()};currentUserPermissions=userDocSnap.data().permissions||{}}else{console.error("User document not found. Access denied.");currentUserPermissions={};e(r);return}G("messages");Object.values(F).forEach(H=>H());F={};['articles','news','lessons','members'].forEach(attachSnapshotListener);setupSortListeners();loadMessages();updateUIAccess()}else{currentUserPermissions={}}});
         const attachSnapshotListener = (collectionName) => {
             if (F[collectionName]) F[collectionName]();
             const { field, direction } = currentSorts[collectionName];
             let tableBody, rowRenderer, emptyMessage;
-            let q = h(g(s, collectionName), i(field, direction));
+            let q_query = h(g(s, collectionName), i(field, direction));
             switch(collectionName) {
                 case 'articles': tableBody = t("#articles-table-body"); rowRenderer = N; emptyMessage = "No articles found."; break;
                 case 'news': tableBody = t("#news-table-body"); rowRenderer = O; emptyMessage = "No news found."; break;
@@ -506,25 +566,35 @@
                 case 'members': tableBody = t("#members-table-body"); rowRenderer = an; emptyMessage = "No members found."; break;
                 default: return;
             }
-            F[collectionName] = n(q, snapshot => J(tableBody, snapshot.docs, rowRenderer, emptyMessage));
+            F[collectionName] = n(q_query, snapshot => J(tableBody, snapshot.docs, rowRenderer, emptyMessage));
         };
-        const setupSortListeners = () => {
-            v('.sort-dropdown').forEach(dropdown => {
-                dropdown.addEventListener('change', (e) => {
-                    const collection = e.target.dataset.collection;
-                    const [field, direction] = e.target.value.split('-');
-                    currentSorts[collection] = { field, direction };
-                    attachSnapshotListener(collection);
-                });
-            });
-        };
-        d(r,u=>{w.classList.toggle("hidden",!!u);x.classList.toggle("hidden",!u);if(u){G("messages");Object.values(F).forEach(H=>H());F={};['articles','news','lessons','members'].forEach(attachSnapshotListener);setupSortListeners();loadMessages()}});
+        const setupSortListeners=()=>{v('.sort-dropdown').forEach(dropdown=>{dropdown.addEventListener('change',e=>{const collection=e.target.dataset.collection;const [field,direction]=e.target.value.split('-');currentSorts[collection]={field,direction};attachSnapshotListener(collection)})})};
+        const M=u=>{const H=u.data(),I=H.timestamp?H.timestamp.toDate().toLocaleString():"N/A";const messageCell=document.createElement('td');messageCell.className='message-cell';messageCell.textContent=H.message;return`<tr><td><input type="checkbox" class="message-checkbox" data-id="${u.id}"></td><td>${I}</td><td>${H.name}</td><td><a href="mailto:${H.email}">${H.email}</a></td>${messageCell.outerHTML}</tr>`};
+        const N=u=>{const H=u.data(),I=stagedChanges[u.id]?stagedChanges[u.id].isPublished:H.isPublished===!0;return`<tr><td><label class="toggle-switch"><input type="checkbox" class="publish-toggle" data-collection="articles" data-id="${u.id}" ${I?"checked":""}><span class="slider"></span></label></td><td>${H.title_en}</td><td>${H.author_id}</td><td>${H.date}</td><td class="actions"><button class="btn btn-secondary edit-btn" data-id="${u.id}" data-type="article">Edit</button><button class="btn btn-danger delete-btn" data-collection="articles" data-id="${u.id}">Delete</button></td></tr>`};
+        const O=u=>{const H=u.data(),I=stagedChanges[u.id]?stagedChanges[u.id].isPublished:H.isPublished===!0;return`<tr><td><label class="toggle-switch"><input type="checkbox" class="publish-toggle" data-collection="news" data-id="${u.id}" ${I?"checked":""}><span class="slider"></span></label></td><td>${H.title_en}</td><td>${H.author_id}</td><td>${H.date}</td><td>${H.isFeatured?"Yes":"No"}</td><td class="actions"><button class="btn btn-secondary edit-btn" data-id="${u.id}" data-type="news">Edit</button><button class="btn btn-danger delete-btn" data-collection="news" data-id="${u.id}">Delete</button></td></tr>`};
+        const P=u=>{const H=u.data(),I=stagedChanges[u.id]?stagedChanges[u.id].isPublished:H.isPublished===!0;return`<tr><td><label class="toggle-switch"><input type="checkbox" class="publish-toggle" data-collection="lessons" data-id="${u.id}" ${I?"checked":""}><span class="slider"></span></label></td><td>${H.title_en}</td><td class="actions"><button class="btn btn-secondary edit-btn" data-id="${u.id}" data-type="lesson">Edit</button><button class="btn btn-danger delete-btn" data-collection="lessons" data-id="${u.id}">Delete</button></td></tr>`};
+        const an=u=>{const H=u.data();return`<tr><td>${H.name}</td><td class="actions"><button class="btn btn-secondary edit-btn" data-id="${u.id}" data-type="member">Edit</button><button class="btn btn-danger delete-btn" data-collection="members" data-id="${u.id}">Delete</button></td></tr>`};
+        const newsletterRowRenderer=u=>{const H=u.data(),I=H.timestamp?H.timestamp.toDate().toLocaleString():"N/A";return`<tr><td><input type="checkbox" class="subscriber-checkbox" data-id="${u.id}"></td><td class="subscriber-email">${H.email}</td><td>${I}</td><td class="actions"><button class="btn btn-danger delete-btn" data-collection="newsletter_subscribers" data-id="${u.id}">Delete</button></td></tr>`};
         y.addEventListener("submit",async u=>{u.preventDefault();t("#login-error").classList.add("hidden");try{await c(r,y.email.value,y.password.value)}catch(H){t("#login-error").textContent="Error: Invalid email or password.";t("#login-error").classList.remove("hidden")}});
         t("#logout-button").addEventListener("click",()=>e(r));
         v(".sidebar-nav .nav-item[data-section]").forEach(u=>u.addEventListener("click",H=>{G(H.currentTarget.dataset.section);document.body.classList.remove('sidebar-open');t('#mobile-menu-toggle').classList.remove('active')}));
+        const permissionsMap=[{key:'canEditArticles',label:'Articles'},{key:'canEditNews',label:'News'},{key:'canEditLessons',label:'Lessons'},{key:'canManageNewsletter',label:'Newsletter'},{key:'canPublish',label:'Publish'},{key:'canDeleteContent',label:'Delete'},{key:'canManageUsers',label:'Permissions'}];
+        const loadUserManagement=async()=>{const usersTableBody=t('#users-table-body');if(!usersTableBody)return;const footer=t('.page-actions-footer[data-section="user-management"]');if(footer)footer.classList.remove('hidden');usersTableBody.innerHTML=`<tr><td colspan="9">Loading users...</td></tr>`;try{const usersQuery=h(g(s,"users"));const querySnapshot=await o(usersQuery);const userDocs=querySnapshot.docs;if(userDocs.length===0){usersTableBody.innerHTML=`<tr><td colspan="9">No users found.</td></tr>`;return}const tableHTML=userDocs.map(doc=>{const user=doc.data();const uid=doc.id;const permissions=user.permissions||{};const checkboxHTML=permissionsMap.map(p=>{const isChecked=permissions[p.key]===true?'checked':'';return`<td><label class="toggle-switch"><input type="checkbox" data-uid="${uid}" data-permission="${p.key}" ${isChecked}><span class="slider"></span></label></td>`}).join('');return`<tr><td>${user.name||'N/A'}</td><td>${user.email}</td>${checkboxHTML}</tr>`}).join('');usersTableBody.innerHTML=tableHTML}catch(error){console.error("Error loading users:",error);usersTableBody.innerHTML=`<tr><td colspan="9">Error loading users.</td></tr>`}};
+        t('#save-permissions-btn').addEventListener('click',async()=>{const batch=bc(s);const permissionsToUpdate={};v('#users-table-body input[type="checkbox"]').forEach(checkbox=>{const{uid,permission}=checkbox.dataset;if(!permissionsToUpdate[uid]){permissionsToUpdate[uid]={}}permissionsToUpdate[uid][permission]=checkbox.checked});for(const uid in permissionsToUpdate){const userRef=j(s,"users",uid);batch.update(userRef,{permissions:permissionsToUpdate[uid]})}try{await batch.commit();aq('Success','User permissions have been updated.')}catch(error){console.error("Error saving permissions:",error);aq('Error',`Failed to save permissions: ${error.message}`)}});
+        t('#cancel-permissions-btn').addEventListener('click',loadUserManagement);
+        const addUserModal=t('#add-user-modal');
+        t('#add-user-btn').addEventListener('click',()=>I(addUserModal,true));
+        v('#add-user-modal .modal-close, #add-user-modal .modal-cancel').forEach(btn=>btn.addEventListener('click',()=>I(addUserModal,false)));
+        t('#add-user-form').addEventListener('submit',async(event)=>{event.preventDefault();const name=t('#new-user-name').value;const email=t('#new-user-email').value;try{const usersRef=g(s,"users");const q_query=h(usersRef,bb("email","==",email));const querySnapshot=await o(q_query);if(!querySnapshot.empty){return aq('Error','A user profile with this email already exists.')}const defaultPermissions=permissionsMap.reduce((acc,p)=>(acc[p.key]=false,acc),{});await l(j(usersRef),{name:name,email:email,permissions:defaultPermissions});aq('Success','User profile created. Please create a matching user in Firebase Authentication.');I(addUserModal,false);loadUserManagement()}catch(error){console.error("Error creating user profile:",error);aq('Error',`Failed to create profile: ${error.message}`)}});
+        const loadSettings=()=>{t('#setting-user-name').value=currentUserInfo.name||'';t('#setting-user-email').value=currentUserInfo.email||'';const grid=t('#my-permissions-grid');grid.innerHTML='';permissionsMap.forEach(p=>{const hasPerm=userCan(p.key);const permItem=document.createElement('div');permItem.className=`permission-item ${hasPerm?'active':'inactive'}`;permItem.innerHTML=`<span>${hasPerm?'✓':'✗'}</span> ${p.label}`;grid.appendChild(permItem)})};
+        t('#settings-btn').addEventListener('click',()=>G('settings'));
+        const themeToggle=t('#theme-toggle');const body=document.body;
+        const applyTheme=theme=>{if(theme==='dark'){body.classList.add('dark-mode');themeToggle.checked=true}else{body.classList.remove('dark-mode');themeToggle.checked=false}};
+        const savedTheme=localStorage.getItem('theme');if(savedTheme){applyTheme(savedTheme)}else{if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){applyTheme('dark')}else{applyTheme('light')}}
+        themeToggle.addEventListener('change',()=>{const newTheme=themeToggle.checked?'dark':'light';localStorage.setItem('theme',newTheme);applyTheme(newTheme)});
         const Q=u=>{B.innerHTML="";C.classList.add("hidden");D.classList.add("hidden");resourcesBuilderContainer.classList.add("hidden");const H=t("#content-builder-container h3");let K="";const L=`<div class="modal-top-actions"><button type="button" class="btn btn-secondary" id="import-json-btn">Import from JSON</button><button type="button" class="btn btn-secondary" id="export-json-btn">Export as JSON</button></div>`;if(u==="lesson"){K=`${L}<div class="form-grid"><div class="form-group"><label>Subject Title (English)</label><input type="text" name="title_en" required></div><div class="form-group"><label>Subject Title (Spanish)</label><input type="text" name="title_es" required></div><div class="form-group full-width"><label>Subject URL ID</label><input type="text" name="id" required></div><div class="form-group full-width"><label>Subject Thumbnail URL</label><input type="url" name="thumbnail_url"></div></div>`;H.textContent="Home Page Content";C.classList.remove("hidden");D.classList.remove("hidden");resourcesBuilderContainer.classList.remove("hidden")}else if(u==="member"){K=`${L}<div class="form-grid"><div class="form-group"><label>Member ID</label><input type="text" name="id" required></div><div class="form-group"><label>Full Name</label><input type="text" name="name" required></div><div class="form-group"><label>Portrait Image URL</label><input type="url" name="portrait"></div><div class="form-group"><label>Secondary Image URL</label><input type="url" name="secondaryImage"></div><div class="form-group full-width"><label>Bio (English)</label><textarea name="bio_en" rows="5"></textarea></div><div class="form-group full-width"><label>Bio (Spanish)</label><textarea name="bio_es" rows="5"></textarea></div><div class="form-group"><label>Facts (English) - One per line</label><textarea name="facts_en" rows="5"></textarea></div><div class="form-group"><label>Facts (Spanish) - One per line</label><textarea name="facts_es" rows="5"></textarea></div><div class="form-group"><label>Color</label><input type="color" name="color" value="#B34AFF"></div></div>`}else{K=`${L}<div class="form-grid"><div class="form-group"><label>Title (English)</label><input type="text" name="title_en" required></div><div class="form-group"><label>Title (Spanish)</label><input type="text" name="title_es" required></div><div class="form-group"><label>URL ID</label><input type="text" name="id" required></div><div class="form-group"><label>Author ID</label><input type="text" name="author_id" required></div><div class="form-group"><label>Date</label><input type="date" name="date" required></div><div class="form-group"><label>Read Time (English)</label><input type="text" name="read_time_en" required></div><div class="form-group"><label>Read Time (Spanish)</label><input type="text" name="read_time_es" required></div>`;if(u==="article"){K+=`<div class="form-group"><label>Category (English)</label><input type="text" name="category_en"></div><div class="form-group"><label>Category (Spanish)</label><input type="text" name="category_es"></div>`}K+=`<div class="form-group full-width"><label>Thumbnail URL</label><input type="url" name="thumbnail_url"></div></div><div class="form-group full-width"><label>Excerpt (English)</label><textarea name="excerpt_en" rows="3"></textarea></div><div class="form-group full-width"><label>Excerpt (Spanish)</label><textarea name="excerpt_es" rows="3"></textarea></div>`;if(u==="news"){K+=`<div class="form-group full-width checkbox-group"><input type="checkbox" name="isFeatured" id="isFeatured-checkbox"><label for="isFeatured-checkbox">Featured</label></div>`}H.textContent="Content Builder";C.classList.remove("hidden")}B.innerHTML=K};
         const ao=(u)=>{const H=u==='member';v('.action-publish').forEach(K=>K.classList.toggle('hidden',H));v('.action-member').forEach(K=>K.classList.toggle('hidden',!H))};
-        v(".add-btn").forEach(u=>u.addEventListener("click",H=>{const K=H.target.dataset.type;A.reset();t("#content-builder").innerHTML="";t("#lesson-builder").innerHTML="";t("#resources-builder").innerHTML="";Q(K);ao(K);t("#modal-title").textContent=`Add New ${K.charAt(0).toUpperCase()+K.slice(1)}`;A.elements.type.value=K;t('[name="id"]').readOnly=!1;I(z,!0)}));
+        v(".add-btn").forEach(u=>u.addEventListener("click",H=>{const K=H.target.dataset.type;A.reset();t("#content-builder").innerHTML="";t("#lesson-builder").innerHTML="";t("#resources-builder").innerHTML="";Q(K);ao(K);t("#modal-title").textContent=`Add New ${K.charAt(0).toUpperCase()+K.slice(1)}`;A.elements.type.value=K;t('[name="id"]').readOnly=!1;I(z,!0);updateUIAccess()}));
         const R=(u,H,K={})=>{const L=document.createElement("div");L.className="builder-block";L.dataset.type=H;let M="";if(H==="text"){const N=`<div class="toolbar"><select class="format-block"><option value="p">Paragraph</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option><option value="h3">Heading 3</option></select><button type="button" data-command="bold" title="Bold"><b>B</b></button><button type="button" data-command="italic" title="Italic"><i>I</i></button><button type="button" data-command="underline" title="Underline"><u>U</u></button><button type="button" data-command="strikeThrough" title="Strikethrough"><s>S</s></button><button type="button" data-command="insertUnorderedList" title="Bulleted List">•</button><button type="button" data-command="createLink" title="Link">🔗</button></div>`;M=`<div class="form-group rich-text-editor"><label>Text (English)</label>${N}<div contenteditable="true" class="editor-content" data-field="content_en">${K.content_en||""}</div></div><div class="form-group rich-text-editor"><label>Text (Spanish)</label>${N}<div contenteditable="true" class="editor-content" data-field="content_es">${K.content_es||""}</div></div>`}else if(H==="image"){M=`<div class="form-group"><label>Media URL</label><input type="url" data-field="url" value="${K.url||""}" required></div><div class="form-group"><label>Caption (English)</label><input type="text" data-field="caption_en" value="${K.caption_en||""}"></div><div class="form-group"><label>Caption (Spanish)</label><input type="text" data-field="caption_es" value="${K.caption_es||""}"></div>`}else if(H==="video"){M=`<div class="form-group"><label>YouTube Video URL or ID</label><input type="text" data-field="videoId" value="${K.videoId||""}" required></div><div class="form-group"><label>Title (English)</label><input type="text" data-field="title_en" value="${K.title_en||""}"></div><div class="form-group"><label>Title (Spanish)</label><input type="text" data-field="title_es" value="${K.title_es||""}"></div>`}else if(H==="pdf"){M=`<div class="form-group"><label>PDF URL</label><input type="url" data-field="url" value="${K.url||""}" required></div><div class="form-group"><label>Title (English)</label><input type="text" data-field="title_en" value="${K.title_en||""}"></div><div class="form-group"><label>Title (Spanish)</label><input type="text" data-field="title_es" value="${K.title_es||""}"></div>`}else if(H==="mcq"){const O='mcq_correct_'+Math.random().toString(36).substring(2,9);let P=(K.answers&&K.answers.length?K.answers:[{text_en:'',text_es:'',correct:!0}]).map(Q=>`<div class="mcq-answer-editor"><input type="text" class="mcq-answer-text-en" placeholder="Answer (English)" value="${Q.text_en||""}"><input type="text" class="mcq-answer-text-es" placeholder="Answer (Spanish)" value="${Q.text_es||""}"><input type="radio" name="${O}" class="mcq-answer-correct" ${Q.correct?"checked":""}><button type="button" class="btn btn-danger remove-mcq-answer-btn">X</button></div>`).join('');M=`<div class="form-grid"><div class="form-group"><label>Question (English)</label><textarea data-field="question_en" rows="2">${K.question_en||""}</textarea></div><div class="form-group"><label>Question (Spanish)</label><textarea data-field="question_es" rows="2">${K.question_es||""}</textarea></div></div><div class="form-group"><label>Answers</label><div class="mcq-answers-container">${P}</div><button type="button" class="btn btn-secondary add-mcq-answer-btn" data-radio-name="${O}">Add Answer</button></div><div class="form-grid"><div class="form-group"><label>Explanation (Optional) (English)</label><textarea data-field="explanation_en" rows="3">${K.explanation_en||""}</textarea></div><div class="form-group"><label>Explanation (Optional) (Spanish)</label><textarea data-field="explanation_es" rows="3">${K.explanation_es||""}</textarea></div></div>`}L.innerHTML=`<div class="builder-block-header"><span class="builder-block-title">${H.charAt(0).toUpperCase()+H.slice(1)} Block</span><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete</button></div></div>${M}`;u.appendChild(L)};
         const S=(u,H={})=>{const K=document.createElement("div");K.className="builder-block module-block";K.dataset.type="unit";const L='unit_content_'+Math.random().toString(36).substring(2,9);K.innerHTML=`<div class="builder-block-header has-form-groups"><div class="form-group" style="flex-grow: 1;"><label>Unit Title (English)</label><input type="text" data-field="title_en" value="${H.title_en||""}" required></div><div class="form-group" style="flex-grow: 1;"><label>Unit Title (Spanish)</label><input type="text" data-field="title_es" value="${H.title_es||""}" required></div><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete Unit</button></div></div><div class="nested-builder collapsible-content"><div class="unit-content-container" id="${L}"></div><div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap:wrap;"><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="text">Add Text</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="image">Add Media</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="video">Add Video</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="pdf">Add PDF</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="mcq">Add MCQ</button></div></div>`;u.appendChild(K);if(H.contentBlocks&&Array.isArray(H.contentBlocks)){const M=K.querySelector(`#${L}`);H.contentBlocks.forEach(N=>R(M,N.type,N))}};
         const T=(u,H={})=>{const K=document.createElement("div");K.className="builder-block course-block";K.dataset.type="module";K.innerHTML=`<div class="builder-block-header has-form-groups"><div class="form-group" style="flex-grow: 1;"><label>Module Title (English)</label><input type="text" data-field="title_en" value="${H.title_en||""}" required></div><div class="form-group" style="flex-grow: 1;"><label>Module Title (Spanish)</label><input type="text" data-field="title_es" value="${H.title_es||""}" required></div><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete Module</button></div></div><div class="nested-builder collapsible-content"><div class="module-units-container"></div><button type="button" class="btn btn-secondary add-unit-btn" style="margin-top: 10px;">Add Unit</button></div>`;u.appendChild(K);if(H.units&&Array.isArray(H.units)){const L=K.querySelector(".module-units-container");H.units.forEach(M=>S(L,M))}};
@@ -532,144 +602,17 @@
         const V=u=>{const H=/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/.exec(u);return H&&H[2].length===11?H[2]:u};
         const W=()=>{const u={};const H=A.elements.type.value;const Z=Y=>{const L={type:Y.dataset.type};if(L.type==="mcq"){L.question_en=Y.querySelector('[data-field="question_en"]').value;L.question_es=Y.querySelector('[data-field="question_es"]').value;L.explanation_en=Y.querySelector('[data-field="explanation_en"]').value;L.explanation_es=Y.querySelector('[data-field="explanation_es"]').value;L.answers=Array.from(Y.querySelectorAll(".mcq-answer-editor")).map(M=>({text_en:M.querySelector(".mcq-answer-text-en").value,text_es:M.querySelector(".mcq-answer-text-es").value,correct:M.querySelector(".mcq-answer-correct").checked}))}else{Y.querySelectorAll("input, .editor-content, textarea").forEach(M=>{if(M.dataset.field){let N=M.tagName==="DIV"?M.innerHTML:M.value;if(M.dataset.field==="videoId"){N=V(N)}L[M.dataset.field]=N}})}return L};if(H==="article"||H==="news"||H==="lesson"){u.contentBlocks=Array.from(v("#content-builder > .builder-block")).map(Z)}if(H==="lesson"){u.courses=Array.from(v('#lesson-builder > .builder-block[data-type="course"]')).map(K=>{const L={title_en:K.querySelector('[data-field="title_en"]').value,title_es:K.querySelector('[data-field="title_es"]').value,modules:[]};K.querySelectorAll('.course-modules-container .builder-block[data-type="module"]').forEach(M=>{const N={title_en:M.querySelector('[data-field="title_en"]').value,title_es:M.querySelector('[data-field="title_es"]').value,units:[]};M.querySelectorAll('.module-units-container .builder-block[data-type="unit"]').forEach(O=>{const P={title_en:O.querySelector('[data-field="title_en"]').value,title_es:O.querySelector('[data-field="title_es"]').value,contentBlocks:[]};O.querySelectorAll(".unit-content-container .builder-block").forEach(Q=>{P.contentBlocks.push(Z(Q))});N.units.push(P)});L.modules.push(N)});return L});u.resourcesBlocks=Array.from(v("#resources-builder > .builder-block")).map(Z)}if(H==="member"){u.facts_en=A.elements.facts_en.value.split('\n').map(fact=>fact.trim()).filter(Boolean);u.facts_es=A.elements.facts_es.value.split('\n').map(fact=>fact.trim()).filter(Boolean)}return u};
         t("#add-class-btn").addEventListener("click",()=>U({}));
-        const updateToolbarState = (editor) => {
-            const toolbar = editor.previousElementSibling;
-            if (!toolbar || !toolbar.classList.contains('toolbar')) return;
-            const formatBlockDropdown = toolbar.querySelector('.format-block');
-            if (!formatBlockDropdown) return;
-            const selection = window.getSelection();
-            if (!selection.rangeCount) return;
-            let node = selection.getRangeAt(0).startContainer;
-            node = node.nodeType === 3 ? node.parentNode : node;
-            let foundBlock = false;
-            while (node && node !== editor) {
-                const tagName = node.tagName.toLowerCase();
-                if (['p', 'h1', 'h2', 'h3'].includes(tagName)) {
-                    formatBlockDropdown.value = tagName;
-                    foundBlock = true;
-                    break;
-                }
-                node = node.parentNode;
-            }
-            if (!foundBlock) {
-                formatBlockDropdown.value = 'p';
-            }
-        };
-        z.addEventListener("click",u=>{const H=u.target;if(H.id==='import-json-btn'){ap(!0)}else if(H.id==='export-json-btn'){const K={};new FormData(A).forEach((N,O)=>{let P=A.elements[O];if(P instanceof RadioNodeList){P=P[0]}if(!P||!P.closest(".builder-block")){K[O]=N}});const L=W();const M={...K,...L};delete M.original_id;delete M.type;delete M.saveAction;t("#json-export-textarea").value=JSON.stringify(M,null,2);av(!0)}if(H.classList.contains("add-content-btn")){const L=H.dataset.builder,M=H.closest('.modal-content').querySelector(`#${L}`);R(M,H.dataset.type,{})}if(H.classList.contains('add-mcq-answer-btn')){const L=H.dataset.radioName;const M=H.previousElementSibling;const N=document.createElement('div');N.className='mcq-answer-editor';N.innerHTML=`<input type="text" class="mcq-answer-text-en" placeholder="Answer (English)"><input type="text" class="mcq-answer-text-es" placeholder="Answer (Spanish)"><input type="radio" name="${L}" class="mcq-answer-correct"><button type="button" class="btn btn-danger remove-mcq-answer-btn">X</button>`;M.appendChild(N)}if(H.classList.contains('remove-mcq-answer-btn')){H.parentElement.remove()}const K=H.closest(".builder-block");if(H.classList.contains("builder-block-header")){H.parentElement.classList.toggle("collapsed")}if(!K)return;if(H.classList.contains("delete-block-btn")){K.remove()}else if(H.classList.contains("move-up-btn")){const L=K.previousElementSibling;if(L){K.parentElement.insertBefore(K,L)}}else if(H.classList.contains("move-down-btn")){const L=K.nextElementSibling;if(L){K.parentElement.insertBefore(L,K)}}else if(H.classList.contains("add-module-to-course-btn")){T(K.querySelector(".course-modules-container"),{})}else if(H.classList.contains("add-unit-btn")){S(K.querySelector(".module-units-container"),{})}else if(H.classList.contains("add-content-to-unit-btn")){const L=H.dataset.contentType,M=K.querySelector(".unit-content-container");R(M,L,{})}
-            const editorContent = H.closest('.editor-content');
-            if(editorContent) { updateToolbarState(editorContent); }
-            const button = H.closest('button[data-command]');
-            if (button) {
-                u.preventDefault();
-                const command = button.dataset.command;
-                if (command === 'createLink') {
-                    const url = prompt('Enter the URL:');
-                    if (url) { document.execCommand(command, false, url); }
-                } else {
-                    document.execCommand(command, false, null);
-                }
-                if(button.closest('.rich-text-editor')) {
-                    updateToolbarState(button.closest('.rich-text-editor').querySelector('.editor-content'));
-                }
-            }
-        });
-        z.addEventListener('keyup', e => {
-            const editorContent = e.target.closest('.editor-content');
-            if (editorContent) { updateToolbarState(editorContent); }
-        });
-        z.addEventListener('mouseup', e => {
-            const editorContent = e.target.closest('.editor-content');
-            if (editorContent) { updateToolbarState(editorContent); }
-        });
-        z.addEventListener('change', e => {
-            const select = e.target.closest('select.format-block');
-            if (select) {
-                document.execCommand('formatBlock', false, `<${select.value}>`);
-            }
-        });
-        x.addEventListener("click",async u=>{
-            if(u.target.classList.contains("edit-btn")){
-                const{id:H,type:L}=u.target.dataset;
-                const M = L === 'news' ? 'news' : `${L}s`;
-                const N=await k(j(s,M,H));
-                if(N.exists()){
-                    A.reset();
-                    t("#content-builder").innerHTML="";
-                    t("#lesson-builder").innerHTML="";
-                    t("#resources-builder").innerHTML="";
-                    Q(L);
-                    ao(L);
-                    const O=N.data();
-                    Object.entries(O).forEach(([P,Q])=>{
-                        const R=A.elements[P];
-                        if(R){
-                            if(R.type==="checkbox"){R.checked=Q}
-                            else if(Array.isArray(Q)){R.value=Q.join('\n')}
-                            else{R.value=Q}
-                        }
-                    });
-                    if(O.contentBlocks){O.contentBlocks.forEach(P=>R(t("#content-builder"),P.type,P))}
-                    if(O.courses){O.courses.forEach(P=>U(P))}
-                    if(O.resourcesBlocks){O.resourcesBlocks.forEach(P=>R(t("#resources-builder"),P.type,P))}
-                    A.elements.id.value=H;
-                    A.elements.original_id.value=H;
-                    A.elements.type.value=L;
-                    t('[name="id"]').readOnly=!0;
-                    t("#modal-title").textContent=`Edit ${L.charAt(0).toUpperCase()+L.slice(1)}`;
-                    I(z,!0)
-                }
-            } else if(u.target.classList.contains("delete-btn")){
-                const{collection:H,id:L}=u.target.dataset;
-                if(H&&L){aq('Confirm Deletion',`Are you sure you want to delete this item? This action cannot be undone.`,[{text:'Cancel',class:'btn-secondary'},{text:'Delete',class:'btn-danger',callback:async()=>{await m(j(s,H,L))}}])}
-            }
-        });
-        A.addEventListener("submit",async u=>{
-            u.preventDefault();
-            const H=u.submitter&&u.submitter.value==="publish";
-            const K={};
-            new FormData(A).forEach((M,N)=>{
-                let el=A.elements[N];
-                if(el instanceof RadioNodeList){el=el[0]}
-                if(!el||!el.closest(".builder-block")){K[N]=M}
-            });
-            const L=K.type;
-            if(!L||!K.id){return aq('Error','ID and Type are required.',[{text:'OK',class:'btn-primary'}])}
-            const M=W();
-            const N={...K,...M};
-            if(L!=="member"){N.isPublished=H}
-            E.disabled=!0;
-            const{id:O,original_id:P}=N;
-            const R = L === 'news' ? 'news' : `${L}s`;
-            delete N.original_id;
-            delete N.type;
-            if(P){
-                const T=j(s,R,P);
-                const U=await k(T);
-                if(U.exists()&&typeof U.data().order==='undefined'){N.order=Date.now()}
-                else if(U.exists()){N.order=U.data().order}
-                if(O!==P){
-                    await l(j(s,R,O),N);
-                    await m(T)
-                } else {
-                    await l(T,N)
-                }
-            } else {
-                N.order=Date.now();
-                const T=j(s,R,O);
-                const U=await k(T);
-                if(U.exists()){
-                    aq('Error','An item with this ID already exists. Please provide a unique ID.',[{text:'OK',class:'btn-primary'}]);
-                    E.disabled=!1;
-                    return
-                }
-                await l(T,N)
-            }
-            I(z,!1)
-        });
-        v(".modal-close, .modal-cancel").forEach(u=>u.addEventListener("click",()=>I(z,!1)));
+        const updateToolbarState=(editor)=>{const toolbar=editor.previousElementSibling;if(!toolbar||!toolbar.classList.contains('toolbar'))return;const formatBlockDropdown=toolbar.querySelector('.format-block');if(!formatBlockDropdown)return;const selection=window.getSelection();if(!selection.rangeCount)return;let node=selection.getRangeAt(0).startContainer;node=node.nodeType===3?node.parentNode:node;let foundBlock=!1;while(node&&node!==editor){const tagName=node.tagName.toLowerCase();if(['p','h1','h2','h3'].includes(tagName)){formatBlockDropdown.value=tagName;foundBlock=!0;break}node=node.parentNode}if(!foundBlock){formatBlockDropdown.value='p'}};
+        z.addEventListener("click",u=>{const H=u.target;if(H.id==='import-json-btn'){ap(!0)}else if(H.id==='export-json-btn'){const K={};new FormData(A).forEach((N,O)=>{let P=A.elements[O];if(P instanceof RadioNodeList){P=P[0]}if(!P||!P.closest(".builder-block")){K[O]=N}});const L=W();const M={...K,...L};delete M.original_id;delete M.type;delete M.saveAction;t("#json-export-textarea").value=JSON.stringify(M,null,2);av(!0)}if(H.classList.contains("add-content-btn")){const L=H.dataset.builder,M=H.closest('.modal-content').querySelector(`#${L}`);R(M,H.dataset.type,{})}if(H.classList.contains('add-mcq-answer-btn')){const L=H.dataset.radioName;const M=H.previousElementSibling;const N=document.createElement('div');N.className='mcq-answer-editor';N.innerHTML=`<input type="text" class="mcq-answer-text-en" placeholder="Answer (English)"><input type="text" class="mcq-answer-text-es" placeholder="Answer (Spanish)"><input type="radio" name="${L}" class="mcq-answer-correct"><button type="button" class="btn btn-danger remove-mcq-answer-btn">X</button>`;M.appendChild(N)}if(H.classList.contains('remove-mcq-answer-btn')){H.parentElement.remove()}const K=H.closest(".builder-block");if(H.classList.contains("builder-block-header")){H.parentElement.classList.toggle("collapsed")}if(!K)return;if(H.classList.contains("delete-block-btn")){K.remove()}else if(H.classList.contains("move-up-btn")){const L=K.previousElementSibling;if(L){K.parentElement.insertBefore(K,L)}}else if(H.classList.contains("move-down-btn")){const L=K.nextElementSibling;if(L){K.parentElement.insertBefore(L,K)}}else if(H.classList.contains("add-module-to-course-btn")){T(K.querySelector(".course-modules-container"),{})}else if(H.classList.contains("add-unit-btn")){S(K.querySelector(".module-units-container"),{})}else if(H.classList.contains("add-content-to-unit-btn")){const L=H.dataset.contentType,M=K.querySelector(".unit-content-container");R(M,L,{})}const editorContent=H.closest('.editor-content');if(editorContent){updateToolbarState(editorContent)}const button=H.closest('button[data-command]');if(button){u.preventDefault();const command=button.dataset.command;if(command==='createLink'){const url=prompt('Enter the URL:');if(url){document.execCommand(command,!1,url)}}else{document.execCommand(command,!1,null)}if(button.closest('.rich-text-editor')){updateToolbarState(button.closest('.rich-text-editor').querySelector('.editor-content'))}}});
+        z.addEventListener('keyup',e=>{const editorContent=e.target.closest('.editor-content');if(editorContent){updateToolbarState(editorContent)}});
+        z.addEventListener('mouseup',e=>{const editorContent=e.target.closest('.editor-content');if(editorContent){updateToolbarState(editorContent)}});
+        z.addEventListener('change',e=>{const select=e.target.closest('select.format-block');if(select){document.execCommand('formatBlock',!1,`<${select.value}>`)}});
+        x.addEventListener("click",async u=>{if(u.target.classList.contains("edit-btn")){const{id:H,type:L}=u.target.dataset;const M=L==='news'?'news':`${L}s`;const N=await k(j(s,M,H));if(N.exists()){A.reset();t("#content-builder").innerHTML="";t("#lesson-builder").innerHTML="";t("#resources-builder").innerHTML="";Q(L);ao(L);const O=N.data();Object.entries(O).forEach(([P,Q])=>{const R=A.elements[P];if(R){if(R.type==="checkbox"){R.checked=Q}else if(Array.isArray(Q)){R.value=Q.join('\n')}else{R.value=Q}}});if(O.contentBlocks){O.contentBlocks.forEach(P=>R(t("#content-builder"),P.type,P))}if(O.courses){O.courses.forEach(P=>U(P))}if(O.resourcesBlocks){O.resourcesBlocks.forEach(P=>R(t("#resources-builder"),P.type,P))}A.elements.id.value=H;A.elements.original_id.value=H;A.elements.type.value=L;t('[name="id"]').readOnly=!0;t("#modal-title").textContent=`Edit ${L.charAt(0).toUpperCase()+L.slice(1)}`;I(z,!0);updateUIAccess()}}else if(u.target.classList.contains("delete-btn")){const{collection:H,id:L}=u.target.dataset;if(H&&L){aq('Confirm Deletion',`Are you sure you want to delete this item? This action cannot be undone.`,[{text:'Cancel',class:'btn-secondary'},{text:'Delete',class:'btn-danger',callback:async()=>{await m(j(s,H,L))}}])}}});
+        A.addEventListener("submit",async u=>{u.preventDefault();const H=u.submitter&&u.submitter.value==="publish";const K={};new FormData(A).forEach((M,N)=>{let el=A.elements[N];if(el instanceof RadioNodeList){el=el[0]}if(!el||!el.closest(".builder-block")){K[N]=M}});const L=K.type;if(!L||!K.id){return aq('Error','ID and Type are required.',[{text:'OK',class:'btn-primary'}])}const M=W();const N={...K,...M};if(L!=="member"){N.isPublished=H}E.disabled=!0;const{id:O,original_id:P}=N;const R=L==='news'?'news':`${L}s`;delete N.original_id;delete N.type;if(P){const T=j(s,R,P);const U=await k(T);if(U.exists()&&typeof U.data().order==='undefined'){N.order=Date.now()}else if(U.exists()){N.order=U.data().order}if(O!==P){await l(j(s,R,O),N);await m(T)}else{await l(T,N)}}else{N.order=Date.now();const T=j(s,R,O);const U=await k(T);if(U.exists()){aq('Error','An item with this ID already exists. Please provide a unique ID.',[{text:'OK',class:'btn-primary'}]);E.disabled=!1;return}await l(T,N)}I(z,!1)});
+        v("#editor-modal .modal-close, #editor-modal .modal-cancel").forEach(u=>u.addEventListener("click",()=>I(z,!1)));
         const ac=t("#view-archived-messages-btn"),ad=t("#archive-selected-messages-btn"),ae=t("#delete-selected-messages-btn"),af=t("#select-all-messages-checkbox"),ag=t("#messages-table-body");
         let ah=!1;
-        const aj=()=>{const u=v(".message-checkbox:checked").length>0;ad.disabled=!u;ae.disabled=!u;ad.classList.toggle("btn-primary",u);ad.classList.toggle("btn-secondary",!u);ae.classList.toggle("btn-danger",u);ae.classList.toggle("btn-secondary",!u)};
+        const aj=()=>{const u=v(".message-checkbox:checked").length>0;const canDelete=userCan('canDeleteContent');ad.disabled=!u;ae.disabled=!u||!canDelete;ad.classList.toggle("btn-primary",u);ad.classList.toggle("btn-secondary",!u);ae.classList.toggle("btn-danger",u&&canDelete);ae.classList.toggle("btn-secondary",!u||!canDelete)};
         const loadMessages=async()=>{const u=h(g(s,"messages"),i("timestamp","desc"));const H=await o(u);const K=H.docs;let L;if(ah){L=K.filter(M=>M.data().isArchived===true)}else{L=K.filter(M=>M.data().isArchived!==true)}J(ag,L,M,"No messages found.");af.checked=!1;aj()};
         ac.addEventListener("click",()=>{ah=!ah;ac.textContent=ah?"View Active Messages":"View Archived";t("#messages-section .page-title").textContent=ah?"Archived Messages":"Contact Form Messages";ad.textContent=ah?"Unarchive Selected":"Archive Selected";loadMessages()});
         const ak=async(u,H)=>{const K=bc(s);u.forEach(L=>{const M=j(s,"messages",L);K.update(M,{isArchived:H})});await K.commit();loadMessages()};
@@ -678,269 +621,43 @@
         af.addEventListener("change",()=>{v('#messages-table-body .message-checkbox').forEach(u=>{u.checked=af.checked});aj()});
         ag.addEventListener("change",u=>{if(u.target.matches(".message-checkbox")){af.checked=v(".message-checkbox").length>0&&v(".message-checkbox").length===v(".message-checkbox:checked").length;aj()}});
         const al=()=>{v(".page-actions-footer").forEach(u=>u.classList.add("hidden"))};
-        const am=(u)=>{const H=t(`.page-actions-footer[data-section="${u}"]`);if(H)H.classList.remove("hidden")};
+        const am=(u)=>{if(!userCan('canPublish'))return;const H=t(`.page-actions-footer[data-section="${u}"]`);if(H)H.classList.remove("hidden")};
         x.addEventListener("change",u=>{if(u.target.classList.contains("publish-toggle")){const H=u.target;const{collection:K,id:L}=H.dataset;const M=H.checked;if(originalStates[L]===M){delete stagedChanges[L]}else{stagedChanges[L]={collection:K,isPublished:M}}if(Object.keys(stagedChanges).length>0){am(K)}else{al()}}});
         v(".save-changes-btn").forEach(u=>u.addEventListener("click",async()=>{if(Object.keys(stagedChanges).length===0)return;const H=bc(s);Object.entries(stagedChanges).forEach(([K,{collection:L,isPublished:M}])=>{const N=j(s,L,K);H.update(N,{isPublished:M})});await H.commit();stagedChanges={};al()}));
-        v(".cancel-changes-btn").forEach(u=>u.addEventListener("click",()=>{const H=u.closest(".page-actions-footer").dataset.section;stagedChanges={};al();F[H]()}));
+        v(".cancel-changes-btn").forEach(u=>u.addEventListener("click",()=>{const H=u.closest(".page-actions-footer").dataset.section;stagedChanges={};al();if(F[H])F[H]();else{const collection=H.endsWith('s')?H:H+'s';if(F[collection])F[collection]()}}));
         const aq=(u,H,K=[{text:'OK',class:'btn-primary'}])=>{t("#prompt-title").textContent=u;t("#prompt-message").textContent=H;const L=t("#prompt-actions");L.innerHTML="";K.forEach(M=>{const N=document.createElement("button");N.textContent=M.text;N.className=`btn ${M.class}`;N.onclick=()=>{ar(!1);if(M.callback)M.callback()};L.appendChild(N)});ar(!0)};const ar=u=>t("#prompt-modal").classList.toggle("visible",u);
         const at=t("#json-import-modal"),au=t("#json-input-textarea");
         const ap=u=>{at.classList.toggle("visible",!!u);if(u){au.value='';au.focus()}else{au.value=""}};
-        t("#confirm-json-import-btn").addEventListener("click", () => {
-            const jsonString = au.value;
-            if (!jsonString) return aq('Error', 'Textarea is empty.');
-            let data;
-            try {
-                data = JSON.parse(jsonString);
-            } catch (error) {
-                return aq('Error', `Error parsing JSON: ${error.message}`);
-            }
-            if (typeof data !== 'object' || Array.isArray(data) || data === null) {
-                return aq('Error', 'Invalid data format. Please paste a single JSON object.');
-            }
-            t("#content-builder").innerHTML = "";
-            t("#lesson-builder").innerHTML = "";
-            t("#resources-builder").innerHTML = "";
-            for (const key in data) {
-                const value = data[key];
-                const formElement = A.elements[key];
-                if (formElement) {
-                    if (formElement.type === 'checkbox') {
-                        formElement.checked = value;
-                    } else if (Array.isArray(value)) {
-                        formElement.value = value.join('\n');
-                    } else {
-                        formElement.value = value;
-                    }
-                } else if (key === 'contentBlocks' && Array.isArray(value)) {
-                    const builder = t("#content-builder");
-                    value.forEach(blockData => R(builder, blockData.type, blockData));
-                } else if (key === 'courses' && Array.isArray(value)) {
-                    value.forEach(courseData => U(courseData));
-                } else if (key === 'resourcesBlocks' && Array.isArray(value)) {
-                    const builder = t("#resources-builder");
-                    value.forEach(blockData => R(builder, blockData.type, blockData));
-                } else {
-                    console.warn(`No form field or builder found for JSON key: ${key}`);
-                }
-            }
-            ap(false);
-            aq('Success', 'Data imported successfully. Please review and provide an ID if needed before saving.');
-        });
+        t("#confirm-json-import-btn").addEventListener("click",()=>{const jsonString=au.value;if(!jsonString)return aq('Error','Textarea is empty.');let data;try{data=JSON.parse(jsonString)}catch(error){return aq('Error',`Error parsing JSON: ${error.message}`)}if(typeof data!=='object'||Array.isArray(data)||data===null){return aq('Error','Invalid data format. Please paste a single JSON object.')}t("#content-builder").innerHTML="";t("#lesson-builder").innerHTML="";t("#resources-builder").innerHTML="";for(const key in data){const value=data[key];const formElement=A.elements[key];if(formElement){if(formElement.type==='checkbox'){formElement.checked=value}else if(Array.isArray(value)){formElement.value=value.join('\n')}else{formElement.value=value}}else if(key==='contentBlocks'&&Array.isArray(value)){const builder=t("#content-builder");value.forEach(blockData=>R(builder,blockData.type,blockData))}else if(key==='courses'&&Array.isArray(value)){value.forEach(courseData=>U(courseData))}else if(key==='resourcesBlocks'&&Array.isArray(value)){const builder=t("#resources-builder");value.forEach(blockData=>R(builder,blockData.type,blockData))}else{console.warn(`No form field or builder found for JSON key: ${key}`)}}ap(!1);aq('Success','Data imported successfully. Please review and provide an ID if needed before saving.')});
         t("#cancel-json-import-btn").addEventListener("click",()=>ap(!1));
         const aw=t("#json-export-modal"),ax=t("#json-export-textarea");
         const av=u=>{aw.classList.toggle("visible",!!u);if(u)ax.focus()};
         t("#copy-json-export-btn").addEventListener("click",()=>{navigator.clipboard.writeText(ax.value);aq('Success','Copied to clipboard!',[{text:'OK',class:'btn-primary'}])});
         t("#close-json-export-btn").addEventListener("click",()=>av(!1));
-        const notificationRowRenderer = (doc, type) => {
-            const data = doc.data();
-            return `<tr>
-                <td>${data.title_en}</td>
-                <td>${data.date}</td>
-                <td class="actions">
-                    <button class="btn btn-secondary copy-onesignal-btn" data-type="${type}" data-id="${doc.id}">Copy for OneSignal</button>
-                </td>
-            </tr>`;
-        };
-        const loadNotifications = async () => {
-            const articlesQuery = h(g(s, "articles"), i('date', 'desc'));
-            const newsQuery = h(g(s, "news"), i('date', 'desc'));
-            const articlesSnapshot = await o(articlesQuery);
-            const newsSnapshot = await o(newsQuery);
-            const articlesTableBody = t('#notification-articles-table-body');
-            const newsTableBody = t('#notification-news-table-body');
-            J(articlesTableBody, articlesSnapshot.docs, (doc) => notificationRowRenderer(doc, 'article'), "No articles found.");
-            J(newsTableBody, newsSnapshot.docs, (doc) => notificationRowRenderer(doc, 'news'), "No news found.");
-        };
-        const copyToClipboard = (text) => {
-            let textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-9999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                const successful = document.execCommand('copy');
-                document.body.removeChild(textArea);
-                return Promise.resolve(successful);
-            } catch (err) {
-                document.body.removeChild(textArea);
-                return Promise.resolve(false);
-            }
-        };
-        t('#notifications-section').addEventListener('click', async (e) => {
-            const subsectionHeader = e.target.closest('.notification-subsection h2');
-            if (subsectionHeader) {
-                subsectionHeader.parentElement.classList.toggle('collapsed');
-            }
-            if (e.target.classList.contains('copy-onesignal-btn')) {
-                const { type, id } = e.target.dataset;
-                const collectionName = type === 'news' ? 'news' : `${type}s`;
-                const docRef = j(s, collectionName, id);
-                const docSnap = await k(docRef);
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    const launchUrlBase = `https://literary-speaking.com/${type}/${id}`;
-                    let title_en = data.title_en || '';
-                    let title_es = data.title_es || '';
-
-                    if (type === 'article') {
-                        const prefixes_en = ["New article out: ", "Check out this new article: "];
-                        const prefix_en = prefixes_en[Math.floor(Math.random() * prefixes_en.length)];
-                        title_en = `${prefix_en}"${title_en}"`;
-
-                        const prefixes_es = ["Nuevo artículo publicado: ", "Echa un vistazo a este nuevo artículo: "];
-                        const prefix_es = prefixes_es[Math.floor(Math.random() * prefixes_es.length)];
-                        title_es = `${prefix_es}"${title_es}"`;
-                    } else if (type === 'news') {
-                        title_en = `Latest News: ${title_en}`;
-                        title_es = `Últimas Noticias: ${title_es}`;
-                    }
-
-                    const textToCopy = `--- OneSignal Push Notification Data ---
-Message Name: ${data.title_en || ''}
-Campaign Name: ${data.title_en || ''}
-
---- Content (Any/English) ---
-Title: ${title_en}
-Message: ${data.excerpt_en || ''}
-Image URL: ${data.thumbnail_url || ''}
-Launch URL: ${launchUrlBase}
-
---- Content (Spanish) ---
-Title: ${title_es}
-Message: ${data.excerpt_es || ''}
-Image URL: ${data.thumbnail_url || ''}
-Launch URL: ${launchUrlBase}?lang=es`;
-
-                    const success = await copyToClipboard(textToCopy);
-                    if (success) {
-                        aq('Success', 'Notification content copied to clipboard!');
-                    } else {
-                        aq('Error', 'Failed to copy content.');
-                    }
-                }
-            }
-        });
-        
-        let isSubscribersArchivedView = false;
-        const subscribersTableBody = t('#newsletter-table-body');
-        const selectAllSubscribersCheckbox = t('#select-all-subscribers-checkbox');
-        const archiveSubscribersBtn = t('#archive-selected-subscribers-btn');
-        const deleteSubscribersBtn = t('#delete-selected-subscribers-btn');
-        const viewArchivedSubscribersBtn = t('#view-archived-subscribers-btn');
-        const newsletterPageTitle = t('#newsletter-page-title');
-
-        const updateSubscriberActionButtons = () => {
-            const numSelected = v('.subscriber-checkbox:checked').length > 0;
-            archiveSubscribersBtn.disabled = !numSelected;
-            deleteSubscribersBtn.disabled = !numSelected;
-            archiveSubscribersBtn.classList.toggle("btn-primary", numSelected);
-            archiveSubscribersBtn.classList.toggle("btn-secondary", !numSelected);
-            deleteSubscribersBtn.classList.toggle("btn-danger", numSelected);
-            deleteSubscribersBtn.classList.toggle("btn-secondary", !numSelected);
-        };
-        
-        const loadNewsletterSubscribers = async () => {
-            if (F.newsletter) F.newsletter();
-            
-            const baseQuery = h(g(s, "newsletter_subscribers"), bb("verified", "==", true), i("timestamp", "desc"));
-            
-            F.newsletter = n(baseQuery, (snapshot) => {
-                let docsToRender;
-                if (isSubscribersArchivedView) {
-                    docsToRender = snapshot.docs.filter(doc => doc.data().isArchived === true);
-                } else {
-                    docsToRender = snapshot.docs.filter(doc => doc.data().isArchived !== true);
-                }
-                J(subscribersTableBody, docsToRender, newsletterRowRenderer, "No subscribers found.");
-                selectAllSubscribersCheckbox.checked = false;
-                updateSubscriberActionButtons();
-            }, (error) => {
-                console.error("Error fetching newsletter subscribers:", error);
-                aq('Firestore Error', `Could not load subscribers. Check the browser console for details. The error was: ${error.message}`);
-            });
-        };
-        
-        viewArchivedSubscribersBtn.addEventListener("click", () => {
-            isSubscribersArchivedView = !isSubscribersArchivedView;
-            viewArchivedSubscribersBtn.textContent = isSubscribersArchivedView ? "View Active" : "View Archived";
-            newsletterPageTitle.textContent = isSubscribersArchivedView ? "Archived Subscribers" : "Newsletter Subscribers";
-            archiveSubscribersBtn.textContent = isSubscribersArchivedView ? "Unarchive Selected" : "Archive Selected";
-            loadNewsletterSubscribers();
-        });
-
-        const performSubscriberBatchAction = async (ids, action) => {
-            const batch = bc(s);
-            ids.forEach(id => {
-                const docRef = j(s, "newsletter_subscribers", id);
-                if (action === 'delete') {
-                    batch.delete(docRef);
-                } else if (action === 'archive') {
-                    batch.update(docRef, { isArchived: true });
-                } else if (action === 'unarchive') {
-                    batch.update(docRef, { isArchived: false });
-                }
-            });
-            await batch.commit();
-        };
-        
-        archiveSubscribersBtn.addEventListener("click", () => {
-            const selectedIds = Array.from(v(".subscriber-checkbox:checked")).map(cb => cb.dataset.id);
-            if (selectedIds.length > 0) {
-                const action = isSubscribersArchivedView ? 'unarchive' : 'archive';
-                performSubscriberBatchAction(selectedIds, action);
-            }
-        });
-
-        deleteSubscribersBtn.addEventListener("click", () => {
-            const selectedIds = Array.from(v(".subscriber-checkbox:checked")).map(cb => cb.dataset.id);
-            if (selectedIds.length === 0) return;
-            aq('Confirm Deletion', `Are you sure you want to permanently delete ${selectedIds.length} subscriber(s)?`, [
-                { text: 'Cancel', class: 'btn-secondary' },
-                { text: 'Delete', class: 'btn-danger', callback: () => performSubscriberBatchAction(selectedIds, 'delete') }
-            ]);
-        });
-
-        selectAllSubscribersCheckbox.addEventListener('change', () => {
-            v('#newsletter-table-body .subscriber-checkbox').forEach(checkbox => {
-                checkbox.checked = selectAllSubscribersCheckbox.checked;
-            });
-            updateSubscriberActionButtons();
-        });
-
-        subscribersTableBody.addEventListener('change', (e) => {
-            if (e.target.matches('.subscriber-checkbox')) {
-                selectAllSubscribersCheckbox.checked = v('.subscriber-checkbox').length > 0 && v('.subscriber-checkbox:checked').length === v('.subscriber-checkbox').length;
-                updateSubscriberActionButtons();
-            }
-        });
-
-        t('#copy-newsletter-emails-btn').addEventListener('click', async () => {
-            const emails = Array.from(v('#newsletter-table-body .subscriber-email')).map(td => td.textContent.trim()).filter(Boolean);
-            if (emails.length === 0) {
-                return aq('No Emails', 'There are no emails in the current view to copy.', [{ text: 'OK', class: 'btn-primary' }]);
-            }
-            const emailString = emails.join(', ');
-            const success = await copyToClipboard(emailString);
-            if (success) {
-                aq('Success', `${emails.length} email(s) copied to clipboard!`);
-            } else {
-                aq('Error', 'Failed to copy emails.');
-            }
-        });
-
-        const mobileMenuToggle = t('#mobile-menu-toggle');
-        const mobileNavOverlay = t('#mobile-nav-overlay');
-        mobileMenuToggle.addEventListener('click', () => {
-            document.body.classList.toggle('sidebar-open');
-            mobileMenuToggle.classList.toggle('active');
-        });
-        mobileNavOverlay.addEventListener('click', () => {
-            document.body.classList.remove('sidebar-open');
-            mobileMenuToggle.classList.remove('active');
-        });
-
+        const notificationRowRenderer=(doc,type)=>{const data=doc.data();return`<tr><td>${data.title_en}</td><td>${data.date}</td><td class="actions"><button class="btn btn-secondary copy-onesignal-btn" data-type="${type}" data-id="${doc.id}">Copy for OneSignal</button></td></tr>`};
+        const loadNotifications=async()=>{const articlesQuery=h(g(s,"articles"),i('date','desc'));const newsQuery=h(g(s,"news"),i('date','desc'));const articlesSnapshot=await o(articlesQuery);const newsSnapshot=await o(newsQuery);const articlesTableBody=t('#notification-articles-table-body');const newsTableBody=t('#notification-news-table-body');J(articlesTableBody,articlesSnapshot.docs,(doc)=>notificationRowRenderer(doc,'article'),"No articles found.");J(newsTableBody,newsSnapshot.docs,(doc)=>notificationRowRenderer(doc,'news'),"No news found.")};
+        const copyToClipboard=text=>{let textArea=document.createElement("textarea");textArea.value=text;textArea.style.position="fixed";textArea.style.left="-9999px";document.body.appendChild(textArea);textArea.focus();textArea.select();try{const successful=document.execCommand('copy');document.body.removeChild(textArea);return Promise.resolve(successful)}catch(err){document.body.removeChild(textArea);return Promise.resolve(!1)}};
+        t('#notifications-section').addEventListener('click',async e=>{const subsectionHeader=e.target.closest('.notification-subsection h2');if(subsectionHeader){subsectionHeader.parentElement.classList.toggle('collapsed')}if(e.target.classList.contains('copy-onesignal-btn')){const{type,id}=e.target.dataset;const collectionName=type==='news'?'news':`${type}s`;const docRef=j(s,collectionName,id);const docSnap=await k(docRef);if(docSnap.exists()){const data=docSnap.data();const launchUrlBase=`https://literary-speaking.com/${type}/${id}`;let title_en=data.title_en||'';let title_es=data.title_es||'';if(type==='article'){const prefixes_en=["New article out: ","Check out this new article: "];const prefix_en=prefixes_en[Math.floor(Math.random()*prefixes_en.length)];title_en=`${prefix_en}"${title_en}"`;const prefixes_es=["Nuevo artículo publicado: ","Echa un vistazo a este nuevo artículo: "];const prefix_es=prefixes_es[Math.floor(Math.random()*prefixes_es.length)];title_es=`${prefix_es}"${title_es}"`}else if(type==='news'){title_en=`Latest News: ${title_en}`;title_es=`Últimas Noticias: ${title_es}`}const textToCopy=`--- OneSignal Push Notification Data ---\nMessage Name: ${data.title_en||''}\nCampaign Name: ${data.title_en||''}\n\n--- Content (Any/English) ---\nTitle: ${title_en}\nMessage: ${data.excerpt_en||''}\nImage URL: ${data.thumbnail_url||''}\nLaunch URL: ${launchUrlBase}\n\n--- Content (Spanish) ---\nTitle: ${title_es}\nMessage: ${data.excerpt_es||''}\nImage URL: ${data.thumbnail_url||''}\nLaunch URL: ${launchUrlBase}?lang=es`;const success=await copyToClipboard(textToCopy);if(success){aq('Success','Notification content copied to clipboard!')}else{aq('Error','Failed to copy content.')}}}});
+        let isSubscribersArchivedView=!1;
+        const subscribersTableBody=t('#newsletter-table-body');
+        const selectAllSubscribersCheckbox=t('#select-all-subscribers-checkbox');
+        const archiveSubscribersBtn=t('#archive-selected-subscribers-btn');
+        const deleteSubscribersBtn=t('#delete-selected-subscribers-btn');
+        const viewArchivedSubscribersBtn=t('#view-archived-subscribers-btn');
+        const newsletterPageTitle=t('#newsletter-page-title');
+        const updateSubscriberActionButtons=()=>{const numSelected=v('.subscriber-checkbox:checked').length>0;const canDelete=userCan('canDeleteContent');archiveSubscribersBtn.disabled=!numSelected;deleteSubscribersBtn.disabled=!numSelected||!canDelete;archiveSubscribersBtn.classList.toggle("btn-primary",numSelected);archiveSubscribersBtn.classList.toggle("btn-secondary",!numSelected);deleteSubscribersBtn.classList.toggle("btn-danger",numSelected&&canDelete);deleteSubscribersBtn.classList.toggle("btn-secondary",!numSelected||!canDelete)};
+        const loadNewsletterSubscribers=async()=>{if(F.newsletter)F.newsletter();const baseQuery=h(g(s,"newsletter_subscribers"),bb("verified","==",!0),i("timestamp","desc"));F.newsletter=n(baseQuery,snapshot=>{let docsToRender;if(isSubscribersArchivedView){docsToRender=snapshot.docs.filter(doc=>doc.data().isArchived===!0)}else{docsToRender=snapshot.docs.filter(doc=>doc.data().isArchived!==!0)}J(subscribersTableBody,docsToRender,newsletterRowRenderer,"No subscribers found.");selectAllSubscribersCheckbox.checked=!1;updateSubscriberActionButtons()},error=>{console.error("Error fetching newsletter subscribers:",error);aq('Firestore Error',`Could not load subscribers. Check the browser console for details. The error was: ${error.message}`)})};
+        viewArchivedSubscribersBtn.addEventListener("click",()=>{isSubscribersArchivedView=!isSubscribersArchivedView;viewArchivedSubscribersBtn.textContent=isSubscribersArchivedView?"View Active":"View Archived";newsletterPageTitle.textContent=isSubscribersArchivedView?"Archived Subscribers":"Newsletter Subscribers";archiveSubscribersBtn.textContent=isSubscribersArchivedView?"Unarchive Selected":"Archive Selected";loadNewsletterSubscribers()});
+        const performSubscriberBatchAction=async(ids,action)=>{const batch=bc(s);ids.forEach(id=>{const docRef=j(s,"newsletter_subscribers",id);if(action==='delete'){batch.delete(docRef)}else if(action==='archive'){batch.update(docRef,{isArchived:!0})}else if(action==='unarchive'){batch.update(docRef,{isArchived:!1})}});await batch.commit()};
+        archiveSubscribersBtn.addEventListener("click",()=>{const selectedIds=Array.from(v(".subscriber-checkbox:checked")).map(cb=>cb.dataset.id);if(selectedIds.length>0){const action=isSubscribersArchivedView?'unarchive':'archive';performSubscriberBatchAction(selectedIds,action)}});
+        deleteSubscribersBtn.addEventListener("click",()=>{const selectedIds=Array.from(v(".subscriber-checkbox:checked")).map(cb=>cb.dataset.id);if(selectedIds.length===0)return;aq('Confirm Deletion',`Are you sure you want to permanently delete ${selectedIds.length} subscriber(s)?`,[{text:'Cancel',class:'btn-secondary'},{text:'Delete',class:'btn-danger',callback:()=>performSubscriberBatchAction(selectedIds,'delete')}])});
+        selectAllSubscribersCheckbox.addEventListener('change',()=>{v('#newsletter-table-body .subscriber-checkbox').forEach(checkbox=>{checkbox.checked=selectAllSubscribersCheckbox.checked});updateSubscriberActionButtons()});
+        subscribersTableBody.addEventListener('change',e=>{if(e.target.matches('.subscriber-checkbox')){selectAllSubscribersCheckbox.checked=v('.subscriber-checkbox').length>0&&v('.subscriber-checkbox:checked').length===v('.subscriber-checkbox').length;updateSubscriberActionButtons()}});
+        t('#copy-newsletter-emails-btn').addEventListener('click',async()=>{const emails=Array.from(v('#newsletter-table-body .subscriber-email')).map(td=>td.textContent.trim()).filter(Boolean);if(emails.length===0){return aq('No Emails','There are no emails in the current view to copy.',[{text:'OK',class:'btn-primary'}])}const emailString=emails.join(', ');const success=await copyToClipboard(emailString);if(success){aq('Success',`${emails.length} email(s) copied to clipboard!`)}else{aq('Error','Failed to copy emails.')}});
+        const mobileMenuToggle=t('#mobile-menu-toggle');
+        const mobileNavOverlay=t('#mobile-nav-overlay');
+        mobileMenuToggle.addEventListener('click',()=>{document.body.classList.toggle('sidebar-open');mobileMenuToggle.classList.toggle('active')});
+        mobileNavOverlay.addEventListener('click',()=>{document.body.classList.remove('sidebar-open');mobileMenuToggle.classList.remove('active')});
     </script>
 </body>
 </html>
