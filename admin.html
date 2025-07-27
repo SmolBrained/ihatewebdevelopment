@@ -48,22 +48,23 @@
         .checkbox-group{display:flex;align-items:center;gap:10px}
         .checkbox-group input{width:auto}
         #admin-panel{display:flex;min-height:100vh}
-        .sidebar{width:260px;background-color:var(--color-surface);box-shadow:var(--shadow);display:flex;flex-direction:column;padding:20px;flex-shrink:0}
+        .sidebar{width:260px;display:flex;flex-direction:column;padding:20px;flex-shrink:0;transition:transform .3s ease-in-out;z-index:1000;background-color:rgba(255,255,255,0.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
         .sidebar .logo{height:40px;margin-bottom:30px;align-self:center}
         .sidebar-nav a{display:flex;align-items:center;gap:12px;padding:15px 20px;text-decoration:none;color:var(--color-text-muted);font-weight:700;border-radius:8px;margin-bottom:10px;transition:background-color .3s,color .3s;cursor:pointer}
         .sidebar-nav a.active,.sidebar-nav a:hover{background-color:var(--color-primary-light);color:var(--color-primary)}
         .sidebar-footer{margin-top:auto}
-        .main-content{flex-grow:1;padding:40px;overflow-y:auto}
+        .sidebar-footer .nav-item{cursor:pointer}
+        .main-content{flex-grow:1;padding:40px;overflow-y:auto;overflow-x:hidden}
         .main-content section{display:none}
         .main-content section.active{display:block}
-        .page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;gap:20px}
+        .page-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;gap:20px;flex-wrap:wrap}
         .page-header .form-group{margin-bottom:0;min-width:220px}
         .page-title{font-size:2.5rem;font-weight:900;margin:0}
-        .table-actions-bar{margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;}
+        .table-actions-bar{margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap}
         .table-wrapper{background-color:var(--color-surface);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
         .table-wrapper-inner{overflow-x:auto}
         table{width:100%;border-collapse:collapse}
-        th,td{padding:20px;border-bottom:1px solid var(--color-border);text-align:left;white-space:nowrap}
+        th,td{padding:20px;border-bottom:1px solid var(--color-border);text-align:left}
         th{font-size:.9rem;text-transform:uppercase;color:var(--color-text-muted);background-color:#f8f9fa}
         td{vertical-align:middle}
         tr:last-child td{border-bottom:none}
@@ -80,17 +81,17 @@
         input:checked+.slider{background-color:var(--color-primary)}
         input:checked+.slider:before{transform:translateX(22px)}
         .page-actions-footer{padding:20px;background-color:var(--color-surface);border-top:1px solid var(--color-border);display:flex;justify-content:flex-end;gap:15px;position:sticky;bottom:0;z-index:10;box-shadow:0 -4px 12px rgba(0,0,0,.05)}
-        .modal{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;z-index:100;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;overflow-y:auto;padding:50px 0}
+        .modal{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:flex-start;z-index:1050;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;overflow-y:auto;padding:50px 0}
         .modal.visible{opacity:1;visibility:visible}
         .modal-content{background-color:var(--color-surface);border-radius:12px;padding:30px;width:90%;max-width:900px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
         .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
         .modal-title{font-size:1.8rem;font-weight:900;margin:0}
         .modal-close{background:0 0;border:none;font-size:2rem;cursor:pointer;color:var(--color-text-muted)}
-        .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .form-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:20px}
         .form-grid .full-width{grid-column:1 / -1}
         .builder{border:1px solid var(--color-border);padding:15px;border-radius:8px;margin-top:20px}
         .builder-block{margin-bottom:15px}
-        .builder-block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;cursor:pointer;padding:10px;border-radius:5px;gap:10px}
+        .builder-block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;cursor:pointer;padding:10px;border-radius:5px;gap:10px;flex-wrap:wrap}
         .builder-block-header:hover{background-color:#f0f0f0}
         .builder-block-header .toggle-arrow{width:10px;height:10px;border-style:solid;border-width:0 2px 2px 0;display:inline-block;padding:3px;transform:rotate(45deg);transition:transform .3s cubic-bezier(.68,-.55,.27,1.55);flex-shrink:0}
         .collapsed > .builder-block-header .toggle-arrow{transform:rotate(-45deg)}
@@ -111,7 +112,7 @@
         .mcq-answer-editor{display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:center;margin-bottom:10px}
         .mcq-answer-editor input[type="radio"]{width:auto;flex-shrink:0;justify-self:center}
         .mcq-answer-editor .btn{padding:5px 10px;line-height:1;font-size:.8rem;justify-self:center}
-        .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:center;z-index:1000;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+        .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:center;z-index:1060;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
         .modal-overlay.visible{opacity:1;visibility:visible}
         .modal-overlay .modal-content{background-color:var(--color-surface);padding:25px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,.2);width:90%;max-width:500px}
         #prompt-modal .modal-content{max-width:400px}
@@ -119,21 +120,102 @@
         .modal-overlay .modal-content p{margin-top:0;margin-bottom:20px;color:var(--color-text-muted);line-height:1.6}
         .modal-overlay .modal-content input, .modal-overlay .modal-content textarea{width:100%;padding:10px;border:1px solid var(--color-border);border-radius:8px;font-size:1rem;margin-bottom:15px;box-sizing:border-box}
         .modal-overlay .modal-actions{display:flex;justify-content:flex-end;gap:10px}
+        #editor-modal-actions {flex-wrap: wrap;}
         .notification-subsection { margin-bottom: 30px; }
         .notification-subsection h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; cursor: pointer; display: flex; align-items: center; gap: 10px; }
-        .notification-subsection .toggle-arrow {
-            transform: rotate(45deg);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-style: solid;
-            border-width: 0 2px 2px 0;
-            display: inline-block;
-            padding: 4px;
+        .notification-subsection .toggle-arrow { transform: rotate(45deg); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-style: solid; border-width: 0 2px 2px 0; display: inline-block; padding: 4px; }
+        .notification-subsection.collapsed .toggle-arrow { transform: rotate(-45deg); }
+        .notification-subsection .collapsible-content { transition: max-height 0.35s ease-in-out; }
+        .mobile-header { display: none; }
+        #mobile-menu-toggle { display: none; }
+        #mobile-nav-overlay { display: none; }
+        .modal-top-actions {display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;}
+
+        @media (max-width: 992px) {
+            #admin-panel { flex-direction: column; }
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                transform: translateX(-100%);
+                box-shadow: 0 0 20px rgba(0,0,0,.2);
+            }
+            .main-content { padding: 20px; padding-top: 80px; }
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 20px;
+                background-color: var(--color-surface);
+                box-shadow: var(--shadow);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1001;
+            }
+            #mobile-menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                width: 30px;
+                height: 21px;
+                position: relative;
+                z-index: 1002;
+            }
+            #mobile-menu-toggle .icon-bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: var(--color-text);
+                border-radius: 3px;
+                position: absolute;
+                left: 0;
+                transition: all .4s ease-in-out;
+            }
+            #mobile-menu-toggle .icon-bar:nth-child(1) { top: 0; }
+            #mobile-menu-toggle .icon-bar:nth-child(2) { top: 9px; }
+            #mobile-menu-toggle .icon-bar:nth-child(3) { top: 18px; }
+            #mobile-menu-toggle.active .icon-bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            #mobile-menu-toggle.active .icon-bar:nth-child(2) { opacity: 0; }
+            #mobile-menu-toggle.active .icon-bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            .mobile-header .logo { height: 30px; }
+            body.sidebar-open .sidebar { transform: translateX(0); }
+            body.sidebar-open #mobile-nav-overlay {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 998;
+            }
+            .page-title { font-size: 2rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-grid .full-width { grid-column: auto; }
+            .mcq-answer-editor { grid-template-columns: 1fr; gap: 8px; }
         }
-        .notification-subsection.collapsed .toggle-arrow {
-            transform: rotate(-45deg);
-        }
-        .notification-subsection .collapsible-content {
-            transition: max-height 0.35s ease-in-out;
+        @media (max-width: 600px) {
+            .modal-top-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .modal-top-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+            .builder-block-header.has-form-groups {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            .builder-block-header.has-form-groups .form-group {
+                margin: 0;
+            }
         }
     </style>
 </head>
@@ -151,6 +233,7 @@
         </div>
     </div>
     <div id="admin-panel" class="hidden">
+        <div id="mobile-nav-overlay"></div>
         <aside class="sidebar">
             <img src="https://i.imgur.com/UnpZvgZ.png" alt="Literary Speaking Logo" class="logo">
             <nav class="sidebar-nav">
@@ -166,6 +249,14 @@
             <div class="sidebar-footer"><a id="logout-button" class="nav-item">Log Out</a></div>
         </aside>
         <main class="main-content">
+            <div class="mobile-header">
+                <button id="mobile-menu-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="https://i.imgur.com/UnpZvgZ.png" alt="Literary Speaking Logo" class="logo">
+            </div>
             <section id="messages-section">
                 <div class="page-header">
                     <h1 class="page-title">Contact Form Messages</h1>
@@ -430,14 +521,14 @@
         d(r,u=>{w.classList.toggle("hidden",!!u);x.classList.toggle("hidden",!u);if(u){G("messages");Object.values(F).forEach(H=>H());F={};['articles','news','lessons','members'].forEach(attachSnapshotListener);setupSortListeners();loadMessages()}});
         y.addEventListener("submit",async u=>{u.preventDefault();t("#login-error").classList.add("hidden");try{await c(r,y.email.value,y.password.value)}catch(H){t("#login-error").textContent="Error: Invalid email or password.";t("#login-error").classList.remove("hidden")}});
         t("#logout-button").addEventListener("click",()=>e(r));
-        v(".sidebar-nav .nav-item[data-section]").forEach(u=>u.addEventListener("click",H=>G(H.currentTarget.dataset.section)));
-        const Q=u=>{B.innerHTML="";C.classList.add("hidden");D.classList.add("hidden");resourcesBuilderContainer.classList.add("hidden");const H=t("#content-builder-container h3");let K="";const L=`<div style="margin-bottom: 20px; display: flex; gap: 10px;"><button type="button" class="btn btn-secondary" id="import-json-btn">Import from JSON</button><button type="button" class="btn btn-secondary" id="export-json-btn">Export as JSON</button></div>`;if(u==="lesson"){K=`${L}<div class="form-grid"><div class="form-group"><label>Subject Title (English)</label><input type="text" name="title_en" required></div><div class="form-group"><label>Subject Title (Spanish)</label><input type="text" name="title_es" required></div><div class="form-group full-width"><label>Subject URL ID</label><input type="text" name="id" required></div><div class="form-group full-width"><label>Subject Thumbnail URL</label><input type="url" name="thumbnail_url"></div></div>`;H.textContent="Home Page Content";C.classList.remove("hidden");D.classList.remove("hidden");resourcesBuilderContainer.classList.remove("hidden")}else if(u==="member"){K=`${L}<div class="form-grid"><div class="form-group"><label>Member ID</label><input type="text" name="id" required></div><div class="form-group"><label>Full Name</label><input type="text" name="name" required></div><div class="form-group"><label>Portrait Image URL</label><input type="url" name="portrait"></div><div class="form-group"><label>Secondary Image URL</label><input type="url" name="secondaryImage"></div><div class="form-group full-width"><label>Bio (English)</label><textarea name="bio_en" rows="5"></textarea></div><div class="form-group full-width"><label>Bio (Spanish)</label><textarea name="bio_es" rows="5"></textarea></div><div class="form-group"><label>Facts (English) - One per line</label><textarea name="facts_en" rows="5"></textarea></div><div class="form-group"><label>Facts (Spanish) - One per line</label><textarea name="facts_es" rows="5"></textarea></div><div class="form-group"><label>Color</label><input type="color" name="color" value="#B34AFF"></div></div>`}else{K=`${L}<div class="form-grid"><div class="form-group"><label>Title (English)</label><input type="text" name="title_en" required></div><div class="form-group"><label>Title (Spanish)</label><input type="text" name="title_es" required></div><div class="form-group"><label>URL ID</label><input type="text" name="id" required></div><div class="form-group"><label>Author ID</label><input type="text" name="author_id" required></div><div class="form-group"><label>Date</label><input type="date" name="date" required></div><div class="form-group"><label>Read Time (English)</label><input type="text" name="read_time_en" required></div><div class="form-group"><label>Read Time (Spanish)</label><input type="text" name="read_time_es" required></div>`;if(u==="article"){K+=`<div class="form-group"><label>Category (English)</label><input type="text" name="category_en"></div><div class="form-group"><label>Category (Spanish)</label><input type="text" name="category_es"></div>`}K+=`<div class="form-group full-width"><label>Thumbnail URL</label><input type="url" name="thumbnail_url"></div></div><div class="form-group full-width"><label>Excerpt (English)</label><textarea name="excerpt_en" rows="3"></textarea></div><div class="form-group full-width"><label>Excerpt (Spanish)</label><textarea name="excerpt_es" rows="3"></textarea></div>`;if(u==="news"){K+=`<div class="form-group full-width checkbox-group"><input type="checkbox" name="isFeatured" id="isFeatured-checkbox"><label for="isFeatured-checkbox">Featured</label></div>`}H.textContent="Content Builder";C.classList.remove("hidden")}B.innerHTML=K};
+        v(".sidebar-nav .nav-item[data-section]").forEach(u=>u.addEventListener("click",H=>{G(H.currentTarget.dataset.section);document.body.classList.remove('sidebar-open');t('#mobile-menu-toggle').classList.remove('active')}));
+        const Q=u=>{B.innerHTML="";C.classList.add("hidden");D.classList.add("hidden");resourcesBuilderContainer.classList.add("hidden");const H=t("#content-builder-container h3");let K="";const L=`<div class="modal-top-actions"><button type="button" class="btn btn-secondary" id="import-json-btn">Import from JSON</button><button type="button" class="btn btn-secondary" id="export-json-btn">Export as JSON</button></div>`;if(u==="lesson"){K=`${L}<div class="form-grid"><div class="form-group"><label>Subject Title (English)</label><input type="text" name="title_en" required></div><div class="form-group"><label>Subject Title (Spanish)</label><input type="text" name="title_es" required></div><div class="form-group full-width"><label>Subject URL ID</label><input type="text" name="id" required></div><div class="form-group full-width"><label>Subject Thumbnail URL</label><input type="url" name="thumbnail_url"></div></div>`;H.textContent="Home Page Content";C.classList.remove("hidden");D.classList.remove("hidden");resourcesBuilderContainer.classList.remove("hidden")}else if(u==="member"){K=`${L}<div class="form-grid"><div class="form-group"><label>Member ID</label><input type="text" name="id" required></div><div class="form-group"><label>Full Name</label><input type="text" name="name" required></div><div class="form-group"><label>Portrait Image URL</label><input type="url" name="portrait"></div><div class="form-group"><label>Secondary Image URL</label><input type="url" name="secondaryImage"></div><div class="form-group full-width"><label>Bio (English)</label><textarea name="bio_en" rows="5"></textarea></div><div class="form-group full-width"><label>Bio (Spanish)</label><textarea name="bio_es" rows="5"></textarea></div><div class="form-group"><label>Facts (English) - One per line</label><textarea name="facts_en" rows="5"></textarea></div><div class="form-group"><label>Facts (Spanish) - One per line</label><textarea name="facts_es" rows="5"></textarea></div><div class="form-group"><label>Color</label><input type="color" name="color" value="#B34AFF"></div></div>`}else{K=`${L}<div class="form-grid"><div class="form-group"><label>Title (English)</label><input type="text" name="title_en" required></div><div class="form-group"><label>Title (Spanish)</label><input type="text" name="title_es" required></div><div class="form-group"><label>URL ID</label><input type="text" name="id" required></div><div class="form-group"><label>Author ID</label><input type="text" name="author_id" required></div><div class="form-group"><label>Date</label><input type="date" name="date" required></div><div class="form-group"><label>Read Time (English)</label><input type="text" name="read_time_en" required></div><div class="form-group"><label>Read Time (Spanish)</label><input type="text" name="read_time_es" required></div>`;if(u==="article"){K+=`<div class="form-group"><label>Category (English)</label><input type="text" name="category_en"></div><div class="form-group"><label>Category (Spanish)</label><input type="text" name="category_es"></div>`}K+=`<div class="form-group full-width"><label>Thumbnail URL</label><input type="url" name="thumbnail_url"></div></div><div class="form-group full-width"><label>Excerpt (English)</label><textarea name="excerpt_en" rows="3"></textarea></div><div class="form-group full-width"><label>Excerpt (Spanish)</label><textarea name="excerpt_es" rows="3"></textarea></div>`;if(u==="news"){K+=`<div class="form-group full-width checkbox-group"><input type="checkbox" name="isFeatured" id="isFeatured-checkbox"><label for="isFeatured-checkbox">Featured</label></div>`}H.textContent="Content Builder";C.classList.remove("hidden")}B.innerHTML=K};
         const ao=(u)=>{const H=u==='member';v('.action-publish').forEach(K=>K.classList.toggle('hidden',H));v('.action-member').forEach(K=>K.classList.toggle('hidden',!H))};
         v(".add-btn").forEach(u=>u.addEventListener("click",H=>{const K=H.target.dataset.type;A.reset();t("#content-builder").innerHTML="";t("#lesson-builder").innerHTML="";t("#resources-builder").innerHTML="";Q(K);ao(K);t("#modal-title").textContent=`Add New ${K.charAt(0).toUpperCase()+K.slice(1)}`;A.elements.type.value=K;t('[name="id"]').readOnly=!1;I(z,!0)}));
-        const R=(u,H,K={})=>{const L=document.createElement("div");L.className="builder-block";L.dataset.type=H;let M="";if(H==="text"){const N=`<div class="toolbar"><select class="format-block"><option value="p">Paragraph</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option><option value="h3">Heading 3</option></select><button type="button" data-command="bold" title="Bold"><b>B</b></button><button type="button" data-command="italic" title="Italic"><i>I</i></button><button type="button" data-command="underline" title="Underline"><u>U</u></button><button type="button" data-command="strikeThrough" title="Strikethrough"><s>S</s></button><button type="button" data-command="insertUnorderedList" title="Bulleted List">•</button><button type="button" data-command="createLink" title="Link">🔗</button></div>`;M=`<div class="form-group rich-text-editor"><label>Text (English)</label>${N}<div contenteditable="true" class="editor-content" data-field="content_en">${K.content_en||""}</div></div><div class="form-group rich-text-editor"><label>Text (Spanish)</label>${N}<div contenteditable="true" class="editor-content" data-field="content_es">${K.content_es||""}</div></div>`}else if(H==="image"){M=`<div class="form-group"><label>Media URL</label><input type="url" data-field="url" value="${K.url||""}" required></div><div class="form-group"><label>Caption (English)</label><input type="text" data-field="caption_en" value="${K.caption_en||""}"></div><div class="form-group"><label>Caption (Spanish)</label><input type="text" data-field="caption_es" value="${K.caption_es||""}"></div>`}else if(H==="video"){M=`<div class="form-group"><label>YouTube Video URL or ID</label><input type="text" data-field="videoId" value="${K.videoId||""}" required></div><div class="form-group"><label>Title (English)</label><input type="text" data-field="title_en" value="${K.title_en||""}"></div><div class="form-group"><label>Title (Spanish)</label><input type="text" data-field="title_es" value="${K.title_es||""}"></div>`}else if(H==="pdf"){M=`<div class="form-group"><label>PDF URL</label><input type="url" data-field="url" value="${K.url||""}" required></div><div class="form-group"><label>Title (English)</label><input type="text" data-field="title_en" value="${K.title_en||""}"></div><div class="form-group"><label>Title (Spanish)</label><input type="text" data-field="title_es" value="${K.title_es||""}"></div>`}else if(H==="mcq"){const O='mcq_correct_'+Math.random().toString(36).substring(2,9);let P=(K.answers&&K.answers.length?K.answers:[{text_en:'',text_es:'',correct:!0}]).map(Q=>`<div class="mcq-answer-editor"><input type="text" class="mcq-answer-text-en" placeholder="Answer (English)" value="${Q.text_en||""}"><input type="text" class="mcq-answer-text-es" placeholder="Answer (Spanish)" value="${Q.text_es||""}"><input type="radio" name="${O}" class="mcq-answer-correct" ${Q.correct?"checked":""}><button type="button" class="btn btn-danger remove-mcq-answer-btn">X</button></div>`).join('');M=`<div class="form-grid"><div class="form-group"><label>Question (English)</label><textarea data-field="question_en" rows="2">${K.question_en||""}</textarea></div><div class="form-group"><label>Question (Spanish)</label><textarea data-field="question_es" rows="2">${K.question_es||""}</textarea></div></div><div class="form-group"><label>Answers</label><div style="display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;margin-bottom:5px;padding-right:50px"><label style="margin-bottom:0">English</label><label style="margin-bottom:0">Spanish</label></div><div class="mcq-answers-container">${P}</div><button type="button" class="btn btn-secondary add-mcq-answer-btn" data-radio-name="${O}">Add Answer</button></div><div class="form-grid"><div class="form-group"><label>Explanation (Optional) (English)</label><textarea data-field="explanation_en" rows="3">${K.explanation_en||""}</textarea></div><div class="form-group"><label>Explanation (Optional) (Spanish)</label><textarea data-field="explanation_es" rows="3">${K.explanation_es||""}</textarea></div></div>`}L.innerHTML=`<div class="builder-block-header"><span class="builder-block-title">${H.charAt(0).toUpperCase()+H.slice(1)} Block</span><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete</button></div></div>${M}`;u.appendChild(L)};
-        const S=(u,H={})=>{const K=document.createElement("div");K.className="builder-block module-block";K.dataset.type="unit";const L='unit_content_'+Math.random().toString(36).substring(2,9);K.innerHTML=`<div class="builder-block-header"><div class="form-group" style="flex-grow: 1; margin: 0;"><label>Unit Title (English)</label><input type="text" data-field="title_en" value="${H.title_en||""}" required></div><div class="form-group" style="flex-grow: 1; margin: 0; margin-left:15px;"><label>Unit Title (Spanish)</label><input type="text" data-field="title_es" value="${H.title_es||""}" required></div><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete Unit</button></div></div><div class="nested-builder collapsible-content"><div class="unit-content-container" id="${L}"></div><div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap:wrap;"><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="text">Add Text</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="image">Add Media</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="video">Add Video</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="pdf">Add PDF</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="mcq">Add MCQ</button></div></div>`;u.appendChild(K);if(H.contentBlocks&&Array.isArray(H.contentBlocks)){const M=K.querySelector(`#${L}`);H.contentBlocks.forEach(N=>R(M,N.type,N))}};
-        const T=(u,H={})=>{const K=document.createElement("div");K.className="builder-block course-block";K.dataset.type="module";K.innerHTML=`<div class="builder-block-header"><div class="form-group" style="flex-grow: 1; margin: 0;"><label>Module Title (English)</label><input type="text" data-field="title_en" value="${H.title_en||""}" required></div><div class="form-group" style="flex-grow: 1; margin: 0; margin-left:15px;"><label>Module Title (Spanish)</label><input type="text" data-field="title_es" value="${H.title_es||""}" required></div><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete Module</button></div></div><div class="nested-builder collapsible-content"><div class="module-units-container"></div><button type="button" class="btn btn-secondary add-unit-btn" style="margin-top: 10px;">Add Unit</button></div>`;u.appendChild(K);if(H.units&&Array.isArray(H.units)){const L=K.querySelector(".module-units-container");H.units.forEach(M=>S(L,M))}};
-        const U=u=>{const H=document.createElement("div");H.className="builder-block course-block collapsed";H.dataset.type="course";H.innerHTML=`<div class="builder-block-header"><span class="toggle-arrow"></span><div class="form-group" style="flex-grow: 1; margin: 0;"><label>Class Title (English)</label><input type="text" data-field="title_en" value="${u.title_en||""}" required></div><div class="form-group" style="flex-grow: 1; margin: 0; margin-left:15px;"><label>Class Title (Spanish)</label><input type="text" data-field="title_es" value="${u.title_es||""}" required></div><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete Class</button></div></div><div class="nested-builder collapsible-content"><div class="course-modules-container"></div><button type="button" class="btn btn-secondary add-module-to-course-btn" style="margin-top: 10px;">Add Module</button></div>`;t("#lesson-builder").appendChild(H);if(u.modules&&Array.isArray(u.modules)){const K=H.querySelector(".course-modules-container");u.modules.forEach(L=>T(K,L))}};
+        const R=(u,H,K={})=>{const L=document.createElement("div");L.className="builder-block";L.dataset.type=H;let M="";if(H==="text"){const N=`<div class="toolbar"><select class="format-block"><option value="p">Paragraph</option><option value="h1">Heading 1</option><option value="h2">Heading 2</option><option value="h3">Heading 3</option></select><button type="button" data-command="bold" title="Bold"><b>B</b></button><button type="button" data-command="italic" title="Italic"><i>I</i></button><button type="button" data-command="underline" title="Underline"><u>U</u></button><button type="button" data-command="strikeThrough" title="Strikethrough"><s>S</s></button><button type="button" data-command="insertUnorderedList" title="Bulleted List">•</button><button type="button" data-command="createLink" title="Link">🔗</button></div>`;M=`<div class="form-group rich-text-editor"><label>Text (English)</label>${N}<div contenteditable="true" class="editor-content" data-field="content_en">${K.content_en||""}</div></div><div class="form-group rich-text-editor"><label>Text (Spanish)</label>${N}<div contenteditable="true" class="editor-content" data-field="content_es">${K.content_es||""}</div></div>`}else if(H==="image"){M=`<div class="form-group"><label>Media URL</label><input type="url" data-field="url" value="${K.url||""}" required></div><div class="form-group"><label>Caption (English)</label><input type="text" data-field="caption_en" value="${K.caption_en||""}"></div><div class="form-group"><label>Caption (Spanish)</label><input type="text" data-field="caption_es" value="${K.caption_es||""}"></div>`}else if(H==="video"){M=`<div class="form-group"><label>YouTube Video URL or ID</label><input type="text" data-field="videoId" value="${K.videoId||""}" required></div><div class="form-group"><label>Title (English)</label><input type="text" data-field="title_en" value="${K.title_en||""}"></div><div class="form-group"><label>Title (Spanish)</label><input type="text" data-field="title_es" value="${K.title_es||""}"></div>`}else if(H==="pdf"){M=`<div class="form-group"><label>PDF URL</label><input type="url" data-field="url" value="${K.url||""}" required></div><div class="form-group"><label>Title (English)</label><input type="text" data-field="title_en" value="${K.title_en||""}"></div><div class="form-group"><label>Title (Spanish)</label><input type="text" data-field="title_es" value="${K.title_es||""}"></div>`}else if(H==="mcq"){const O='mcq_correct_'+Math.random().toString(36).substring(2,9);let P=(K.answers&&K.answers.length?K.answers:[{text_en:'',text_es:'',correct:!0}]).map(Q=>`<div class="mcq-answer-editor"><input type="text" class="mcq-answer-text-en" placeholder="Answer (English)" value="${Q.text_en||""}"><input type="text" class="mcq-answer-text-es" placeholder="Answer (Spanish)" value="${Q.text_es||""}"><input type="radio" name="${O}" class="mcq-answer-correct" ${Q.correct?"checked":""}><button type="button" class="btn btn-danger remove-mcq-answer-btn">X</button></div>`).join('');M=`<div class="form-grid"><div class="form-group"><label>Question (English)</label><textarea data-field="question_en" rows="2">${K.question_en||""}</textarea></div><div class="form-group"><label>Question (Spanish)</label><textarea data-field="question_es" rows="2">${K.question_es||""}</textarea></div></div><div class="form-group"><label>Answers</label><div class="mcq-answers-container">${P}</div><button type="button" class="btn btn-secondary add-mcq-answer-btn" data-radio-name="${O}">Add Answer</button></div><div class="form-grid"><div class="form-group"><label>Explanation (Optional) (English)</label><textarea data-field="explanation_en" rows="3">${K.explanation_en||""}</textarea></div><div class="form-group"><label>Explanation (Optional) (Spanish)</label><textarea data-field="explanation_es" rows="3">${K.explanation_es||""}</textarea></div></div>`}L.innerHTML=`<div class="builder-block-header"><span class="builder-block-title">${H.charAt(0).toUpperCase()+H.slice(1)} Block</span><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete</button></div></div>${M}`;u.appendChild(L)};
+        const S=(u,H={})=>{const K=document.createElement("div");K.className="builder-block module-block";K.dataset.type="unit";const L='unit_content_'+Math.random().toString(36).substring(2,9);K.innerHTML=`<div class="builder-block-header has-form-groups"><div class="form-group" style="flex-grow: 1;"><label>Unit Title (English)</label><input type="text" data-field="title_en" value="${H.title_en||""}" required></div><div class="form-group" style="flex-grow: 1;"><label>Unit Title (Spanish)</label><input type="text" data-field="title_es" value="${H.title_es||""}" required></div><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete Unit</button></div></div><div class="nested-builder collapsible-content"><div class="unit-content-container" id="${L}"></div><div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap:wrap;"><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="text">Add Text</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="image">Add Media</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="video">Add Video</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="pdf">Add PDF</button><button type="button" class="btn btn-secondary add-content-btn" data-builder="${L}" data-type="mcq">Add MCQ</button></div></div>`;u.appendChild(K);if(H.contentBlocks&&Array.isArray(H.contentBlocks)){const M=K.querySelector(`#${L}`);H.contentBlocks.forEach(N=>R(M,N.type,N))}};
+        const T=(u,H={})=>{const K=document.createElement("div");K.className="builder-block course-block";K.dataset.type="module";K.innerHTML=`<div class="builder-block-header has-form-groups"><div class="form-group" style="flex-grow: 1;"><label>Module Title (English)</label><input type="text" data-field="title_en" value="${H.title_en||""}" required></div><div class="form-group" style="flex-grow: 1;"><label>Module Title (Spanish)</label><input type="text" data-field="title_es" value="${H.title_es||""}" required></div><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete Module</button></div></div><div class="nested-builder collapsible-content"><div class="module-units-container"></div><button type="button" class="btn btn-secondary add-unit-btn" style="margin-top: 10px;">Add Unit</button></div>`;u.appendChild(K);if(H.units&&Array.isArray(H.units)){const L=K.querySelector(".module-units-container");H.units.forEach(M=>S(L,M))}};
+        const U=u=>{const H=document.createElement("div");H.className="builder-block course-block collapsed";H.dataset.type="course";H.innerHTML=`<div class="builder-block-header has-form-groups"><span class="toggle-arrow"></span><div class="form-group" style="flex-grow: 1;"><label>Class Title (English)</label><input type="text" data-field="title_en" value="${u.title_en||""}" required></div><div class="form-group" style="flex-grow: 1;"><label>Class Title (Spanish)</label><input type="text" data-field="title_es" value="${u.title_es||""}" required></div><div class="builder-block-actions"><button type="button" class="btn btn-secondary move-up-btn">Up</button><button type="button" class="btn btn-secondary move-down-btn">Down</button><button type="button" class="btn btn-danger delete-block-btn">Delete Class</button></div></div><div class="nested-builder collapsible-content"><div class="course-modules-container"></div><button type="button" class="btn btn-secondary add-module-to-course-btn" style="margin-top: 10px;">Add Module</button></div>`;t("#lesson-builder").appendChild(H);if(u.modules&&Array.isArray(u.modules)){const K=H.querySelector(".course-modules-container");u.modules.forEach(L=>T(K,L))}};
         const V=u=>{const H=/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/.exec(u);return H&&H[2].length===11?H[2]:u};
         const W=()=>{const u={};const H=A.elements.type.value;const Z=Y=>{const L={type:Y.dataset.type};if(L.type==="mcq"){L.question_en=Y.querySelector('[data-field="question_en"]').value;L.question_es=Y.querySelector('[data-field="question_es"]').value;L.explanation_en=Y.querySelector('[data-field="explanation_en"]').value;L.explanation_es=Y.querySelector('[data-field="explanation_es"]').value;L.answers=Array.from(Y.querySelectorAll(".mcq-answer-editor")).map(M=>({text_en:M.querySelector(".mcq-answer-text-en").value,text_es:M.querySelector(".mcq-answer-text-es").value,correct:M.querySelector(".mcq-answer-correct").checked}))}else{Y.querySelectorAll("input, .editor-content, textarea").forEach(M=>{if(M.dataset.field){let N=M.tagName==="DIV"?M.innerHTML:M.value;if(M.dataset.field==="videoId"){N=V(N)}L[M.dataset.field]=N}})}return L};if(H==="article"||H==="news"||H==="lesson"){u.contentBlocks=Array.from(v("#content-builder > .builder-block")).map(Z)}if(H==="lesson"){u.courses=Array.from(v('#lesson-builder > .builder-block[data-type="course"]')).map(K=>{const L={title_en:K.querySelector('[data-field="title_en"]').value,title_es:K.querySelector('[data-field="title_es"]').value,modules:[]};K.querySelectorAll('.course-modules-container .builder-block[data-type="module"]').forEach(M=>{const N={title_en:M.querySelector('[data-field="title_en"]').value,title_es:M.querySelector('[data-field="title_es"]').value,units:[]};M.querySelectorAll('.module-units-container .builder-block[data-type="unit"]').forEach(O=>{const P={title_en:O.querySelector('[data-field="title_en"]').value,title_es:O.querySelector('[data-field="title_es"]').value,contentBlocks:[]};O.querySelectorAll(".unit-content-container .builder-block").forEach(Q=>{P.contentBlocks.push(Z(Q))});N.units.push(P)});L.modules.push(N)});return L});u.resourcesBlocks=Array.from(v("#resources-builder > .builder-block")).map(Z)}if(H==="member"){u.facts_en=A.elements.facts_en.value.split('\n').map(fact=>fact.trim()).filter(Boolean);u.facts_es=A.elements.facts_es.value.split('\n').map(fact=>fact.trim()).filter(Boolean)}return u};
         t("#add-class-btn").addEventListener("click",()=>U({}));
@@ -464,7 +555,7 @@
                 formatBlockDropdown.value = 'p';
             }
         };
-        z.addEventListener("click",u=>{const H=u.target;if(H.id==='import-json-btn'){ap(!0)}else if(H.id==='export-json-btn'){const K=W();t("#json-export-textarea").value=JSON.stringify(K,null,2);av(!0)}if(H.classList.contains("add-content-btn")){const L=H.dataset.builder,M=H.closest('.modal-content').querySelector(`#${L}`);R(M,H.dataset.type,{})}if(H.classList.contains('add-mcq-answer-btn')){const L=H.dataset.radioName;const M=H.previousElementSibling;const N=document.createElement('div');N.className='mcq-answer-editor';N.innerHTML=`<input type="text" class="mcq-answer-text-en" placeholder="Answer (English)"><input type="text" class="mcq-answer-text-es" placeholder="Answer (Spanish)"><input type="radio" name="${L}" class="mcq-answer-correct"><button type="button" class="btn btn-danger remove-mcq-answer-btn">X</button>`;M.appendChild(N)}if(H.classList.contains('remove-mcq-answer-btn')){H.parentElement.remove()}const K=H.closest(".builder-block");if(H.classList.contains("builder-block-header")){H.parentElement.classList.toggle("collapsed")}if(!K)return;if(H.classList.contains("delete-block-btn")){K.remove()}else if(H.classList.contains("move-up-btn")){const L=K.previousElementSibling;if(L){K.parentElement.insertBefore(K,L)}}else if(H.classList.contains("move-down-btn")){const L=K.nextElementSibling;if(L){K.parentElement.insertBefore(L,K)}}else if(H.classList.contains("add-module-to-course-btn")){T(K.querySelector(".course-modules-container"),{})}else if(H.classList.contains("add-unit-btn")){S(K.querySelector(".module-units-container"),{})}else if(H.classList.contains("add-content-to-unit-btn")){const L=H.dataset.contentType,M=K.querySelector(".unit-content-container");R(M,L,{})}
+        z.addEventListener("click",u=>{const H=u.target;if(H.id==='import-json-btn'){ap(!0)}else if(H.id==='export-json-btn'){const K={};new FormData(A).forEach((N,O)=>{let P=A.elements[O];if(P instanceof RadioNodeList){P=P[0]}if(!P||!P.closest(".builder-block")){K[O]=N}});const L=W();const M={...K,...L};delete M.original_id;delete M.type;delete M.saveAction;t("#json-export-textarea").value=JSON.stringify(M,null,2);av(!0)}if(H.classList.contains("add-content-btn")){const L=H.dataset.builder,M=H.closest('.modal-content').querySelector(`#${L}`);R(M,H.dataset.type,{})}if(H.classList.contains('add-mcq-answer-btn')){const L=H.dataset.radioName;const M=H.previousElementSibling;const N=document.createElement('div');N.className='mcq-answer-editor';N.innerHTML=`<input type="text" class="mcq-answer-text-en" placeholder="Answer (English)"><input type="text" class="mcq-answer-text-es" placeholder="Answer (Spanish)"><input type="radio" name="${L}" class="mcq-answer-correct"><button type="button" class="btn btn-danger remove-mcq-answer-btn">X</button>`;M.appendChild(N)}if(H.classList.contains('remove-mcq-answer-btn')){H.parentElement.remove()}const K=H.closest(".builder-block");if(H.classList.contains("builder-block-header")){H.parentElement.classList.toggle("collapsed")}if(!K)return;if(H.classList.contains("delete-block-btn")){K.remove()}else if(H.classList.contains("move-up-btn")){const L=K.previousElementSibling;if(L){K.parentElement.insertBefore(K,L)}}else if(H.classList.contains("move-down-btn")){const L=K.nextElementSibling;if(L){K.parentElement.insertBefore(L,K)}}else if(H.classList.contains("add-module-to-course-btn")){T(K.querySelector(".course-modules-container"),{})}else if(H.classList.contains("add-unit-btn")){S(K.querySelector(".module-units-container"),{})}else if(H.classList.contains("add-content-to-unit-btn")){const L=H.dataset.contentType,M=K.querySelector(".unit-content-container");R(M,L,{})}
             const editorContent = H.closest('.editor-content');
             if(editorContent) { updateToolbarState(editorContent); }
             const button = H.closest('button[data-command]');
@@ -837,6 +928,17 @@ Launch URL: ${launchUrlBase}?lang=es`;
             } else {
                 aq('Error', 'Failed to copy emails.');
             }
+        });
+
+        const mobileMenuToggle = t('#mobile-menu-toggle');
+        const mobileNavOverlay = t('#mobile-nav-overlay');
+        mobileMenuToggle.addEventListener('click', () => {
+            document.body.classList.toggle('sidebar-open');
+            mobileMenuToggle.classList.toggle('active');
+        });
+        mobileNavOverlay.addEventListener('click', () => {
+            document.body.classList.remove('sidebar-open');
+            mobileMenuToggle.classList.remove('active');
         });
 
     </script>
