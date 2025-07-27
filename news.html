@@ -67,8 +67,6 @@
         .nf-item--thumb-right .nf-item-content { flex: 1; }
         .nf-item--thumb-right .nf-item-image { width: 100px; height: 100px; object-fit: cover; margin-left: 20px; flex-shrink: 0; }
         .nf-item--thumb-right .nf-item-title { font-size: 1rem; }
-        .nf-layout-container--thumb-right-trio .nf-item { padding: 0; }
-        .nf-layout-container--thumb-right-trio .nf-item:not(:last-child) { padding-bottom: 18px; border-bottom: 1px solid #ddd; margin-bottom: 18px; }
 
         .social-section{background-color:var(--color-pink); padding: 80px 0;}
         .social-box{background-color:#fff0f5;padding:50px;border-radius:16px;box-shadow:0 15px 30px rgba(0,0,0,0.1);color:var(--color-purple-dark)}
@@ -200,7 +198,7 @@
             }
             
             const featuredItems = allNewsItems.filter(item => item.isFeatured);
-            const notFeaturedItems = allNewsItems.filter(item => !item.isFeatured);
+            let notFeaturedItems = allNewsItems.filter(item => !item.isFeatured);
 
             const featuredColumn = document.getElementById('featured-column');
             const notFeaturedColumn = document.getElementById('not-featured-column');
@@ -232,57 +230,52 @@
                     featuredColumn.appendChild(link);
                 });
 
-                const layoutPattern = ['large-thumb', 'horizontal', 'horizontal', 'side-by-side', 'grid', 'thumb-right-trio'];
+                let remainingItems = [...notFeaturedItems];
+                if (remainingItems.length > 0) {
+                    const firstItem = remainingItems.shift();
+                    notFeaturedColumn.appendChild(createNewsElement(firstItem, lang, 'nf-item--large-thumb'));
+                }
+
+                const layoutPattern = ['horizontal', 'horizontal', 'side-by-side', 'horizontal', 'horizontal', 'grid', 'horizontal', 'horizontal', 'thumb-right', 'thumb-right', 'thumb-right'];
                 let patternIndex = 0;
                 let i = 0;
-                while (i < notFeaturedItems.length) {
+                while (i < remainingItems.length) {
                     const patternType = layoutPattern[patternIndex % layoutPattern.length];
                     
                     switch (patternType) {
-                        case 'large-thumb':
-                            if (notFeaturedItems.length - i >= 1) {
-                                notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i], lang, 'nf-item--large-thumb'));
-                                i++;
-                            } else { i = notFeaturedItems.length; }
-                            break;
                         case 'horizontal':
-                             if (notFeaturedItems.length - i >= 1) {
-                                notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i], lang, 'nf-item--horizontal'));
+                             if (remainingItems.length - i >= 1) {
+                                notFeaturedColumn.appendChild(createNewsElement(remainingItems[i], lang, 'nf-item--horizontal'));
                                 i++;
-                            } else { i = notFeaturedItems.length; }
+                            } else { i = remainingItems.length; }
                             break;
                         case 'grid':
-                            if (notFeaturedItems.length - i >= 4) {
+                            if (remainingItems.length - i >= 4) {
                                 const container = document.createElement('div');
                                 container.className = 'nf-layout-container nf-layout-container--grid';
                                 for(let j = 0; j < 4; j++) {
-                                    container.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--grid-item'));
+                                    container.appendChild(createNewsElement(remainingItems[i + j], lang, 'nf-item--grid-item'));
                                 }
                                 notFeaturedColumn.appendChild(container);
                                 i += 4;
-                            } else { i = notFeaturedItems.length; }
+                            } else { i = remainingItems.length; }
                             break;
                         case 'side-by-side':
-                             if (notFeaturedItems.length - i >= 2) {
+                             if (remainingItems.length - i >= 2) {
                                 const container = document.createElement('div');
                                 container.className = 'nf-layout-container nf-layout-container--side-by-side';
                                 for(let j = 0; j < 2; j++) {
-                                    container.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--side-by-side-item'));
+                                    container.appendChild(createNewsElement(remainingItems[i + j], lang, 'nf-item--side-by-side-item'));
                                 }
                                 notFeaturedColumn.appendChild(container);
                                 i += 2;
-                            } else { i = notFeaturedItems.length; }
+                            } else { i = remainingItems.length; }
                             break;
-                        case 'thumb-right-trio':
-                            if (notFeaturedItems.length - i >= 3) {
-                                const container = document.createElement('div');
-                                container.className = 'nf-layout-container nf-layout-container--thumb-right-trio';
-                                for(let j = 0; j < 3; j++) {
-                                    container.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--thumb-right'));
-                                }
-                                notFeaturedColumn.appendChild(container);
-                                i += 3;
-                            } else { i = notFeaturedItems.length; }
+                        case 'thumb-right':
+                            if (remainingItems.length - i >= 1) {
+                                notFeaturedColumn.appendChild(createNewsElement(remainingItems[i], lang, 'nf-item--thumb-right'));
+                                i++;
+                            } else { i = remainingItems.length; }
                             break;
                         default:
                             i++;
