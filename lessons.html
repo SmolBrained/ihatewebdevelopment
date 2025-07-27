@@ -84,8 +84,8 @@
                 if (!gridContainer) return;
                 gridContainer.innerHTML = '';
                 if (lessons.length === 0) {
-                    gridContainer.innerHTML = `<p class="lang-switch" data-en="Lessons are coming soon!" data-es="¡Pronto habrá lecciones!"></p>`;
-                    siteRouter.applyLanguage(lang);
+                    const message = lang === 'es' ? '¡Pronto habrá lecciones!' : 'Lessons are coming soon!';
+                    gridContainer.innerHTML = `<p>${message}</p>`;
                     return;
                 }
                 lessons.forEach(lesson => {
