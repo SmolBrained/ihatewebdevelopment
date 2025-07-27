@@ -56,7 +56,7 @@
         .nf-item--horizontal-duo { display: grid; grid-template-columns: 1fr; gap: 0; }
         .nf-item--horizontal-duo .nf-item { padding: 20px 0; }
         .nf-item--horizontal-duo .nf-item:first-child { border-bottom: 1px solid #ddd; }
-        .nf-item--horizontal-duo .nf-item:last-child { border-bottom: none; } /* No double border */
+        .nf-item--horizontal-duo .nf-item:last-child { border-bottom: none; }
 
         .nf-item--grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .nf-item--grid .nf-item { padding: 0; border-bottom: none; }
@@ -257,7 +257,7 @@
                                 }
                                 notFeaturedColumn.appendChild(container);
                                 i += 4;
-                            } else { // Fallback for fewer than 4 items
+                            } else {
                                 for (let j = 0; j < notFeaturedItems.length - i; j++) {
                                     notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i + j], lang, 'nf-item--horizontal'));
                                 }
@@ -273,7 +273,7 @@
                                 }
                                 notFeaturedColumn.appendChild(container);
                                 i += 2;
-                            } else { // Fallback for 1 item
+                            } else {
                                 if (notFeaturedItems.length - i > 0) {
                                    notFeaturedColumn.appendChild(createNewsElement(notFeaturedItems[i], lang, 'nf-item--large-thumb'));
                                    i++;
