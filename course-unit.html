@@ -88,6 +88,10 @@
         .unit-navigation-btn.hidden {
             visibility: hidden;
         }
+        .nav-arrow {
+            font-size: 0.7em;
+            vertical-align: 1px;
+        }
 
         @media (max-width: 768px) {
             .unit-title { font-size: 2rem; }
@@ -247,14 +251,14 @@
             if (currentIndex > 0) {
                 const prevUnitIndices = flatUnitList[currentIndex - 1];
                 const prevUrl = `course-unit.html?subjectId=${subject.id}&courseIndex=${prevUnitIndices.c}&moduleIndex=${prevUnitIndices.m}&unitIndex=${prevUnitIndices.u}&fromPanel=${fromPanel}`;
-                prevBtnHTML = `<a href="${prevUrl}" class="unit-navigation-btn"><span class="lang-switch" data-en="◀ Previous" data-es="◀ Anterior"></span></a>`;
+                prevBtnHTML = `<a href="${prevUrl}" class="unit-navigation-btn"><span class="nav-arrow">◀</span> <span class="lang-switch" data-en="Previous" data-es="Anterior"></span></a>`;
             }
 
             let nextBtnHTML = `<a class="unit-navigation-btn hidden" aria-disabled="true"></a>`;
             if (currentIndex < flatUnitList.length - 1) {
                 const nextUnitIndices = flatUnitList[currentIndex + 1];
                 const nextUrl = `course-unit.html?subjectId=${subject.id}&courseIndex=${nextUnitIndices.c}&moduleIndex=${nextUnitIndices.m}&unitIndex=${nextUnitIndices.u}&fromPanel=${fromPanel}`;
-                nextBtnHTML = `<a href="${nextUrl}" class="unit-navigation-btn"><span class="lang-switch" data-en="Next ▶" data-es="Siguiente ▶"></span></a>`;
+                nextBtnHTML = `<a href="${nextUrl}" class="unit-navigation-btn"><span class="lang-switch" data-en="Next" data-es="Siguiente"></span> <span class="nav-arrow">▶</span></a>`;
             }
             
             const navHTML = `
