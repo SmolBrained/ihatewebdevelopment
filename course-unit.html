@@ -63,6 +63,31 @@
         .mcq-system.answered .mcq-answer.incorrect:hover{background:var(--color-danger,#dc3545);border-color:var(--color-danger,#dc3545);}
         .mcq-explanation{display:none;margin-top:15px;text-align:left;border-color:var(--color-border,#dee2e6);}
         .mcq-explanation.visible{display:block;}
+        .unit-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .unit-navigation-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.2s;
+        }
+        .unit-navigation-btn:hover {
+            background-color: #e9ecef;
+        }
+        .unit-navigation-btn.hidden {
+            visibility: hidden;
+        }
 
         @media (max-width: 768px) {
             .unit-title { font-size: 2rem; }
@@ -202,7 +227,47 @@
             });
         };
 
-        const renderUnit = (subject, course, module, unit, lang, fromPanel) => {
+        const renderNavigation = (subject, currentIndices, lang, fromPanel) => {
+            const flatUnitList = [];
+            subject.courses.forEach((course, cIndex) => {
+                course.modules.forEach((module, mIndex) => {
+                    module.units.forEach((unit, uIndex) => {
+                        flatUnitList.push({ c: cIndex, m: mIndex, u: uIndex });
+                    });
+                });
+            });
+
+            const currentIndex = flatUnitList.findIndex(item => 
+                item.c === currentIndices.courseIndex && 
+                item.m === currentIndices.moduleIndex && 
+                item.u === currentIndices.unitIndex
+            );
+
+            let prevBtnHTML = `<a class="unit-navigation-btn hidden" aria-disabled="true"></a>`;
+            if (currentIndex > 0) {
+                const prevUnitIndices = flatUnitList[currentIndex - 1];
+                const prevUrl = `course-unit.html?subjectId=${subject.id}&courseIndex=${prevUnitIndices.c}&moduleIndex=${prevUnitIndices.m}&unitIndex=${prevUnitIndices.u}&fromPanel=${fromPanel}`;
+                prevBtnHTML = `<a href="${prevUrl}" class="unit-navigation-btn"><span class="lang-switch" data-en="« Previous" data-es="« Anterior"></span></a>`;
+            }
+
+            let nextBtnHTML = `<a class="unit-navigation-btn hidden" aria-disabled="true"></a>`;
+            if (currentIndex < flatUnitList.length - 1) {
+                const nextUnitIndices = flatUnitList[currentIndex + 1];
+                const nextUrl = `course-unit.html?subjectId=${subject.id}&courseIndex=${nextUnitIndices.c}&moduleIndex=${nextUnitIndices.m}&unitIndex=${nextUnitIndices.u}&fromPanel=${fromPanel}`;
+                nextBtnHTML = `<a href="${nextUrl}" class="unit-navigation-btn"><span class="lang-switch" data-en="Next »" data-es="Siguiente »"></span></a>`;
+            }
+            
+            const navHTML = `
+                <div class="unit-navigation">
+                    ${prevBtnHTML}
+                    ${nextBtnHTML}
+                </div>
+            `;
+            
+            return navHTML;
+        };
+
+        const renderUnit = (subject, course, module, unit, currentIndices, lang, fromPanel) => {
             const contentWrapper = document.getElementById('unit-content-wrapper');
             const sidebarNav = document.getElementById('lesson-sidebar-nav');
             if (!contentWrapper || !sidebarNav || !unit) return;
@@ -217,6 +282,8 @@
             `;
             
             const contentBlocksHTML = renderContentBlocks(unit.contentBlocks, lang);
+            const navigationHTML = renderNavigation(subject, currentIndices, lang, fromPanel);
+            
             contentWrapper.innerHTML = `
                 <div class="breadcrumbs">
                     <a class="nav-link" data-page-id="lesson-single" data-id="${subject.id}" data-panel="modules">${subject[`title_${lang}`]}</a>
@@ -229,6 +296,7 @@
                     <h1 class="unit-title">${unit[`title_${lang}`]}</h1>
                 </div>
                 <div class="unit-body">${contentBlocksHTML}</div>
+                ${navigationHTML}
             `;
             
             document.querySelectorAll('.nav-link[data-page-id="lesson-single"]').forEach(link => {
@@ -269,6 +337,7 @@
             const course = subject.courses?.[courseIndex];
             const module = course?.modules?.[moduleIndex];
             const unit = module?.units?.[unitIndex];
+            const currentIndices = { courseIndex, moduleIndex, unitIndex };
 
             if (!unit) {
                 console.error("Could not find the specified unit with the provided indices.");
@@ -277,10 +346,10 @@
             
             setupMCQListeners();
             const initialLang = localStorage.getItem('language') || 'en';
-            renderUnit(subject, course, module, unit, initialLang, fromPanel);
+            renderUnit(subject, course, module, unit, currentIndices, initialLang, fromPanel);
 
             document.addEventListener('languageChanged', (e) => {
-                renderUnit(subject, course, module, unit, e.detail.lang, fromPanel);
+                renderUnit(subject, course, module, unit, currentIndices, e.detail.lang, fromPanel);
             });
         });
     </script>
